@@ -11,6 +11,18 @@
   <NavBarLink title="Recipes" link="/recipes" {level} />
   <NavBarLink title="Restaurants" link="/restaurants" {level} />
 </NavBar>
-<ContentWrapper>
-  <slot />
-</ContentWrapper>
+<div id='content'>
+  <ContentWrapper>
+    <slot />
+  </ContentWrapper>
+</div>
+
+<style>
+  #content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 70px;
+  }
+</style>

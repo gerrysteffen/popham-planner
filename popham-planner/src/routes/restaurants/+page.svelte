@@ -1,18 +1,17 @@
 <script lang="ts">
-  import PreviewCube from "$lib/components/PreviewCube.svelte";
-import TitleBar from "$lib/components/TitleBar.svelte";
+  import CubeContainer from '$lib/components/CubeContainer.svelte';
+import PreviewCube from '$lib/components/PreviewCube.svelte';
+  import TitleBar from '$lib/components/TitleBar.svelte';
   import exampleData from '../../lib/exampleData';
-
 </script>
 
-<div>
-  <TitleBar title='All Restaurants' />
-
-</div>
-  {#each exampleData.restaurants as restaurant} 
-    <PreviewCube />
-    <div>{restaurant.name}</div>
+<TitleBar title="All Restaurants" />
+<CubeContainer>
+  {#each exampleData.restaurants as restaurant}
+    <PreviewCube data={restaurant} cat='restaurants' />
   {/each}
+</CubeContainer>
+
 <style>
   
 </style>

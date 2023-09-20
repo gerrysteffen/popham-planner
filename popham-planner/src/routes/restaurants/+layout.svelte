@@ -9,8 +9,8 @@
 <MarginCorrection>
   <NavBar>
     <NavBarLink title="Overview" link="/restaurants" {level} />
+    <NavBarLink title='Adv. Search and Filter' link="/restaurants/search" {level} />
     <NavBarLink title="Add New" link="/restaurants/add-new" {level} />
-    <NavBarLink title="Search" link="/restaurants/search" {level} />
   </NavBar>
 </MarginCorrection>
 <slot />
