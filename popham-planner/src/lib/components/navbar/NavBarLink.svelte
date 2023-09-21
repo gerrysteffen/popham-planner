@@ -26,7 +26,7 @@
     background-color: lightgray;
     text-decoration: none;
     text-align: center;
-    padding: 5px;
+    padding: 15px;
   }
   a:focus,
   a:hover {

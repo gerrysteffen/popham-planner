@@ -1,12 +1,9 @@
-import type { Restaurant } from '$lib/types/types';
-import exampleData from '../../../lib/exampleData';
+import { getRestaurantById, type IRestaurant } from '$lib/db/restaurants';
 
-export function load({ params }) {
-  const restaurant = exampleData.restaurants.find(
-    (restaurant: Restaurant) => restaurant.id === params.restaurantId
-  ) || {name: 'No restaurant found', id: params.restaurantId};
+export async function load({ params }) {
+  const restaurant = await getRestaurantById(params.restaurantId);
 
   return {
-    restaurant,
+    restaurant: JSON.parse(JSON.stringify(restaurant)) as IRestaurant,
   };
 }

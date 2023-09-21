@@ -1,12 +1,9 @@
-import type { Recipe } from '$lib/types/types';
-import exampleData from '../../../lib/exampleData';
+import { getRecipeById, type IRecipe } from '$lib/db/recipes';
 
-export function load({ params }) {
-  const recipe = exampleData.recipes.find(
-    (recipe: Recipe) => recipe.id === params.recipeId
-  ) || { name: 'No recipe found', id: params.recipeId };
+export async function load({ params }) {
+  const recipe = await getRecipeById(params.recipeId);
 
   return {
-    recipe,
+    recipe: JSON.parse(JSON.stringify(recipe)) as IRecipe,
   };
 }

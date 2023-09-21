@@ -5,8 +5,7 @@
   export let data: { recipe: Recipe } | undefined;
 </script>
 
-<TitleBar title={data?.recipe.name} />
-<LargeImage image={data?.recipe.image_url} />
-
-<style>
-</style>
+{#if data}
+<TitleBar title={data.recipe.name} />
+<LargeImage image={data.recipe.image_url} />
+{/if}

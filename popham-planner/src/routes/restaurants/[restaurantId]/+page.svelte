@@ -1,12 +1,11 @@
 <script lang="ts">
-  import type { Restaurant } from '$lib/types/types';
+  import type { IRestaurant } from '$lib/db/restaurants';
   import TitleBar from '$lib/components/TitleBar.svelte';
   import LargeImage from '$lib/components/LargeImage.svelte';
-  export let data: { restaurant: Restaurant } | undefined;
+  export let data: { restaurant: IRestaurant } | undefined;
 </script>
 
-<TitleBar title={data?.restaurant.name} />
-<LargeImage image={data?.restaurant.image_url} />
-
-<style>
-</style>
+{#if data}
+  <TitleBar title={data.restaurant.name} />
+  <LargeImage image={data.restaurant.image_url} />
+{/if}

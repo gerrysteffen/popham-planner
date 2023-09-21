@@ -1,14 +1,13 @@
 <script lang="ts">
-  import type { PreviewCubeData } from '$lib/types/types';
-  export let data: PreviewCubeData = {
-    id: '',
+  export let data= {
+    _id: '',
     name: 'Loading...',
     image_url: '',
   };
   export let cat: string = '';
 </script>
 
-<a href={`${cat}/${data.id}`}>
+<a href={`${cat}/${data._id}`}>
   <div class="cube" style="background-image: url('{data.image_url}')">
     <div class="cube-text">
       <div class="text">
