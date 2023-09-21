@@ -1,13 +1,6 @@
 <script lang="ts">
-  import TitleBar from "$lib/components/TitleBar.svelte";
-
-
+  import TitleBar from '$lib/components/TitleBar.svelte';
 </script>
 
-<div>
-  <TitleBar title='Search for Restaurants' />
-</div>
-
-<style>
-  
-</style>
+<TitleBar title="Search for Restaurants" />
+<div>Working on it.</div>
