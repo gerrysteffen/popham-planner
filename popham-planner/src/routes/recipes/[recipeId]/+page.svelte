@@ -1,8 +1,8 @@
 <script lang="ts">
-  import type { Recipe } from '$lib/types/types';
   import TitleBar from '$lib/components/TitleBar.svelte';
   import LargeImage from '$lib/components/LargeImage.svelte';
-  export let data: { recipe: Recipe } | undefined;
+  import type { TRecipe } from '$lib/db/recipes';
+  export let data: { recipe: TRecipe };
 </script>
 
 {#if data}

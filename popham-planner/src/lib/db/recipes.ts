@@ -1,6 +1,6 @@
 import mongoose from './db';
 
-export interface IRecipe {
+export type TRecipe = {
   _id: string;
   name: string;
   description: string;
@@ -12,10 +12,12 @@ export interface IRecipe {
   updatedAt: Date;
 }
 
-let recipeSchema: undefined | mongoose.Schema<IRecipe>;
+export type TRecipeForm = Omit<TRecipe, '_id' | 'createdAt' | 'updatedAt'>
+
+let recipeSchema: undefined | mongoose.Schema<TRecipe>;
 
 if (!mongoose.models.recipe && !recipeSchema) {
-  recipeSchema = new mongoose.Schema<IRecipe>(
+  recipeSchema = new mongoose.Schema<TRecipe>(
     {
       name: String,
       description: String,
@@ -31,8 +33,8 @@ if (!mongoose.models.recipe && !recipeSchema) {
 }
 
 const RecipeModel =
-  (mongoose.models.recipe as mongoose.Model<IRecipe>) ||
-  mongoose.model<IRecipe>('recipe', recipeSchema);
+  (mongoose.models.recipe as mongoose.Model<TRecipe>) ||
+  mongoose.model<TRecipe>('recipe', recipeSchema);
 
 export async function getAllRecipes() {
   const recipes = await RecipeModel!.find({});
@@ -42,4 +44,8 @@ export async function getAllRecipes() {
 export async function getRecipeById(id: string) {
   const recipe = await RecipeModel!.findById(id);
   return recipe;
+}
+
+export async function createRecipe (recipe: TRecipeForm) {
+  await RecipeModel!.create(recipe)
 }
