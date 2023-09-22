@@ -1,9 +1,9 @@
-import { getAllRecipes, type IRecipe } from '$lib/db/recipes.js';
+import { getAllRecipes, type TRecipe } from '$lib/db/recipes.js';
 
-export async function load({ params }) {
+export async function load() {
   const recipes = await getAllRecipes();
 
   return {
-    recipes: JSON.parse(JSON.stringify(recipes)) as IRecipe[],
+    recipes: JSON.parse(JSON.stringify(recipes)) as TRecipe[],
   };
 }

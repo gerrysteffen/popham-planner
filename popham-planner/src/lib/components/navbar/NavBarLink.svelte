@@ -1,5 +1,6 @@
 <script lang="ts">
   import { page } from '$app/stores';
+  export let padding = '15px';
   export let title: string = '';
   export let link: string = '';
   export let level: number = 0;
@@ -10,7 +11,7 @@
       .join('/') === link;
 </script>
 
-<a href={link} class:selected>
+<a href={link} class:selected style:padding>
   {title}
 </a>
 
@@ -23,16 +24,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: lightgray;
+    background-color: #ffa06e;
     text-decoration: none;
     text-align: center;
-    padding: 15px;
   }
   a:focus,
   a:hover {
-    background-color: gray;
+    background-color: #ff7f50;
   }
   a.selected {
-    background-color: gray;
+    background-color: #ff7f50;
   }
 </style>

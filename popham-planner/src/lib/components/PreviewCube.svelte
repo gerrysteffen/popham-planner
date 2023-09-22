@@ -23,7 +23,7 @@
     text-decoration: none;
   }
   .cube {
-    background-color: lightgray;
+    background-color: #ff7f50;
     width: 150px;
     height: 150px;
     background-size: cover;
@@ -52,7 +52,7 @@
     left: 0;
     width: 100%;
     height: 50px;
-    background: white;
+    background: #ffa06e;
     opacity: 0.8;
   }
 </style>

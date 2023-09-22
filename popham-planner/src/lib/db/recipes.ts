@@ -10,9 +10,9 @@ export type TRecipe = {
   categories: string[];
   createdAt: Date;
   updatedAt: Date;
-}
+};
 
-export type TRecipeForm = Omit<TRecipe, '_id' | 'createdAt' | 'updatedAt'>
+export type TRecipeForm = Omit<TRecipe, '_id' | 'createdAt' | 'updatedAt'>;
 
 let recipeSchema: undefined | mongoose.Schema<TRecipe>;
 
@@ -46,6 +46,10 @@ export async function getRecipeById(id: string) {
   return recipe;
 }
 
-export async function createRecipe (recipe: TRecipeForm) {
-  await RecipeModel!.create(recipe)
+export async function createRecipe(recipe: TRecipeForm) {
+  await RecipeModel!.create(recipe);
+}
+
+export async function deleteRecipe(id: string) {
+  await RecipeModel!.findByIdAndDelete(id);
 }

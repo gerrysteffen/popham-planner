@@ -1,11 +1,16 @@
 {
-  "short_name": "PP",
+  "short_name": "PophamPlanner",
   "name": "PophamPlanner",
   "start_url": "/",
-  "icons": [],
-  "background_color": "#3367D6",
+  "icons": [
+    {
+      "src": "./PP_Logo.png",
+      "type": "image/png"
+    }
+  ],
+  "background_color": "#f7f7f7",
   "display": "standalone",
   "scope": "/",
-  "theme_color": "#3367D6",
+  "theme_color": "#f7f7f7",
   "description": "PophamPlanner"
 }

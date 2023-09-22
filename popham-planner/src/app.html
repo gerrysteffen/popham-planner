@@ -1,35 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="manifest" crossorigin="use-credentials" href="manifest.json" />
-		%sveltekit.head%
-		<style>
-			html {
-				background-color: black;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-			}
-			body {
-				height: 100vh;
-				max-height: 1000px;
-				width: 100vw;
-				max-width: 440px;
-				background-color: lightseagreen;
-				position: relative;
-				margin: 0;
-				padding: 0;
-			}
-			*{
-				font-family: 'Helvetica', 'Arial', sans-serif;
-				box-sizing: border-box;
-			}
-		</style>
-	</head>
-	<body data-sveltekit-preload-data="hover">
-		<div style="display: contents">%sveltekit.body%</div>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%sveltekit.assets%/PP_Logo.png" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="manifest" crossorigin="use-credentials" href="%sveltekit.assets%/manifest.json" />
+    %sveltekit.head%
+    <style>
+      html {
+        background-color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      body {
+        height: 100vh;
+        max-height: 1000px;
+        width: 100vw;
+        max-width: 440px;
+        background-color: #f7f7f7;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: 0;
+        padding: 0;
+        touch-action: none;
+      }
+      * {
+        font-family: 'Helvetica', 'Arial', sans-serif;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents">%sveltekit.body%</div>
+  </body>
 </html>
