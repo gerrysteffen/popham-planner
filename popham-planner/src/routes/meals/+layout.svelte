@@ -1,6 +1,5 @@
 <script lang="ts">
   import FadeOut from '$lib/components/basicUI/FadeOut.svelte';
-  import MarginCorrection from '$lib/components/basicUI/MarginCorrection.svelte';
   import NavBar from '../../lib/components/navbar/NavBar.svelte';
   import NavBarLink from '../../lib/components/navbar/NavBarLink.svelte';
 
@@ -9,13 +8,9 @@
 
 <FadeOut />
 <NavBar {level}>
-  <NavBarLink title="Overview" link="/restaurants" {level} />
-  <NavBarLink
-    title="Adv. Search and Filter"
-    link="/restaurants/search"
-    {level}
-  />
-  <NavBarLink title="Add New" link="/restaurants/add-new" {level} />
+  <NavBarLink title="Overview" link="/meals" {level} />
+  <NavBarLink title="Adv. Search and Filter" link="/meals/search" {level} />
+  <NavBarLink title="Add New" link="/meals/add-new" {level} />
 </NavBar>
 <div id="content">
   <slot />

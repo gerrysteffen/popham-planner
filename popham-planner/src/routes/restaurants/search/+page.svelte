@@ -1,5 +1,5 @@
 <script lang="ts">
-  import TitleBar from '$lib/components/TitleBar.svelte';
+  import TitleBar from '$lib/components/basicUI/TitleBar.svelte';
 </script>
 
 <TitleBar title="Search for Restaurants" />

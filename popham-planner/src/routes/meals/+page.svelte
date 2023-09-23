@@ -1,15 +1,15 @@
 <script lang="ts">
   import CubeContainer from '$lib/components/CubeContainer.svelte';
   import PreviewCube from '$lib/components/PreviewCube.svelte';
-  import TitleBar from '$lib/components/TitleBar.svelte';
+  import TitleBar from '$lib/components/basicUI/TitleBar.svelte';
   export let data;
 </script>
 
-<TitleBar title="All Recipes" />
+<TitleBar title="All Meals & Recipes" />
 {#if data}
   <CubeContainer>
-    {#each data.recipes as recipe}
-      <PreviewCube data={recipe} cat="recipes" />
+    {#each data.meals as meals}
+      <PreviewCube data={meals} cat="meals" />
     {/each}
   </CubeContainer>
 {/if}

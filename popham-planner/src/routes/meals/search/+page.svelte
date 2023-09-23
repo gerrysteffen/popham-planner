@@ -2,5 +2,5 @@
   import TitleBar from '$lib/components/basicUI/TitleBar.svelte';
 </script>
 
-<TitleBar title="Add a new Restaurant" />
+<TitleBar title="Search for Meals" />
 <div>Working on it.</div>

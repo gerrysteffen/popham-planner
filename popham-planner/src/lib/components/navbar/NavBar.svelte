@@ -17,6 +17,7 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: top;
+    z-index: 40;
   }
   nav.base-nav {
     height: 80px;

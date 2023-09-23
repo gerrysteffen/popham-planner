@@ -1,20 +1,24 @@
 <script lang="ts">
-  import TitleBar from '$lib/components/TitleBar.svelte';
+  import TitleBar from '$lib/components/basicUI/TitleBar.svelte';
   import LargeImage from '$lib/components/LargeImage.svelte';
-  import type { TRecipe } from '$lib/db/recipes';
+  import type { MealType } from '$lib/db/meals';
   import DeletePending from '$lib/components/DeletePending.svelte';
   import StandardButton from '$lib/components/forms/StandardButton.svelte';
-  export let data: { recipe: TRecipe };
+  import { goto } from '$app/navigation';
+  export let data: { meal: MealType };
 
   $: deletePending = false;
 </script>
 
 {#if data}
-  <TitleBar title={data.recipe.name} />
-  <LargeImage image={data.recipe.image_url} />
-  <div id="recipe-content">
+  <TitleBar title={data.meal.name} />
+  <LargeImage image={data.meal.image_url} />
+  <div>
+    {data.meal.description}
+  </div>
+  <div id="meal-content">
+    <StandardButton text='Edit' type='button' handleClick={() => goto(`/meals/${data.meal._id}/edit`)} />
     <StandardButton text='Delete' type='button' handleClick={() => (deletePending = !deletePending)} />
-    <!-- <button on:click={() => (deletePending = !deletePending)}>Delete</button> -->
   </div>
 {/if}
 
@@ -23,7 +27,7 @@
 {/if}
 
 <style>
-  #recipe-content {
+  #meal-content {
     margin-top: 10px;
     display: flex;
     flex-direction: column;

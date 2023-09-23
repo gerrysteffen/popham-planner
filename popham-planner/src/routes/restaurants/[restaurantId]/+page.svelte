@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { IRestaurant } from '$lib/db/restaurants';
-  import TitleBar from '$lib/components/TitleBar.svelte';
+  import TitleBar from '$lib/components/basicUI/TitleBar.svelte';
   import LargeImage from '$lib/components/LargeImage.svelte';
   export let data: { restaurant: IRestaurant };
 </script>

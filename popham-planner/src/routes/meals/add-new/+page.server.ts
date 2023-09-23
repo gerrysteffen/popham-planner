@@ -1,4 +1,5 @@
-import { createRecipe, type TRecipeForm } from '$lib/db/recipes';
+import { createMeal, type MealTypeForm } from '$lib/db/meals';
+import { redirect } from '@sveltejs/kit';
 
 export const actions = {
   default: async ({ request }) => {
@@ -8,7 +9,7 @@ export const actions = {
     const image_url = data.get('image_url') as string;
     const mainCategory = data.get('mainCategory') as string;
 
-    const recipe: TRecipeForm = {
+    const meal: MealTypeForm = {
       name,
       description,
       image_url,
@@ -16,7 +17,7 @@ export const actions = {
       mainCategory,
       categories: [],
     };
-    const newRecipe = await createRecipe(recipe);
-    // todo: redirect
+    const newMeal = await createMeal(meal);
+    throw redirect(301, `/meals/${newMeal._id}`);
   },
 };

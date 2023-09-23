@@ -1,12 +1,15 @@
 <script lang="ts">
-  import TitleBar from '$lib/components/TitleBar.svelte';
+  import TitleBar from '$lib/components/basicUI/TitleBar.svelte';
   import StandardForm from '$lib/components/forms/StandardForm.svelte';
   import StandardButton from '$lib/components/forms/StandardButton.svelte';
   import StandardTextInput from '$lib/components/forms/StandardTextInput.svelte';
 
-  import type { TRecipeForm } from '$lib/db/recipes';
+  import type { MealType, MealTypeForm } from '$lib/db/meals';
+  import { goto } from '$app/navigation';
 
-  const example: TRecipeForm = {
+  export let data: { meal: MealType };
+
+  const example: MealTypeForm = {
     name: '',
     description: '',
     image_url: '',
@@ -15,7 +18,7 @@
     categories: [],
   };
 
-  const data = Object.entries(example);
+  const dataArr = Object.entries(data.meal);
 
   const titles: {
     [key: string]: string;
@@ -29,12 +32,13 @@
   };
 </script>
 
-<TitleBar title="Add a new Recipe" />
+<TitleBar title="Add a new Meal" />
 <StandardForm>
-  {#each data as [key, value]}
-    {#if typeof value === 'string'}
+  {#each dataArr as [key, value]}
+    {#if typeof value === 'string' && titles[key]}
       <StandardTextInput {key} bind:value title={titles[key]} />
     {/if}
   {/each}
-  <StandardButton type="submit" text="Create" handleClick={() => {}} />
+  <StandardButton type="submit" text="Confirm" handleClick={() => {}} />
+    <StandardButton text='Cancel' type='button' handleClick={() => goto(`/meals/${data.meal._id}`)} />
 </StandardForm>

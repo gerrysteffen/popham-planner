@@ -21,7 +21,7 @@
 
 <style>
   #black-background {
-    z-index: 1;
+    z-index: 50;
     position: absolute;
     top: 0;
     left: 0;
@@ -31,7 +31,7 @@
     opacity: 0.7;
   }
   #foreground {
-    z-index: 2;
+    z-index: 51;
     position: absolute;
     top: 0;
     left: 0;
