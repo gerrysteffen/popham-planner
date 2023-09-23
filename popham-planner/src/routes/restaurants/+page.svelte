@@ -13,6 +13,3 @@
     {/each}
   </CubeContainer>
 {/if}
-
-<style>
-</style>

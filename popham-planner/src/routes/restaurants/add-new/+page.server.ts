@@ -1,4 +1,4 @@
-import { createMeal, type MealFormType } from '$lib/db/meals';
+import { createRestaurant, type RestaurantFormType } from '$lib/db/restaurants.js';
 import { redirect } from '@sveltejs/kit';
 
 export const actions = {
@@ -9,7 +9,7 @@ export const actions = {
     const image_url = data.get('image_url') as string;
     const mainCategory = data.get('mainCategory') as string;
 
-    const meal: MealFormType = {
+    const restaurant: RestaurantFormType = {
       name,
       description,
       image_url,
@@ -17,7 +17,7 @@ export const actions = {
       mainCategory,
       categories: [],
     };
-    const newMeal = await createMeal(meal);
-    throw redirect(301, `/meals/${newMeal?._id || ''}`);
+    const newRestaurant = await createRestaurant(restaurant);
+    throw redirect(301, `/restaurants/${newRestaurant?._id || ''}`);
   },
 };

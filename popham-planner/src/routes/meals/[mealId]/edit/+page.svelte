@@ -4,12 +4,12 @@
   import StandardButton from '$lib/components/forms/StandardButton.svelte';
   import StandardTextInput from '$lib/components/forms/StandardTextInput.svelte';
 
-  import type { MealType, MealTypeForm } from '$lib/db/meals';
+  import type { MealType, MealFormType } from '$lib/db/meals';
   import { goto } from '$app/navigation';
 
   export let data: { meal: MealType };
 
-  const example: MealTypeForm = {
+  const example: MealFormType = {
     name: '',
     description: '',
     image_url: '',

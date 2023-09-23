@@ -1,8 +1,8 @@
 <script lang="ts">
-  import type { IRestaurant } from '$lib/db/restaurants';
+  import type { RestaurantType } from '$lib/db/restaurants';
   import TitleBar from '$lib/components/basicUI/TitleBar.svelte';
   import LargeImage from '$lib/components/LargeImage.svelte';
-  export let data: { restaurant: IRestaurant };
+  export let data: { restaurant: RestaurantType };
 </script>
 
 {#if data}

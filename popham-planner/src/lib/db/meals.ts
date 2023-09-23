@@ -12,7 +12,7 @@ export type MealType = {
   updatedAt: Date;
 };
 
-export type MealTypeForm = Omit<MealType, '_id' | 'createdAt' | 'updatedAt'>;
+export type MealFormType = Omit<MealType, '_id' | 'createdAt' | 'updatedAt'>;
 
 let mealSchema: undefined | mongoose.Schema<MealType>;
 
@@ -37,23 +37,46 @@ const MealModel =
   mongoose.model<MealType>('meal', mealSchema);
 
 export async function getAllMeals() {
-  const meals = await MealModel!.find({});
-  return meals;
+  try {
+    const meals = await MealModel!.find({});
+    return meals;
+  } catch (error) {
+    console.log('Error fetching:', error);
+    return [];
+  }
 }
 
 export async function getMealById(id: string) {
-  const meal = await MealModel!.findById(id);
-  return meal;
+  try {
+    const meal = await MealModel!.findById(id);
+    return meal;
+  } catch (error) {
+    console.log('Error fetching:', error);
+    return null;
+  }
 }
 
-export async function createMeal(meal: MealTypeForm) {
-  return await MealModel!.create(meal);
+export async function createMeal(meal: MealFormType) {
+  try {
+    return await MealModel!.create(meal);
+  } catch (error) {
+    console.log('Error fetching:', error);
+    return null;
+  }
 }
 
-export async function updateMeal(id: string, meal: MealTypeForm) {
-  await MealModel!.findByIdAndUpdate(id, meal);
+export async function updateMeal(id: string, meal: MealFormType) {
+  try {
+    await MealModel!.findByIdAndUpdate(id, meal);
+  } catch (error) {
+    console.log('Error fetching:', error);
+  }
 }
 
 export async function deleteMeal(id: string) {
-  await MealModel!.findByIdAndDelete(id);
+  try {
+    await MealModel!.findByIdAndDelete(id);
+  } catch (error) {
+    console.log('Error fetching:', error);
+  }
 }
