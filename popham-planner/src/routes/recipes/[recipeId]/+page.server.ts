@@ -1,4 +1,5 @@
 import { deleteRecipe, getRecipeById, type TRecipe } from '$lib/db/recipes';
+import { redirect } from '@sveltejs/kit';
 
 export async function load({ params }) {
   const recipe = await getRecipeById(params.recipeId);
@@ -10,8 +11,7 @@ export async function load({ params }) {
 
 export const actions = {
   default: async (event) => {
-    // deleteRecipe(event.params.recipeId);
-    console.log('something happening')
-    return { url: '/recipes' };
+    deleteRecipe(event.params.recipeId);
+    throw redirect(301, '/recipes');
   },
 };

@@ -36,5 +36,5 @@
       <StandardTextInput {key} bind:value title={titles[key]} />
     {/if}
   {/each}
-  <StandardButton type="submit" text="Create" />
+  <StandardButton type="submit" text="Create" handleClick={() => {}} />
 </StandardForm>

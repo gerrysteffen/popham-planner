@@ -1,24 +1,20 @@
 <script lang="ts">
   import { enhance } from '$app/forms';
+  import StandardButton from './forms/StandardButton.svelte';
   export let deletePending: boolean;
-  export let nextPage: string;
-  import { goto } from '$app/navigation';
-
-  function afterDelete() {
-    console.log('delete happened');
-    console.log(nextPage);
-    return goto(nextPage);
-  }
 </script>
 
 <div id="black-background" />
 <div id="foreground">
   <div id="modal">
+    <p>Are you sure you want to delete this record?</p>
     <form method="POST" use:enhance>
-      <button type="button" on:click={() => (deletePending = !deletePending)}
-        >Cancel</button
-      >
-      <button type="submit" on:click={() => afterDelete()}>Confirm</button>
+      <StandardButton
+        type="reset"
+        text="Cancel"
+        handleClick={() => (deletePending = !deletePending)}
+      />
+      <StandardButton type="submit" text="Confirm" handleClick={() => {}} />
     </form>
   </div>
 </div>
@@ -39,15 +35,26 @@
     position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
+    width: 100vw;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
   }
   #modal {
-    width: 100px;
-    height: 100px;
+    width: 250px;
     background-color: #f7f7f7;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  p {
+    text-align: center;
+    font-size: large;
+    margin-top: 0;
+  }
+  form {
+    display: flex;
+    margin-top: 20px;
+    gap: 20px;
   }
 </style>

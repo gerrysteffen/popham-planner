@@ -4,14 +4,12 @@
   import NavBarLink from '../lib/components/navbar/NavBarLink.svelte';
 
   const level = 0;
-  const height = '90px';
-  const padding = '15px 15px 35px 15px';
 </script>
 
-<NavBar {height}>
-  <NavBarLink title="Dashboard" link="/" {level} {padding} />
-  <NavBarLink title="Recipes" link="/recipes" {level} {padding} />
-  <NavBarLink title="Restaurants" link="/restaurants" {level} {padding} />
+<NavBar {level}>
+  <NavBarLink title="Meals & Recipes" link="/recipes" {level} />
+  <NavBarLink title="Restaurants & Take-Out" link="/restaurants" {level} />
+  <NavBarLink title="Planner" link="/" {level} />
 </NavBar>
 <div id="content">
   <ContentWrapper>
@@ -25,6 +23,11 @@
     top: 0;
     left: 0;
     right: 0;
-    bottom: 90px;
+    bottom: 80px;
+  }
+  @media only screen and (max-device-height: 667px) {
+    #content {
+      bottom: 70px;
+    }
   }
 </style>

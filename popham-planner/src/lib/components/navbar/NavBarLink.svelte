@@ -1,9 +1,8 @@
 <script lang="ts">
   import { page } from '$app/stores';
-  export let padding = '15px';
-  export let title: string = '';
-  export let link: string = '';
-  export let level: number = 0;
+  export let title: string;
+  export let link: string;
+  export let level: number;
   $: selected =
     $page.url.pathname
       .split('/')
@@ -11,8 +10,13 @@
       .join('/') === link;
 </script>
 
-<a href={link} class:selected style:padding>
-  {title}
+<a href={link} class:selected>
+  <div class="link-text">
+    {title}
+  </div>
+  {#if level === 0}
+    <div class="add-padding" />
+  {/if}
 </a>
 
 <style>
@@ -22,7 +26,8 @@
     width: 100%;
     height: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
     background-color: #ffa06e;
     text-decoration: none;
@@ -34,5 +39,17 @@
   }
   a.selected {
     background-color: #ff7f50;
+  }
+  .link-text {
+    line-height: 1.25;
+    padding: 15px;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .add-padding {
+    height: 10px !important;
   }
 </style>

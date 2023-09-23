@@ -16,6 +16,7 @@ export const actions = {
       mainCategory,
       categories: [],
     };
-    createRecipe(recipe);
+    const newRecipe = await createRecipe(recipe);
+    // todo: redirect
   },
 };
