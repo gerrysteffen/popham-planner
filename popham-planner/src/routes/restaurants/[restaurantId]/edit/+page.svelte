@@ -4,18 +4,12 @@
   import StandardButton from '$lib/components/forms/StandardButton.svelte';
   import StandardTextInput from '$lib/components/forms/StandardTextInput.svelte';
 
-  import type { MealFormType } from '$lib/db/meals';
+  import { goto } from '$app/navigation';
+  import type { RestaurantType } from '$lib/db/restaurants';
 
-  const example: MealFormType = {
-    name: '',
-    description: '',
-    image_url: '',
-    tags: [],
-    mainCategory: '',
-    categories: [],
-  };
+  export let data: { restaurant: RestaurantType };
 
-  const dataArr = Object.entries(example);
+  const dataArr = Object.entries(data.restaurant);
 
   const titles: {
     [key: string]: string;
@@ -29,12 +23,17 @@
   };
 </script>
 
-<TitleBar title="Add a new Meal" />
+<TitleBar title="Edit Restaurant" />
 <StandardForm>
   {#each dataArr as [key, value]}
-    {#if typeof value === 'string'}
+    {#if typeof value === 'string' && titles[key]}
       <StandardTextInput {key} bind:value title={titles[key]} />
     {/if}
   {/each}
-  <StandardButton type="submit" text="Create" handleClick={() => {}} />
+  <StandardButton type="submit" text="Confirm" handleClick={() => {}} />
+  <StandardButton
+    text="Cancel"
+    type="button"
+    handleClick={() => goto(`/restaurants/${data.restaurant._id}`)}
+  />
 </StandardForm>
