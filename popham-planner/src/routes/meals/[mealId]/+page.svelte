@@ -1,7 +1,7 @@
 <script lang="ts">
   import TitleBar from '$lib/components/basicUI/TitleBar.svelte';
   import LargeImage from '$lib/components/LargeImage.svelte';
-  import type { MealType } from '$lib/db/meals';
+  import type { MealType } from '$lib/UIdata/types';
   import DeletePending from '$lib/components/DeletePending.svelte';
   import StandardButton from '$lib/components/forms/StandardButton.svelte';
   import { goto } from '$app/navigation';

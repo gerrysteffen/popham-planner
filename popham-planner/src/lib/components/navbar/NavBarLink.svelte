@@ -1,8 +1,12 @@
 <script lang="ts">
   import { page } from '$app/stores';
+  import { colors } from '$lib/UIdata/cssSelectors';
   export let title: string;
   export let link: string;
   export let level: number;
+
+  $: category = $page.url.pathname.split('/')[1] as string;
+
   $: selected =
     $page.url.pathname
       .split('/')
@@ -10,7 +14,15 @@
       .join('/') === link;
 </script>
 
-<a href={link} class:selected>
+<a
+  href={link}
+  class:selected
+  style="background-color: {selected
+    ? colors[category].selected
+    : level === 0
+    ? '#dcdcdc'
+    : colors[category].unselected}"
+>
   <div class="link-text">
     {title}
   </div>
@@ -29,7 +41,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    background-color: #ffa06e;
+    background-color: #dcdcdc;
     text-decoration: none;
     text-align: center;
   }

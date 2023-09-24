@@ -3,30 +3,10 @@
   import StandardForm from '$lib/components/forms/StandardForm.svelte';
   import StandardButton from '$lib/components/forms/StandardButton.svelte';
   import StandardTextInput from '$lib/components/forms/StandardTextInput.svelte';
+  import { mealMock } from '$lib/UIdata/mockData';
 
-  import type { MealFormType } from '$lib/db/meals';
-
-  const example: MealFormType = {
-    name: '',
-    description: '',
-    image_url: '',
-    tags: [],
-    mainCategory: '',
-    categories: [],
-  };
-
-  const dataArr = Object.entries(example);
-
-  const titles: {
-    [key: string]: string;
-  } = {
-    name: 'Name',
-    description: 'Description',
-    image_url: 'Image Link (optional)',
-    tags: 'Tags',
-    mainCategory: 'Main Category',
-    categories: 'Categories',
-  };
+  const { emptyValues, titles } = mealMock;
+  const dataArr = Object.entries(emptyValues);
 </script>
 
 <TitleBar title="Add a new Meal" />

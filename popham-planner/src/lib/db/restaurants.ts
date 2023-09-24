@@ -1,21 +1,6 @@
+import type { RestaurantFormType, RestaurantType } from '$lib/UIdata/types';
 import mongoose from './db';
 
-export interface RestaurantType {
-  _id: string;
-  name: string;
-  description: string;
-  image_url: string;
-  tags: string[];
-  mainCategory: string;
-  categories: string[];
-  createdAt: Date;
-  updatedAt: Date;
-}
-
-export type RestaurantFormType = Omit<
-  RestaurantType,
-  '_id' | 'createdAt' | 'updatedAt'
->;
 
 let restaurantSchema: undefined | mongoose.Schema<RestaurantType>;
 

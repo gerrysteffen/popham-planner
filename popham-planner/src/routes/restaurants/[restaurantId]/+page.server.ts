@@ -1,4 +1,5 @@
-import { deleteRestaurant, getRestaurantById, type RestaurantType } from '$lib/db/restaurants';
+import type { RestaurantType } from '$lib/UIdata/types.js';
+import { deleteRestaurant, getRestaurantById } from '$lib/db/restaurants';
 import { redirect } from '@sveltejs/kit';
 
 export async function load({ params }) {

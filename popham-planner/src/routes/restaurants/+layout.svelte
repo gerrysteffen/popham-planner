@@ -1,6 +1,5 @@
 <script lang="ts">
   import FadeOut from '$lib/components/basicUI/FadeOut.svelte';
-  import MarginCorrection from '$lib/components/basicUI/MarginCorrection.svelte';
   import NavBar from '../../lib/components/navbar/NavBar.svelte';
   import NavBarLink from '../../lib/components/navbar/NavBarLink.svelte';
 

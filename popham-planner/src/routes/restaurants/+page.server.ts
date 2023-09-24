@@ -1,4 +1,5 @@
-import { getAllRestaurants, type RestaurantType } from '$lib/db/restaurants';
+import type { RestaurantType } from '$lib/UIdata/types.js';
+import { getAllRestaurants } from '$lib/db/restaurants';
 
 export async function load({ params }) {
   const restaurants = await getAllRestaurants();

@@ -1,37 +1,17 @@
 <script lang="ts">
+  import { restaurantMock } from '$lib/UIdata/mockData';
   import TitleBar from '$lib/components/basicUI/TitleBar.svelte';
   import StandardForm from '$lib/components/forms/StandardForm.svelte';
   import StandardButton from '$lib/components/forms/StandardButton.svelte';
   import StandardTextInput from '$lib/components/forms/StandardTextInput.svelte';
 
-  import type { RestaurantFormType } from '$lib/db/restaurants';
-
-  const example: RestaurantFormType = {
-    name: '',
-    description: '',
-    image_url: '',
-    tags: [],
-    mainCategory: '',
-    categories: [],
-  };
-
-  const data = Object.entries(example);
-
-  const titles: {
-    [key: string]: string;
-  } = {
-    name: 'Name',
-    description: 'Description',
-    image_url: 'Image Link (optional)',
-    tags: 'Tags',
-    mainCategory: 'Main Category',
-    categories: 'Categories',
-  };
+  const { emptyValues, titles } = restaurantMock;
+  const dataArr = Object.entries(emptyValues);
 </script>
 
 <TitleBar title="Add a new Restaurant" />
 <StandardForm>
-  {#each data as [key, value]}
+  {#each dataArr as [key, value]}
     {#if typeof value === 'string'}
       <StandardTextInput {key} bind:value title={titles[key]} />
     {/if}

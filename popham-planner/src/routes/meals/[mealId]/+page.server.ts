@@ -1,4 +1,5 @@
-import { deleteMeal, getMealById, type MealType } from '$lib/db/meals';
+import type { MealType } from '$lib/UIdata/types.js';
+import { deleteMeal, getMealById } from '$lib/db/meals';
 import { redirect } from '@sveltejs/kit';
 
 export async function load({ params }) {
@@ -14,7 +15,7 @@ export async function load({ params }) {
 }
 
 export const actions = {
-  default: async ({params}) => {
+  default: async ({ params }) => {
     deleteMeal(params.mealId);
     throw redirect(301, '/meals');
   },

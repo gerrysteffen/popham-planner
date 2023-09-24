@@ -1,8 +1,7 @@
+import type { MealFormType, MealType } from '$lib/UIdata/types.js';
 import {
   getMealById,
   updateMeal,
-  type MealType,
-  type MealFormType,
 } from '$lib/db/meals';
 import { redirect } from '@sveltejs/kit';
 
@@ -23,12 +22,14 @@ export const actions = {
     const data = await request.formData();
     const name = data.get('name') as string;
     const description = data.get('description') as string;
+    const source = data.get('source') as string;
     const image_url = data.get('image_url') as string;
     const mainCategory = data.get('mainCategory') as string;
 
     const meal: MealFormType = {
       name,
       description,
+      source,
       image_url,
       tags: [],
       mainCategory,

@@ -1,4 +1,5 @@
-import { getAllMeals, type MealType } from '$lib/db/meals.js';
+import type { MealType } from '$lib/UIdata/types';
+import { getAllMeals } from '$lib/db/meals.js';
 
 export async function load() {
   const meals = await getAllMeals();

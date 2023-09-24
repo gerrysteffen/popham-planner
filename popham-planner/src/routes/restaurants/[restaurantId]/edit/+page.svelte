@@ -3,24 +3,17 @@
   import StandardForm from '$lib/components/forms/StandardForm.svelte';
   import StandardButton from '$lib/components/forms/StandardButton.svelte';
   import StandardTextInput from '$lib/components/forms/StandardTextInput.svelte';
-
   import { goto } from '$app/navigation';
-  import type { RestaurantType } from '$lib/db/restaurants';
+  import type { RestaurantType } from '$lib/UIdata/types';
+  import { restaurantMock } from '$lib/UIdata/mockData';
 
+  const { emptyValues, titles } = restaurantMock;
   export let data: { restaurant: RestaurantType };
 
-  const dataArr = Object.entries(data.restaurant);
-
-  const titles: {
-    [key: string]: string;
-  } = {
-    name: 'Name',
-    description: 'Description',
-    image_url: 'Image Link (optional)',
-    tags: 'Tags',
-    mainCategory: 'Main Category',
-    categories: 'Categories',
-  };
+  const dataArr = Object.entries({
+    ...emptyValues, // to make sure new fields are included aswell
+    ...data.restaurant,
+  });
 </script>
 
 <TitleBar title="Edit Restaurant" />

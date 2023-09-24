@@ -9,7 +9,7 @@
 {#if data}
   <CubeContainer>
     {#each data.meals as meals}
-      <PreviewCube data={meals} cat="meals" />
+      <PreviewCube data={meals} />
     {/each}
   </CubeContainer>
 {/if}

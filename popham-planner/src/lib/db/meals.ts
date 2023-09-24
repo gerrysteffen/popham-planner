@@ -1,27 +1,15 @@
+import type { MealFormType, MealType } from '$lib/UIdata/types';
 import mongoose from './db';
-
-export type MealType = {
-  _id: string;
-  name: string;
-  description: string;
-  image_url: string;
-  tags: string[];
-  mainCategory: string;
-  categories: string[];
-  createdAt: Date;
-  updatedAt: Date;
-};
-
-export type MealFormType = Omit<MealType, '_id' | 'createdAt' | 'updatedAt'>;
 
 let mealSchema: undefined | mongoose.Schema<MealType>;
 
 if (!mongoose.models.meal && !mealSchema) {
   mealSchema = new mongoose.Schema<MealType>(
     {
-      name: String,
-      description: String,
-      image_url: String,
+      name: { type: String, required: true, default: '' },
+      description: { type: String, required: true, default: '' },
+      source: { type: String, required: true, default: '' },
+      image_url: { type: String, required: true, default: '' },
       tags: [String],
       mainCategory: String,
       categories: [String],

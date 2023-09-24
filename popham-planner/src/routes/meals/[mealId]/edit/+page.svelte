@@ -4,32 +4,17 @@
   import StandardButton from '$lib/components/forms/StandardButton.svelte';
   import StandardTextInput from '$lib/components/forms/StandardTextInput.svelte';
 
-  import type { MealType, MealFormType } from '$lib/db/meals';
+  import type { MealType } from '$lib/UIdata/types';
   import { goto } from '$app/navigation';
+  import { mealMock } from '$lib/UIdata/mockData';
 
+  const { emptyValues, titles } = mealMock;
   export let data: { meal: MealType };
 
-  const example: MealFormType = {
-    name: '',
-    description: '',
-    image_url: '',
-    tags: [],
-    mainCategory: '',
-    categories: [],
-  };
-
-  const dataArr = Object.entries(data.meal);
-
-  const titles: {
-    [key: string]: string;
-  } = {
-    name: 'Name',
-    description: 'Description',
-    image_url: 'Image Link (optional)',
-    tags: 'Tags',
-    mainCategory: 'Main Category',
-    categories: 'Categories',
-  };
+  const dataArr = Object.entries({
+    ...emptyValues, // to make sure new fields are included aswell
+    ...data.meal,
+  });
 </script>
 
 <TitleBar title="Add a new Meal" />
@@ -40,5 +25,9 @@
     {/if}
   {/each}
   <StandardButton type="submit" text="Confirm" handleClick={() => {}} />
-    <StandardButton text='Cancel' type='button' handleClick={() => goto(`/meals/${data.meal._id}`)} />
+  <StandardButton
+    text="Cancel"
+    type="button"
+    handleClick={() => goto(`/meals/${data.meal._id}`)}
+  />
 </StandardForm>

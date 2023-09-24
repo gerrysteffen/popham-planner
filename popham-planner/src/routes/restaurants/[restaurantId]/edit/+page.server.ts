@@ -1,9 +1,5 @@
-import {
-  getRestaurantById,
-  updateRestaurant,
-  type RestaurantType,
-  type RestaurantFormType,
-} from '$lib/db/restaurants.js';
+import type { RestaurantFormType, RestaurantType } from '$lib/UIdata/types.js';
+import { getRestaurantById, updateRestaurant } from '$lib/db/restaurants.js';
 import { redirect } from '@sveltejs/kit';
 
 export async function load({ params }) {
