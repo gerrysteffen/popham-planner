@@ -6,21 +6,21 @@ type TypeSkeleton = {
   tags: string[];
   mainCategory: string;
   categories: string[];
-  // TODO: priceLevel: number;
-  // TODO: rating: number;
+  // priceLevel: number; // TODO
+  // rating: number; // TODO
   createdAt: Date;
   updatedAt: Date;
 };
 
 export type MealType = TypeSkeleton & {
   source: string;
-  // TODO: source type
+  // sourceType // TODO
 };
 
 export type MealFormType = Omit<MealType, '_id' | 'createdAt' | 'updatedAt'>;
 
 export type RestaurantType = TypeSkeleton & {
-  // TODO: area: string;
+  // area: string; // TODO
 };
 
 export type RestaurantFormType = Omit<

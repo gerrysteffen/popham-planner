@@ -1,13 +1,12 @@
 import type { RestaurantFormType, RestaurantType } from '$lib/UIdata/types';
 import mongoose from './db';
 
-
 let restaurantSchema: undefined | mongoose.Schema<RestaurantType>;
 
 if (!mongoose.models.restaurant && !restaurantSchema) {
   restaurantSchema = new mongoose.Schema<RestaurantType>(
     {
-      name: String,
+      name: { type: String, required: true, default: '' },
       description: String,
       image_url: String,
       tags: [String],
@@ -53,7 +52,10 @@ export async function createRestaurant(restaurant: RestaurantFormType) {
   }
 }
 
-export async function updateRestaurant(id: string, restaurant: RestaurantFormType) {
+export async function updateRestaurant(
+  id: string,
+  restaurant: RestaurantFormType
+) {
   try {
     await RestaurantModel!.findByIdAndUpdate(id, restaurant);
   } catch (error) {

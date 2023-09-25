@@ -7,9 +7,9 @@ if (!mongoose.models.meal && !mealSchema) {
   mealSchema = new mongoose.Schema<MealType>(
     {
       name: { type: String, required: true, default: '' },
-      description: { type: String, required: true, default: '' },
-      source: { type: String, required: true, default: '' },
-      image_url: { type: String, required: true, default: '' },
+      description: String,
+      source: String,
+      image_url: String,
       tags: [String],
       mainCategory: String,
       categories: [String],

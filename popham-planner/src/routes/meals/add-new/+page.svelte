@@ -4,6 +4,8 @@
   import StandardButton from '$lib/components/forms/StandardButton.svelte';
   import StandardTextInput from '$lib/components/forms/StandardTextInput.svelte';
   import { mealMock } from '$lib/UIdata/mockData';
+  import { foodCategories } from '$lib/UIdata/dropDowns';
+  import StandardMcInput from '$lib/components/forms/StandardMCInput.svelte';
 
   const { emptyValues, titles } = mealMock;
   const dataArr = Object.entries(emptyValues);
@@ -14,6 +16,10 @@
   {#each dataArr as [key, value]}
     {#if typeof value === 'string'}
       <StandardTextInput {key} bind:value title={titles[key]} />
+    {/if}
+    {#if key === 'categories' && Array.isArray(value)}
+      <StandardMcInput {key} bind:value title={titles[key]} categories={foodCategories} />
+      {value}
     {/if}
   {/each}
   <StandardButton type="submit" text="Create" handleClick={() => {}} />

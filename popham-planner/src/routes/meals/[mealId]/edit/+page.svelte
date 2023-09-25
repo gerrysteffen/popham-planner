@@ -7,6 +7,8 @@
   import type { MealType } from '$lib/UIdata/types';
   import { goto } from '$app/navigation';
   import { mealMock } from '$lib/UIdata/mockData';
+  import StandardMcInput from '$lib/components/forms/StandardMCInput.svelte';
+  import { foodCategories } from '$lib/UIdata/dropDowns';
 
   const { emptyValues, titles } = mealMock;
   export let data: { meal: MealType };
@@ -22,6 +24,14 @@
   {#each dataArr as [key, value]}
     {#if typeof value === 'string' && titles[key]}
       <StandardTextInput {key} bind:value title={titles[key]} />
+    {/if}
+    {#if key === 'categories' && Array.isArray(value)}
+      <StandardMcInput
+        {key}
+        bind:value
+        title={titles[key]}
+        categories={foodCategories}
+      />
     {/if}
   {/each}
   <StandardButton type="submit" text="Confirm" handleClick={() => {}} />
