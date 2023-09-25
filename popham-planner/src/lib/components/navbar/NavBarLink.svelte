@@ -45,10 +45,6 @@
     text-decoration: none;
     text-align: center;
   }
-  a:focus,
-  a:hover {
-    background-color: #ff7f50;
-  }
   a.selected {
     background-color: #ff7f50;
   }

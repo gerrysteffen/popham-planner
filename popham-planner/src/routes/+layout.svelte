@@ -9,7 +9,7 @@
 <NavBar {level}>
   <NavBarLink title="Meals & Recipes" link="/meals" {level} />
   <NavBarLink title="Restaurants & Take-Out" link="/restaurants" {level} />
-  <NavBarLink title="Planner" link="/" {level} />
+  <NavBarLink title="Plan Your Week" link="/planner" {level} />
 </NavBar>
 <div id="content">
   <slot />
