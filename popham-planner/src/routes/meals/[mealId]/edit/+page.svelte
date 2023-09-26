@@ -31,6 +31,16 @@
         bind:value
         title={titles[key]}
         categories={foodCategories}
+        strict={true}
+      />
+    {/if}
+    {#if key === 'tags' && Array.isArray(value)}
+      <StandardMcInput
+        {key}
+        bind:value
+        title={titles[key]}
+        categories={['hello']}
+        strict={false}
       />
     {/if}
   {/each}

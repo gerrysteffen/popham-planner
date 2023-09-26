@@ -9,17 +9,18 @@ export const actions = {
     const description = data.get('description') as string;
     const source = data.get('source') as string;
     const image_url = data.get('image_url') as string;
-    const categories  = data.getAll('categories') as string[];
     const mainCategory = data.get('mainCategory') as string;
+    const categories  = data.getAll('categories') as string[];
+    const tags  = data.getAll('tags') as string[];
 
     const meal: MealFormType = {
       name,
       description,
       source,
       image_url,
-      tags: [],
       mainCategory,
       categories: categories,
+      tags: tags,
     };
     const newMeal = await createMeal(meal);
     throw redirect(301, `/meals/${newMeal?._id || ''}`);

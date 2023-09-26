@@ -18,8 +18,23 @@
       <StandardTextInput {key} bind:value title={titles[key]} />
     {/if}
     {#if key === 'categories' && Array.isArray(value)}
-      <StandardMcInput {key} bind:value title={titles[key]} categories={foodCategories} />
+      <StandardMcInput
+        {key}
+        bind:value
+        title={titles[key]}
+        categories={foodCategories}
+        strict={true}
+      />
       {value}
+    {/if}
+    {#if key === 'tags' && Array.isArray(value)}
+      <StandardMcInput
+        {key}
+        bind:value
+        title={titles[key]}
+        categories={['hello']}
+        strict={false}
+      />
     {/if}
   {/each}
   <StandardButton type="submit" text="Create" handleClick={() => {}} />

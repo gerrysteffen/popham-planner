@@ -3,6 +3,7 @@ export const foodCategories = [
   'Asian',
   'BBQ',
   'Burgers',
+  'British',
   'Cheese',
   'Chinese',
   'Curry',

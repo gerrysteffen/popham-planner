@@ -8,9 +8,9 @@ export const restaurantMock: {
     name: '',
     description: '',
     image_url: '',
-    tags: [],
     mainCategory: '',
     categories: [],
+    tags: [],
   },
   titles: {
     name: 'Name',
@@ -31,9 +31,9 @@ export const mealMock: {
     description: '',
     source: '',
     image_url: '',
-    tags: [],
     mainCategory: '',
     categories: [],
+    tags: [],
   },
   titles: {
     name: 'Name',
