@@ -1,11 +1,12 @@
 <script lang="ts">
-  import type { FormEventHandler } from 'svelte/elements';
+  import StandardDropdown from './StandardDropdown.svelte';
 
   export let key: string;
   export let value: string[];
   export let title: string;
   export let categories: string[];
   export let strict: boolean;
+  export let mainCategory: string | null = null;
 
   $: valueList = [...value];
   $: newValue = '';
@@ -31,6 +32,7 @@
     if (categories.includes(formattedValue)) {
       if (!valueList.includes(formattedValue)) {
         valueList = [...valueList, formattedValue];
+        value = valueList;
       }
       newValue = '';
     }
@@ -39,16 +41,27 @@
   function handleLaxChange() {
     if (!valueList.includes(newValue)) {
       valueList = [...valueList, newValue];
+      value = valueList;
     }
     newValue = '';
   }
 
   function removeMCInput(input: string) {
     valueList = valueList.filter((el) => el !== input);
+    value = valueList;
   }
 </script>
 
-<label for="key"
+{#if typeof mainCategory === 'string'}
+  <StandardDropdown
+    key="mainCategory"
+    value={mainCategory}
+    title={'Main Category'}
+    categories={valueList}
+  />
+{/if}
+
+<label for={key}
   >{title}
   <select name={key} multiple>
     {#each valueList as cat}

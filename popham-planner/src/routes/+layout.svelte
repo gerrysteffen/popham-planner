@@ -1,5 +1,4 @@
 <script lang="ts">
-  import ContentWrapper from '$lib/components/basicUI/ContentWrapper.svelte';
   import NavBar from '../lib/components/navbar/NavBar.svelte';
   import NavBarLink from '../lib/components/navbar/NavBarLink.svelte';
 

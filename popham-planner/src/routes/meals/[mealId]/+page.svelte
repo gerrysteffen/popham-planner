@@ -15,9 +15,11 @@
   <TitleBar title={data.meal.name} />
   <LargeImage image={data.meal.image_url} />
   <div id="tag-container">
-    <div id="main-cat-wrapper">
-      <Tag text={data.meal.mainCategory} type="main-category" />
-    </div>
+    {#if data.meal.mainCategory}
+      <div id="main-cat-wrapper">
+        <Tag text={data.meal.mainCategory} type="main-category" />
+      </div>
+    {/if}
     {#each data.meal.categories as cat}
       {#if cat !== data.meal.mainCategory}
         <Tag text={cat} type="category" />

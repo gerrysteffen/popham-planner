@@ -9,6 +9,7 @@
   import { mealMock } from '$lib/UIdata/mockData';
   import StandardMcInput from '$lib/components/forms/StandardMCInput.svelte';
   import { foodCategories } from '$lib/UIdata/dropDowns';
+  import StandardDropdown from '$lib/components/forms/StandardDropdown.svelte';
 
   const { emptyValues, titles } = mealMock;
   export let data: { meal: MealType };
@@ -17,12 +18,14 @@
     ...emptyValues, // to make sure new fields are included aswell
     ...data.meal,
   });
+
+  // TODO: is binding values really necessary?
 </script>
 
 <TitleBar title="Add a new Meal" />
 <StandardForm>
   {#each dataArr as [key, value]}
-    {#if typeof value === 'string' && titles[key]}
+    {#if typeof value === 'string' && key !== 'mainCategory' && titles[key]}
       <StandardTextInput {key} bind:value title={titles[key]} />
     {/if}
     {#if key === 'categories' && Array.isArray(value)}
@@ -32,6 +35,7 @@
         title={titles[key]}
         categories={foodCategories}
         strict={true}
+        mainCategory={data.meal.mainCategory}
       />
     {/if}
     {#if key === 'tags' && Array.isArray(value)}

@@ -14,7 +14,7 @@
 <TitleBar title="Add a new Meal" />
 <StandardForm>
   {#each dataArr as [key, value]}
-    {#if typeof value === 'string'}
+    {#if typeof value === 'string' && key !== 'mainCategory' && titles[key]}
       <StandardTextInput {key} bind:value title={titles[key]} />
     {/if}
     {#if key === 'categories' && Array.isArray(value)}
@@ -24,8 +24,8 @@
         title={titles[key]}
         categories={foodCategories}
         strict={true}
+        mainCategory={''}
       />
-      {value}
     {/if}
     {#if key === 'tags' && Array.isArray(value)}
       <StandardMcInput
