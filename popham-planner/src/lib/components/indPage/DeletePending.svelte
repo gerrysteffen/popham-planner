@@ -1,6 +1,6 @@
 <script lang="ts">
   import { enhance } from '$app/forms';
-  import StandardButton from './forms/StandardButton.svelte';
+  import StandardButton from '../forms/StandardButton.svelte';
   export let deletePending: boolean;
 </script>
 
@@ -21,22 +21,22 @@
 
 <style>
   #black-background {
-    z-index: 50;
+    z-index: 100;
     position: absolute;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     background-color: black;
     opacity: 0.7;
   }
   #foreground {
-    z-index: 51;
+    z-index: 101;
     position: absolute;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;

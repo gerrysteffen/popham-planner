@@ -1,4 +1,6 @@
 <script lang="ts">
+  import type { MealType, RestaurantType, Titles } from '$lib/UIdata/types';
+
   import { goto } from '$app/navigation';
 
   import TitleBar from '$lib/components/basicUI/TitleBar.svelte';
@@ -7,16 +9,12 @@
   import StandardTextInput from '$lib/components/forms/StandardTextInput.svelte';
   import StandardMcInput from '$lib/components/forms/StandardMCInput.svelte';
 
-  // import { foodCategories } from '$lib/UIdata/dropDowns';
-  // import { mealMock } from '$lib/UIdata/mockData';
-  import type { MealType, RestaurantType, Titles } from '$lib/UIdata/types';
-
   export let type: 'meals' | 'restaurants';
-  export let data: MealType | RestaurantType //= mealMock.emptyValues;
+  export let data: MealType | RestaurantType;
   export let mode: 'edit' | 'create';
-  export let emptyValues: MealType | RestaurantType //= mealMock.emptyValues
-  export let titles: Titles //= mealMock.titles
-  export let categories: string[] //= foodCategories
+  export let emptyValues: MealType | RestaurantType;
+  export let titles: Titles;
+  export let categories: string[];
 
   const dataArr =
     mode === 'create'
@@ -29,7 +27,11 @@
         });
 </script>
 
-<TitleBar title={mode === 'create' ? `Add a new ${type === 'meals' ? 'Meal' : 'Restaurant'}` : `Edit ${data.name}`} />
+<TitleBar
+  title={mode === 'create'
+    ? `Add a new ${type === 'meals' ? 'Meal' : 'Restaurant'}`
+    : `Edit ${type === 'meals' ? 'Meal' : 'Restaurant'}`}
+/>
 <StandardForm>
   {#each dataArr as [key, value]}
     {#if typeof value === 'string' && key !== 'mainCategory' && titles[key]}
@@ -40,7 +42,7 @@
         {key}
         bind:value
         title={titles[key]}
-        categories={categories}
+        {categories}
         strict={true}
         mainCategory={''}
       />

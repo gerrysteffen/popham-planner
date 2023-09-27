@@ -114,8 +114,8 @@
   }
   select {
     visibility: hidden;
-    height: 0;
-    width: 0;
+    height: 0px;
+    width: 0px;
     margin: -5px;
   }
   #cat-list {
