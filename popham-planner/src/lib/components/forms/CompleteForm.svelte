@@ -11,6 +11,7 @@
   // import { mealMock } from '$lib/UIdata/mockData';
   import type { MealType, RestaurantType, Titles } from '$lib/UIdata/types';
 
+  export let type: 'meals' | 'restaurants';
   export let data: MealType | RestaurantType //= mealMock.emptyValues;
   export let mode: 'edit' | 'create';
   export let emptyValues: MealType | RestaurantType //= mealMock.emptyValues
@@ -28,7 +29,7 @@
         });
 </script>
 
-<TitleBar title={mode === 'create' ? 'Add a new Meal' : `Edit ${data.name}`} />
+<TitleBar title={mode === 'create' ? `Add a new ${type === 'meals' ? 'Meal' : 'Restaurant'}` : `Edit ${data.name}`} />
 <StandardForm>
   {#each dataArr as [key, value]}
     {#if typeof value === 'string' && key !== 'mainCategory' && titles[key]}
@@ -61,7 +62,7 @@
     <StandardButton
       text="Cancel"
       type="button"
-      handleClick={() => goto(`/meals/${data._id}`)}
+      handleClick={() => goto(`/${type}/${data._id}`)}
     />
   {/if}
 </StandardForm>

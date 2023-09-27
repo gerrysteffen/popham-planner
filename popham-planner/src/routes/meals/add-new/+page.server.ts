@@ -19,8 +19,8 @@ export const actions = {
       source,
       image_url,
       mainCategory,
-      categories: categories,
-      tags: tags,
+      categories,
+      tags,
     };
     const newMeal = await createMeal(meal);
     throw redirect(301, `/meals/${newMeal?._id || ''}`);

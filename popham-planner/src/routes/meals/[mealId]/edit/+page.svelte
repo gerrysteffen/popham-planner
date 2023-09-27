@@ -9,6 +9,7 @@
 </script>
 
 <CompleteForm
+  type='meals'
   data={data.meal}
   mode="edit"
   emptyValues={mealMock.emptyValues}

@@ -21,14 +21,16 @@ export const actions = {
     const description = data.get('description') as string;
     const image_url = data.get('image_url') as string;
     const mainCategory = data.get('mainCategory') as string;
+    const categories = data.getAll('categories') as string[];
+    const tags = data.getAll('tags') as string[];
 
     const restaurant: RestaurantFormType = {
       name,
       description,
       image_url,
-      tags: [],
       mainCategory,
-      categories: [],
+      categories,
+      tags,
     };
     await updateRestaurant(params.restaurantId, restaurant);
     throw redirect(301, `/restaurants/${params.restaurantId}`);

@@ -1,16 +1,19 @@
-import type { MealType, RestaurantFormType, Titles } from './types';
+import type { MealType, RestaurantType, Titles } from './types';
 
 export const restaurantMock: {
-  emptyValues: RestaurantFormType;
+  emptyValues: RestaurantType;
   titles: Titles;
 } = {
   emptyValues: {
+    _id: '',
     name: '',
     description: '',
     image_url: '',
     mainCategory: '',
     categories: [],
     tags: [],
+    createdAt: new Date(Date.now()),
+    updatedAt: new Date(Date.now()),
   },
   titles: {
     name: 'Name',

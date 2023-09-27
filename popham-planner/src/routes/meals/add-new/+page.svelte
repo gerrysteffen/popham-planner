@@ -6,6 +6,7 @@
 </script>
 
 <CompleteForm
+  type="meals"
   data={mealMock.emptyValues}
   mode="create"
   emptyValues={mealMock.emptyValues}
