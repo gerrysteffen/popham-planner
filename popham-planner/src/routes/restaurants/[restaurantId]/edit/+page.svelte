@@ -16,7 +16,7 @@
   });
 </script>
 
-<TitleBar title="Edit Restaurant" />
+<TitleBar title="Edit {data.restaurant.name}" />
 <StandardForm>
   {#each dataArr as [key, value]}
     {#if typeof value === 'string' && titles[key]}

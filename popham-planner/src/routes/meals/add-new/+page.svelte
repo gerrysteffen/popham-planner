@@ -1,41 +1,14 @@
 <script lang="ts">
-  import TitleBar from '$lib/components/basicUI/TitleBar.svelte';
-  import StandardForm from '$lib/components/forms/StandardForm.svelte';
-  import StandardButton from '$lib/components/forms/StandardButton.svelte';
-  import StandardTextInput from '$lib/components/forms/StandardTextInput.svelte';
-  import { mealMock } from '$lib/UIdata/mockData';
-  import { foodCategories } from '$lib/UIdata/dropDowns';
-  import StandardMcInput from '$lib/components/forms/StandardMCInput.svelte';
+  import CompleteForm from '../../../lib/components/forms/CompleteForm.svelte';
 
-  const { emptyValues, titles } = mealMock;
-  const dataArr = Object.entries(emptyValues);
+  import { foodCategories } from '$lib/UIdata/dropDowns';
+  import { mealMock } from '$lib/UIdata/mockData';
 </script>
 
-<TitleBar title="Add a new Meal" />
-<StandardForm>
-  {#each dataArr as [key, value]}
-    {#if typeof value === 'string' && key !== 'mainCategory' && titles[key]}
-      <StandardTextInput {key} bind:value title={titles[key]} />
-    {/if}
-    {#if key === 'categories' && Array.isArray(value)}
-      <StandardMcInput
-        {key}
-        bind:value
-        title={titles[key]}
-        categories={foodCategories}
-        strict={true}
-        mainCategory={''}
-      />
-    {/if}
-    {#if key === 'tags' && Array.isArray(value)}
-      <StandardMcInput
-        {key}
-        bind:value
-        title={titles[key]}
-        categories={['hello']}
-        strict={false}
-      />
-    {/if}
-  {/each}
-  <StandardButton type="submit" text="Create" handleClick={() => {}} />
-</StandardForm>
+<CompleteForm
+  data={mealMock.emptyValues}
+  mode="create"
+  emptyValues={mealMock.emptyValues}
+  titles={mealMock.titles}
+  categories={foodCategories}
+/>
