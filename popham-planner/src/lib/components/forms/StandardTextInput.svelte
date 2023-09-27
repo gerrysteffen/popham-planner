@@ -12,6 +12,7 @@
     justify-content: space-between;
     align-items: center;
     font-size: large;
+    height: 30px;
   }
   input {
     width: 50%;

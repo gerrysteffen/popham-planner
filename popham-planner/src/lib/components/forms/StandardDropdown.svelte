@@ -7,8 +7,10 @@
   $: valueList = [...categories];
 </script>
 
-<label for={key}
-  >{title}
+<label for={key}>
+  <div class="label">
+    {title}
+  </div>
   <select name={key}>
     {#if !valueList.length}
       <option value={''} selected>No categories available</option>
@@ -22,8 +24,19 @@
 <style>
   label {
     display: flex;
-    justify-content: flex-start;
-    align-items: top;
+    justify-content: space-between;
+    align-items: stretch;
     font-size: large;
+    height: 30px;
+  }
+  select {
+    width: 50%;
+    font-size: large;
+  }
+  .label {
+    height: 30px;
+    display: flex;
+    justify-items: center;
+    align-items: center;
   }
 </style>

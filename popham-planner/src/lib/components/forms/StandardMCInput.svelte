@@ -61,13 +61,8 @@
   />
 {/if}
 
-<label for={key}
-  >{title}
-  <select name={key} multiple>
-    {#each valueList as cat}
-      <option value={cat} selected>{cat}</option>
-    {/each}
-  </select>
+<label for={key}>
+  <div class="label">{title}</div>
   <div id="cat-list">
     <div class="mc-element mc-input">
       {#if addPending}
@@ -104,19 +99,27 @@
   </div>
 </label>
 
+<select name={key} multiple>
+  {#each valueList as cat}
+    <option value={cat} selected>{cat}</option>
+  {/each}
+</select>
+
 <style>
   label {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: top;
     font-size: large;
   }
   select {
     visibility: hidden;
-    width: 10px;
+    height: 0;
+    width: 0;
+    margin: -5px;
   }
   #cat-list {
-    width: 100%;
+    width: 60%;
     display: flex;
     flex-direction: row;
     justify-content: start;
@@ -139,10 +142,17 @@
     padding: 4px;
   }
   input {
-    width: 100px;
+    width: 70px;
     font-size: small;
   }
   button {
     border: 0;
+  }
+  .label {
+    height: 30px;
+    width: 40%;
+    display: flex;
+    justify-items: center;
+    align-items: center;
   }
 </style>
