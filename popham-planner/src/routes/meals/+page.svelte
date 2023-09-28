@@ -1,15 +1,11 @@
 <script lang="ts">
-  import CubeContainer from '$lib/components/overview/CubeContainer.svelte';
-  import PreviewCube from '$lib/components/overview/PreviewCube.svelte';
-  import TitleBar from '$lib/components/basicUI/TitleBar.svelte';
-  export let data;
+  import type { MealType } from '$lib/UIdata/types';
+
+  import OverviewPage from '$lib/components/overview/OverviewPage.svelte';
+
+  export let data: { meals: MealType[] };
+
+  const title = 'All Meals & Recipes';
 </script>
 
-<TitleBar title="All Meals & Recipes" />
-{#if data}
-  <CubeContainer>
-    {#each data.meals as meals}
-      <PreviewCube data={meals} />
-    {/each}
-  </CubeContainer>
-{/if}
+<OverviewPage {title} data={data.meals} />
