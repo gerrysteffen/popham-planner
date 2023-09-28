@@ -41,10 +41,10 @@
     }
     return firstLetter + word.slice(1);
   }
-  function categorize() {
-    groupedSortedData = {};
+  function group(ascending: boolean) {
+    let newGroups = {};
     sortedData.forEach((el) => {
-      let firstLetter = el.name.slice(0, 1).toUpperCase();
+      let firstLetter = adjustForUmlaute(el.name.slice(0, 1).toUpperCase());
       const umlautMap = {
         Ü: 'U',
         Ä: 'A',
@@ -53,14 +53,15 @@
       if (/[\u00dc|\u00c4|\u00d6]/.test(firstLetter)) {
         firstLetter = umlautMap[firstLetter];
       }
-      if (groupedSortedData[firstLetter]) {
-        groupedSortedData[firstLetter].push(el);
+      if (newGroups[firstLetter]) {
+        newGroups[firstLetter].push(el);
       } else {
-        groupedSortedData[firstLetter] = [el];
+        newGroups[firstLetter] = [el];
       }
     });
+    groupedSortedData = newGroups;
   }
-  $: grouped && categorize();
+  $: group(ascending); // ascending included to make sure it is invoked when ascending state changes
 </script>
 
 <TitleBar {title} />
