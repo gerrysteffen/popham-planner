@@ -13,5 +13,3 @@
   <ListElement {data} />
 {/if}
 
-<style>
-</style>

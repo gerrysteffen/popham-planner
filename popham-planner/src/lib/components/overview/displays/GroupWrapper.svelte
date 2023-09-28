@@ -1,5 +1,5 @@
 <script lang="ts">
-  export let group: 'string';
+  export let group: string;
   export let display: 'Cubes' | 'List';
 </script>
 
@@ -25,7 +25,7 @@
   .slider {
     display: flex;
     flex-direction: row;
-    overflow-x: scroll;
+    overflow: scroll;
     gap: 10px;
   }
   .list {

@@ -2,7 +2,7 @@
   import type { RestaurantType } from '$lib/UIdata/types';
   import CompleteForm from '../../../../lib/components/forms/CompleteForm.svelte';
 
-  import { foodCategories } from '$lib/UIdata/dropDowns';
+  import { restaurantCategories } from '$lib/UIdata/dropDowns';
   import { restaurantMock } from '$lib/UIdata/mockData';
 
   export let data: { restaurant: RestaurantType };
@@ -14,5 +14,5 @@
   mode="edit"
   emptyValues={restaurantMock.emptyValues}
   titles={restaurantMock.titles}
-  categories={foodCategories}
+  categories={restaurantCategories}
 />

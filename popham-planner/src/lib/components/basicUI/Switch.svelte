@@ -1,8 +1,19 @@
 <script lang="ts">
   export let checked: boolean;
   export let title: string;
+  export let disabled: boolean = false;
   // export let color = "#2196F3";
 </script>
+
+<div class="switch-wrapper">
+  <label class="switch">
+    <input type="checkbox" bind:checked {disabled} />
+    <span class="slider" class:disabled />
+  </label>
+  <div class="text-wrapper">
+    {title}
+  </div>
+</div>
 
 <style>
   .switch-wrapper {
@@ -12,7 +23,7 @@
     justify-content: flex-start;
     align-items: flex-start;
   }
-  
+
   .switch {
     position: relative;
     display: inline-block;
@@ -41,7 +52,7 @@
 
   .slider:before {
     position: absolute;
-    content: "";
+    content: '';
     height: 26px;
     width: 26px;
     left: 4px;
@@ -50,6 +61,10 @@
     -webkit-transition: 0.4s;
     transition: 0.4s;
     border-radius: 50%;
+  }
+
+  .disabled.slider:before {
+    background-color: slategray;
   }
 
   input:checked + .slider {
@@ -75,14 +90,3 @@
     align-items: center;
   }
 </style>
-
-<div class='switch-wrapper'>
-
-  <label class="switch">
-    <input type="checkbox" bind:checked />
-    <span class="slider" />
-  </label>
-  <div class="text-wrapper">
-    {title}
-  </div>
-</div>

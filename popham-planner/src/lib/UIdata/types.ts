@@ -31,3 +31,5 @@ export type RestaurantFormType = Omit<
 export type Titles = {
   [key: string]: string;
 };
+
+export type OverviewCriteria = 'name' | 'tags' | 'categories' | 'mainCategory' | 'createdAt' | 'updatedAt'

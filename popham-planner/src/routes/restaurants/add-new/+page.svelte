@@ -1,7 +1,7 @@
 <script lang="ts">
   import CompleteForm from '../../../lib/components/forms/CompleteForm.svelte';
 
-  import { foodCategories } from '$lib/UIdata/dropDowns';
+  import { restaurantCategories } from '$lib/UIdata/dropDowns';
   import { restaurantMock } from '$lib/UIdata/mockData';
 </script>
 
@@ -11,5 +11,5 @@
   mode="create"
   emptyValues={restaurantMock.emptyValues}
   titles={restaurantMock.titles}
-  categories={foodCategories}
+  categories={restaurantCategories}
 />

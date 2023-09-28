@@ -1,5 +1,11 @@
 <script lang="ts">
-  import type { MealType, RestaurantType } from '$lib/UIdata/types';
+  import type {
+    MealType,
+    OverviewCriteria,
+    RestaurantType,
+  } from '$lib/UIdata/types';
+  import { groupElements } from '$lib/helperFunctions/grouping';
+  import { sortElements } from '$lib/helperFunctions/sorting';
 
   import Switch from '../basicUI/Switch.svelte';
   import SwitchWrapper from '../basicUI/SwitchWrapper.svelte';
@@ -11,64 +17,62 @@
   export let data: MealType[] | RestaurantType[];
 
   export let title: string;
+  export let criteria: OverviewCriteria = 'name';
   export let ascending: boolean = true;
   export let cubes: boolean = true;
+  let display: 'Cubes' | 'List';
   $: display = cubes ? 'Cubes' : 'List';
-  export let grouped: boolean = false;
+  export let grouped: boolean = true;
 
-  let sortedData = data.slice();
-  let sortBy = (column, ascending: boolean) => {
-    let sortLogic = (a, b) => {
-      const A = adjustForUmlaute(a[column]);
-      const B = adjustForUmlaute(b[column]);
-      return A < B ? (ascending ? -1 : 1) : A > B ? (ascending ? 1 : -1) : 0;
-    };
-
-    sortedData = sortedData.sort(sortLogic);
-  };
-  $: sortBy('name', ascending);
-
-  let groupedSortedData = {};
-  const umlautMap = {
-    Ü: 'U',
-    Ä: 'A',
-    Ö: 'O',
-  };
-  function adjustForUmlaute(word) {
-    let firstLetter = word.slice(0, 1).toUpperCase();
-    if (/[\u00dc|\u00c4|\u00d6]/.test(firstLetter)) {
-      firstLetter = umlautMap[firstLetter];
+  $: groupSwitchDisabled = disableGrouping(criteria);
+  function disableGrouping(criteria: string) {
+    if (criteria === 'updatedAt' || criteria === 'createdAt') {
+      grouped = false;
+      return true;
+    } else if (
+      criteria === 'categories' ||
+      criteria === 'mainCategory' ||
+      criteria === 'tags'
+    ) {
+      grouped = true;
+      return true;
+    } else {
+      return false;
     }
-    return firstLetter + word.slice(1);
   }
-  function group(ascending: boolean) {
-    let newGroups = {};
-    sortedData.forEach((el) => {
-      let firstLetter = adjustForUmlaute(el.name.slice(0, 1).toUpperCase());
-      const umlautMap = {
-        Ü: 'U',
-        Ä: 'A',
-        Ö: 'O',
-      };
-      if (/[\u00dc|\u00c4|\u00d6]/.test(firstLetter)) {
-        firstLetter = umlautMap[firstLetter];
-      }
-      if (newGroups[firstLetter]) {
-        newGroups[firstLetter].push(el);
-      } else {
-        newGroups[firstLetter] = [el];
-      }
-    });
-    groupedSortedData = newGroups;
-  }
-  $: group(ascending); // ascending included to make sure it is invoked when ascending state changes
+
+  let criteriaOptions = {
+    name: 'By Name',
+    // tags: 'By Tag',
+    // categories: 'By Categories',
+    mainCategory: 'By Main Category',
+    // createdAt: 'By Created At',
+    // updatedAt: 'By Updated At',
+    // priceLevel: number; // TODO
+    // rating: number; // TODO
+  };
+
+  $: sortedData = sortElements(data, criteria, ascending);
+  let groupedSortedData: {
+    [key: string]: MealType[] | RestaurantType[];
+  };
+  $: groupedSortedData = groupElements(sortedData, criteria, ascending);
 </script>
 
 <TitleBar {title} />
 <SwitchWrapper>
   <Switch title="Ascending" bind:checked={ascending} />
   <Switch title="Cubes" bind:checked={cubes} />
-  <Switch title="Grouped" bind:checked={grouped} />
+  <Switch
+    title="Grouped"
+    bind:checked={grouped}
+    disabled={groupSwitchDisabled}
+  />
+  <select name="criteria" bind:value={criteria}>
+    {#each Object.entries(criteriaOptions) as [crit, text]}
+      <option value={crit}>{text}</option>
+    {/each}
+  </select>
 </SwitchWrapper>
 
 <DisplayContainer {display}>
