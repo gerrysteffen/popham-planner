@@ -25,6 +25,7 @@
 <style>
   a {
     text-decoration: none;
+    width: 150px;
   }
   .cube {
     background-color: #ff7f50;

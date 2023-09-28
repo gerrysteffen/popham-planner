@@ -28,6 +28,6 @@
     right: 0;
     bottom: 70px;
     overflow: scroll;
-    padding: 10px 10px 20px 10px;
+    padding: 10px 20px 20px 20px;
   }
 </style>

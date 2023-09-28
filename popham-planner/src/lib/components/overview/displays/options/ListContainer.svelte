@@ -8,7 +8,6 @@
     flex-direction: column;
     justify-content: flex-start;
     gap: 10px;
-    padding: 0 10px;
     overflow: scroll;
   }
 </style>
