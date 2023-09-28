@@ -56,7 +56,6 @@
     left: 0;
     width: 100%;
     height: 50px;
-    background: #ffa06e;
     opacity: 0.8;
   }
 </style>
