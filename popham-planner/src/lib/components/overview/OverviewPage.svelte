@@ -43,8 +43,8 @@
 
   let criteriaOptions = {
     name: 'By Name',
-    // tags: 'By Tag',
-    // categories: 'By Categories',
+    tags: 'By Tag',
+    categories: 'By Categories',
     mainCategory: 'By Main Category',
     // createdAt: 'By Created At',
     // updatedAt: 'By Updated At',
@@ -53,35 +53,37 @@
   };
 
   $: sortedData = sortElements(data, criteria, ascending);
-  let groupedSortedData: {
-    [key: string]: MealType[] | RestaurantType[];
-  };
+  let groupedSortedData: [string, [MealType | RestaurantType]][];
+
   $: groupedSortedData = groupElements(sortedData, criteria, ascending);
 </script>
 
 <TitleBar {title} />
 <SwitchWrapper>
-  <Switch title="Ascending" bind:checked={ascending} />
-  <Switch title="Cubes" bind:checked={cubes} />
-  <Switch
-    title="Grouped"
-    bind:checked={grouped}
-    disabled={groupSwitchDisabled}
-  />
   <select name="criteria" bind:value={criteria}>
     {#each Object.entries(criteriaOptions) as [crit, text]}
       <option value={crit}>{text}</option>
     {/each}
   </select>
+  <Switch
+    title="Grouped"
+    bind:checked={grouped}
+    disabled={groupSwitchDisabled}
+  />
+  <Switch title="Ascending" bind:checked={ascending} />
+  <Switch title="Cubes" bind:checked={cubes} />
 </SwitchWrapper>
 
 <DisplayContainer {display}>
   {#if grouped}
-    {#each Object.entries(groupedSortedData) as [group, groupArr]}
+    <!-- {#each Object.entries(groupedSortedData) as [group, groupArr]} --->
+    {#each groupedSortedData as [group, groupArr]}
       <GroupWrapper {group} {display}>
+        {#if groupArr !== null}
         {#each groupArr as dataEl}
-          <DisplayElement {display} data={dataEl} />
+        <DisplayElement {display} data={dataEl} />
         {/each}
+        {/if}
       </GroupWrapper>
     {/each}
   {:else}
@@ -90,3 +92,10 @@
     {/each}
   {/if}
 </DisplayContainer>
+
+<style>
+  select {
+    width: 150px;
+    height: 34px;
+  }
+</style>

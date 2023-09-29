@@ -1,4 +1,4 @@
-type TypeSkeleton = {
+export type TypeSkeleton = {
   _id: string;
   name: string;
   description: string;
@@ -20,7 +20,7 @@ export type MealType = TypeSkeleton & {
 export type MealFormType = Omit<MealType, '_id' | 'createdAt' | 'updatedAt'>;
 
 export type RestaurantType = TypeSkeleton & {
-  // area: string; // TODO
+  address?: string; // TODO
 };
 
 export type RestaurantFormType = Omit<
@@ -32,4 +32,10 @@ export type Titles = {
   [key: string]: string;
 };
 
-export type OverviewCriteria = 'name' | 'tags' | 'categories' | 'mainCategory' | 'createdAt' | 'updatedAt'
+export type OverviewCriteria =
+  | 'name'
+  | 'tags'
+  | 'categories'
+  | 'mainCategory'
+  | 'createdAt'
+  | 'updatedAt';

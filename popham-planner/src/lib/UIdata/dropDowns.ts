@@ -21,6 +21,7 @@ const sharedCategories = [
   'Middle Eastern',
   'Pakistani',
   'Pasta',
+  'Ramen',
   'Salad',
   'Sandwiches',
   'Seafood',
@@ -35,7 +36,7 @@ const sharedCategories = [
 
 export const foodCategories = [
   ...sharedCategories,
-  'Burgers',
+  'Burger',
   'Chicken',
   'Dessert',
   'Meat',
