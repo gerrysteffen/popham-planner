@@ -26,10 +26,7 @@
 
   $: groupSwitchDisabled = disableGrouping(criteria);
   function disableGrouping(criteria: string) {
-    if (criteria === 'updatedAt' || criteria === 'createdAt') {
-      grouped = false;
-      return true;
-    } else if (
+    if (
       criteria === 'categories' ||
       criteria === 'mainCategory' ||
       criteria === 'tags'
@@ -46,8 +43,8 @@
     tags: 'By Tag',
     categories: 'By Categories',
     mainCategory: 'By Main Category',
-    // createdAt: 'By Created At',
-    // updatedAt: 'By Updated At',
+    createdAt: 'By Date Created',
+    updatedAt: 'By Date Updated',
     // priceLevel: number; // TODO
     // rating: number; // TODO
   };
@@ -80,9 +77,9 @@
     {#each groupedSortedData as [group, groupArr]}
       <GroupWrapper {group} {display}>
         {#if groupArr !== null}
-        {#each groupArr as dataEl}
-        <DisplayElement {display} data={dataEl} />
-        {/each}
+          {#each groupArr as dataEl}
+            <DisplayElement {display} data={dataEl} />
+          {/each}
         {/if}
       </GroupWrapper>
     {/each}

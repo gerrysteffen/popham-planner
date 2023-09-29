@@ -17,6 +17,8 @@ export function sortElements(
     column === 'tags'
   ) {
     column = 'name';
+  } else if (column === 'createdAt' || column === 'updatedAt') {
+    ascending = !ascending;
   }
   let sortLogic = (
     a: MealType | RestaurantType,

@@ -8,8 +8,8 @@ export type TypeSkeleton = {
   categories: string[];
   // priceLevel: number; // TODO
   // rating: number; // TODO
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type MealType = TypeSkeleton & {

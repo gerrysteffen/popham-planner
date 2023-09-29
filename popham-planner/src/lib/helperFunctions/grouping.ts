@@ -53,6 +53,39 @@ export function groupElements(
         });
       }
     });
+  } else if (column === 'updatedAt' || column === 'createdAt') {
+    const hour = 1000 * 60 * 60;
+    const day = hour * 24;
+    const week = 7 * day;
+    const month = 30 * day;
+    data.forEach((el: MealType | RestaurantType) => {
+      const timeSince = Date.now() - new Date(el[column]).getTime();
+      if (timeSince < hour) {
+        newGroups['Last Hour']
+          ? newGroups['Last Hour'].push(el)
+          : (newGroups['Last Hour'] = [el]);
+      } else if (timeSince < day) {
+        newGroups['Today']
+          ? newGroups['Today'].push(el)
+          : (newGroups['Today'] = [el]);
+      } else if (timeSince < 2 * day) {
+        newGroups['Yesterday']
+          ? newGroups['Yesterday'].push(el)
+          : (newGroups['Yesterday'] = [el]);
+      } else if (timeSince < week) {
+        newGroups['Last Week']
+          ? newGroups['Last Week'].push(el)
+          : (newGroups['Last Week'] = [el]);
+      } else if (timeSince < month) {
+        newGroups['Last Month']
+          ? newGroups['Last Month'].push(el)
+          : (newGroups['Last Month'] = [el]);
+      } else {
+        newGroups['Older']
+          ? newGroups['Older'].push(el)
+          : (newGroups['Older'] = [el]);
+      }
+    });
   }
 
   if (newGroups['Uncategorised'] === null) {
