@@ -8,7 +8,7 @@
 
 <FadeOut />
 <NavBar {level}>
-  <NavBarLink title="Meal Calendar" link="/planner/calendar" {level} />
+  <NavBarLink title="Meal Calendar" link="/planner" {level} />
   <NavBarLink title="Shopping List" link="/planner/shopping" {level} />
   <NavBarLink title="Notes" link="/planner/notes" {level} />
 </NavBar>

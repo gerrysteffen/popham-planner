@@ -39,3 +39,23 @@ export type OverviewCriteria =
   | 'mainCategory'
   | 'createdAt'
   | 'updatedAt';
+
+export type HouseholdType = {
+  name: string;
+  meals: MealType[];
+  restaurants: RestaurantType[];
+  calendar: MealPlanType[];
+};
+
+export type MealPlanType = {
+  year: number;
+  month: number;
+  day: number;
+  meal: 'Breakfast' | 'Brunch' | 'Lunch' | 'Dinner';
+  plan: RestaurantType | MealType;
+};
+
+export type UserType = {
+  name: string;
+  households: HouseholdType[];
+};
