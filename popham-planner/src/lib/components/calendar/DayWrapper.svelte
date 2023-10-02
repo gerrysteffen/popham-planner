@@ -45,6 +45,8 @@
     height: 150px;
     position: relative;
     font-weight: bold;
+    display: flex;
+    justify-items: space-between;
   }
   .day-weekday {
     position: absolute;

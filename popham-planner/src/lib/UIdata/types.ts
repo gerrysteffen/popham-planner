@@ -44,15 +44,21 @@ export type HouseholdType = {
   name: string;
   meals: MealType[];
   restaurants: RestaurantType[];
-  calendar: MealPlanType[];
+  calendar: MealDateType[];
 };
 
-export type MealPlanType = {
+export type CalendarType = {
+  [key: string]: MealDateType[];
+};
+
+export type MealDateType = {
+  date: Date;
   year: number;
   month: number;
   day: number;
   meal: 'Breakfast' | 'Brunch' | 'Lunch' | 'Dinner';
-  plan: RestaurantType | MealType;
+  lunch: [MealType | RestaurantType] | [];
+  dinner: [MealType | RestaurantType] | [];
 };
 
 export type UserType = {
