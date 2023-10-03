@@ -1,11 +1,10 @@
 <script lang="ts">
   import { colors } from '$lib/UIdata/cssSelectors';
   import type { MealDateType } from '$lib/UIdata/types';
-  import { mockMealDate } from '$lib/helperFunctions/calendarDatesCreation';
 
   import Halfday from './Halfday.svelte';
 
-  export let data: MealDateType = mockMealDate;
+  export let data: MealDateType;
 
   $: date = new Date(data.timestamp);
 

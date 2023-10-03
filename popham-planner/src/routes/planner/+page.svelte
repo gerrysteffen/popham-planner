@@ -1,7 +1,7 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
   import type { CalendarType, MealPlanType } from '$lib/UIdata/types';
-  import DayWrapper from '$lib/components/calendar/DayWrapper.svelte';
+  import Calendar from '$lib/components/calendar/Calendar.svelte';
   import {
     addCalendarWeeks,
     calculateWeekAndDay,
@@ -54,27 +54,14 @@
     let totalHeight = (event.target as HTMLElement).scrollHeight;
     if (scrolledHeight === 0) {
       getAddData(false);
-      console.log(calendar);
     } else if (scrolledHeight + screenHeight > totalHeight - 100) {
       getAddData(true);
-      console.log(calendar);
     }
   }
 </script>
 
 <div id="calendar-wrapper" on:scroll={monitorPosition}>
-  <div id="mock-date">
-    <DayWrapper />
-  </div>
-  <div id="calendar">
-    {#each Object.keys(calendar).sort((a, b) => Number(a.slice(4)) - Number(b.slice(4))) as weekKey}
-      <section id={weekKey}>
-        {#each calendar[weekKey] as day}
-          <DayWrapper data={day} />
-        {/each}
-      </section>
-    {/each}
-  </div>
+  <Calendar {calendar} />
 </div>
 
 <svelte:window />
@@ -88,14 +75,5 @@
     right: 0px;
     bottom: 0px;
     overflow: scroll;
-  }
-  #mock-date {
-    position: absolute;
-    top: -70px;
-    width: 100%;
-  }
-  section {
-    padding-top: 80px;
-    margin-bottom: -80px;
   }
 </style>
