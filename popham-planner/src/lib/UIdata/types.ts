@@ -41,6 +41,7 @@ export type OverviewCriteria =
   | 'updatedAt';
 
 export type HouseholdType = {
+  _id: string;
   name: string;
   meals: MealType[];
   restaurants: RestaurantType[];
@@ -48,6 +49,7 @@ export type HouseholdType = {
 };
 
 export type MealPlanType = {
+  _id: string;
   timestamp: number;
   meal: 'Breakfast' | 'Brunch' | 'Lunch' | 'Dinner';
   plan: MealType | RestaurantType;

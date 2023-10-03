@@ -8,7 +8,7 @@
   $: category = $page.url.pathname.split('/')[1] as string;
 
   // use of sections made it necessary to cut any #-delimited parts
-  $: linkCompare = link.includes('#') ? link.slice(0, link.indexOf('#')) : link;
+  $: linkCompare = link.includes('?') ? link.slice(0, link.indexOf('?')) : link;
 
   $: selected =
     $page.url.pathname

@@ -4,19 +4,19 @@
   import NavBarLink from '../../lib/components/navbar/NavBarLink.svelte';
 
   const level = 1;
-
-  function loadNewData (event: Event) {
-    console.log(event.target)
-  }
 </script>
 
 <FadeOut />
 <NavBar {level}>
-  <NavBarLink title="Meal Calendar" link="/planner#week0" {level} />
+  <NavBarLink
+    title="Meal Calendar"
+    link="/planner?pw=-1&fw=1#week0"
+    {level}
+  />
   <NavBarLink title="Shopping List" link="/planner/shopping" {level} />
   <NavBarLink title="Notes" link="/planner/notes" {level} />
 </NavBar>
-<div id="content" on:scroll={loadNewData}>
+<div id="content">
   <slot />
 </div>
 
