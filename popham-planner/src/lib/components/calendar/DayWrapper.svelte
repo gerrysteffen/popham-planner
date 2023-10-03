@@ -1,9 +1,13 @@
 <script lang="ts">
   import { colors } from '$lib/UIdata/cssSelectors';
+  import type { MealDateType } from '$lib/UIdata/types';
+  import { mockMealDate } from '$lib/helperFunctions/calendarDatesCreation';
 
   import Halfday from './Halfday.svelte';
 
-  export let date: Date;
+  export let data: MealDateType = mockMealDate;
+
+  $: date = new Date(data.timestamp);
 
   const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
@@ -23,7 +27,7 @@
   ];
 </script>
 
-<div class="day">
+<div class="day" id={String(data.timestamp)}>
   <div
     class="day-weekday"
     style="background-color: {colors.planner.unselected}"
@@ -34,8 +38,8 @@
     {date.getDate()}
     {monthNames[date.getMonth()]}
   </div>
-  <Halfday time={'lunch'} />
-  <Halfday time={'dinner'} />
+  <Halfday time={'lunch'} meals={data.lunch} />
+  <Halfday time={'dinner'} meals={data.dinner} />
 </div>
 
 <style>

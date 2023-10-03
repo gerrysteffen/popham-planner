@@ -44,7 +44,13 @@ export type HouseholdType = {
   name: string;
   meals: MealType[];
   restaurants: RestaurantType[];
-  calendar: MealDateType[];
+  plans: MealPlanType[];
+};
+
+export type MealPlanType = {
+  timestamp: number;
+  meal: 'Breakfast' | 'Brunch' | 'Lunch' | 'Dinner';
+  plan: MealType | RestaurantType;
 };
 
 export type CalendarType = {
@@ -52,13 +58,9 @@ export type CalendarType = {
 };
 
 export type MealDateType = {
-  date: Date;
-  year: number;
-  month: number;
-  day: number;
-  meal: 'Breakfast' | 'Brunch' | 'Lunch' | 'Dinner';
-  lunch: [MealType | RestaurantType] | [];
-  dinner: [MealType | RestaurantType] | [];
+  timestamp: number;
+  lunch: MealPlanType[];
+  dinner: MealPlanType[];
 };
 
 export type UserType = {
