@@ -18,9 +18,11 @@ export function createInitialCalendar(
         } as MealDateType)
     );
   return {
-    'week-1': initialCalendar.slice(0, 7),
-    week0: initialCalendar.slice(7, 14),
-    week1: initialCalendar.slice(14, 21),
+    'week-1': initialCalendar.slice(0, (-7 * pastWeeks)),
+    week0: initialCalendar.slice((-7 * pastWeeks), (-7 * pastWeeks + 7)),
+    week1: initialCalendar.slice((-7 * pastWeeks + 7), (-7 * pastWeeks + 7*2)),
+    week2: initialCalendar.slice((-7 * pastWeeks + 7*2), (-7 * pastWeeks + 7*3)),
+    week3: initialCalendar.slice((-7 * pastWeeks + 7*3), (-7 * pastWeeks + 7*4)),
   };
 }
 
