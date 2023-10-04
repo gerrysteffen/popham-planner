@@ -1,21 +1,24 @@
 <script lang="ts">
   import type { MealPlanType } from '$lib/UIdata/types';
+  import MealPlanCube from '../mealplan/MealPlanCube.svelte';
   import CubeContainer from '../overview/displays/options/CubeContainer.svelte';
-  import CubeElement from '../overview/displays/options/CubeElement.svelte';
 
   export let time: 'lunch' | 'dinner';
-  export let meals: MealPlanType[];
+  export let mealPlans: MealPlanType[];
 </script>
 
-<div class={time}>
-  {#each meals as meal}
-    <CubeContainer>
-      <CubeElement data={meal[meal.planType]} />
-    </CubeContainer>
+<div class={time + ' center'}>
+  {#each mealPlans as mealPlan}
+    <MealPlanCube data={mealPlan} />
   {/each}
 </div>
 
 <style>
+  .center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   .lunch {
     width: 50%;
     height: 100%;

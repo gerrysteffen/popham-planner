@@ -39,7 +39,7 @@ export async function getAllMealPlans() {
 
 export async function getMealPlanById(id: string) {
   try {
-    const mealPlan = await MealPlanModel!.findById(id);
+    const mealPlan = await MealPlanModel!.findById(id).populate(['meal', 'restaurant']);
     return mealPlan;
   } catch (error) {
     console.log('Error fetching:', error);

@@ -37,8 +37,8 @@
   >
     {dayNames[date.getDay()]}
   </div>
-  <Halfday time={'lunch'} meals={data.lunch} />
-  <Halfday time={'dinner'} meals={data.dinner} />
+  <Halfday time={'lunch'} mealPlans={data.lunch} />
+  <Halfday time={'dinner'} mealPlans={data.dinner} />
 </div>
 
 <style>

@@ -5,11 +5,11 @@
 
   import TitleBar from '$lib/components/basicUI/TitleBar.svelte';
   import LargeImage from '$lib/components/indPage/LargeImage.svelte';
-  import DeletePending from '$lib/components/indPage/DeletePending.svelte';
+  import DeletePendingOverlay from '$lib/components/indPage/DeletePendingOverlay.svelte';
   import StandardButton from '$lib/components/forms/StandardButton.svelte';
   import Tag from '$lib/components/indPage/tags/Tag.svelte';
   import ButtonOneLineWrapper from '../forms/ButtonOneLineWrapper.svelte';
-  import AddMealPlan from '../mealplan/addMealPlan.svelte';
+  import AddMealPlanOverlay from '../mealplan/AddMealPlanOverlay.svelte';
 
   export let type: 'meal' | 'restaurant';
   export let data: MealType | RestaurantType;
@@ -65,10 +65,10 @@
 {/if}
 
 {#if deletePending}
-  <DeletePending bind:deletePending />
+  <DeletePendingOverlay bind:deletePending />
 {/if}
 {#if addMealPlanPending}
-  <AddMealPlan id={data._id} bind:addMealPlanPending planType={type} />
+  <AddMealPlanOverlay id={data._id} bind:addMealPlanPending planType={type} />
 {/if}
 
 <style>
