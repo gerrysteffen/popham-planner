@@ -15,7 +15,7 @@ export async function load({ params }) {
 }
 
 export const actions = {
-  default: async ({ params }) => {
+  delete: async ({ params }) => {
     deleteRestaurant(params.restaurantId);
     throw redirect(301, '/restaurants');
   },

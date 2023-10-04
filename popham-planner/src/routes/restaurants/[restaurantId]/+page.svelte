@@ -6,4 +6,4 @@
   export let data: { restaurant: RestaurantType };
 </script>
 
-<IndividualPage type='restaurants' data={data.restaurant} />
+<IndividualPage type="restaurant" data={data.restaurant} />

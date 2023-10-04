@@ -8,6 +8,7 @@
   import StandardButton from '$lib/components/forms/StandardButton.svelte';
   import StandardTextInput from '$lib/components/forms/StandardTextInput.svelte';
   import StandardMcInput from '$lib/components/forms/StandardMCInput.svelte';
+  import ButtonOneLineWrapper from './ButtonOneLineWrapper.svelte';
 
   export let type: 'meals' | 'restaurants';
   export let data: MealType | RestaurantType;
@@ -57,14 +58,16 @@
       />
     {/if}
   {/each}
-  {#if mode === 'create'}
-    <StandardButton type="submit" text="Create" handleClick={() => {}} />
-  {:else if mode === 'edit'}
-    <StandardButton type="submit" text="Confirm" handleClick={() => {}} />
-    <StandardButton
-      text="Cancel"
-      type="button"
-      handleClick={() => goto(`/${type}/${data._id}`)}
-    />
-  {/if}
+  <ButtonOneLineWrapper>
+    {#if mode === 'create'}
+      <StandardButton type="submit" text="Create" handleClick={() => {}} />
+    {:else if mode === 'edit'}
+      <StandardButton type="submit" text="Confirm" handleClick={() => {}} />
+      <StandardButton
+        text="Cancel"
+        type="button"
+        handleClick={() => goto(`/${type}/${data._id}`)}
+      />
+    {/if}
+  </ButtonOneLineWrapper>
 </StandardForm>

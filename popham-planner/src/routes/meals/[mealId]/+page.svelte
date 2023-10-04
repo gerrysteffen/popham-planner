@@ -6,4 +6,4 @@
   export let data: { meal: MealType };
 </script>
 
-<IndividualPage type='meals' data={data.meal} />
+<IndividualPage type="meal" data={data.meal} />

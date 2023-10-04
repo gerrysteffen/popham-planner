@@ -1,18 +1,29 @@
 <script lang="ts">
+  import { page } from '$app/stores';
   import NavBar from '../lib/components/navbar/NavBar.svelte';
   import NavBarLink from '../lib/components/navbar/NavBarLink.svelte';
+
+  $: path = $page.url.pathname;
 
   const level = 0;
 </script>
 
-<NavBar {level}>
-  <NavBarLink title="Meals & Recipes" link="/meals" {level} />
-  <NavBarLink title="Restaurants & Take-Out" link="/restaurants" {level} />
-  <NavBarLink title="Plan Your Week" link="/planner?pw=-1&fw=1#week0" {level} />
-</NavBar>
-<div id="content">
+{#if path !== '/'}
+  <NavBar {level}>
+    <NavBarLink title="Meals & Recipes" link="/meals" {level} />
+    <NavBarLink title="Restaurants & Take-Out" link="/restaurants" {level} />
+    <NavBarLink
+      title="Plan Your Week"
+      link="/planner?pw=-1&fw=1#week0"
+      {level}
+    />
+  </NavBar>
+  <div id="content">
+    <slot />
+  </div>
+{:else}
   <slot />
-</div>
+{/if}
 
 <style>
   #content {

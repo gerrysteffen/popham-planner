@@ -27,15 +27,15 @@
 </script>
 
 <div class="day" id={String(data.timestamp)}>
+  <div class="top day-date" style="color: {colors.planner.unselected}">
+    {('0' + date.getDate()).slice(-2)}
+    {monthNames[date.getMonth()]}
+  </div>
   <div
-    class="day-weekday"
+    class="top day-weekday"
     style="background-color: {colors.planner.unselected}"
   >
     {dayNames[date.getDay()]}
-  </div>
-  <div class="day-date" style="color: {colors.planner.unselected}">
-    {date.getDate()}
-    {monthNames[date.getMonth()]}
   </div>
   <Halfday time={'lunch'} meals={data.lunch} />
   <Halfday time={'dinner'} meals={data.dinner} />
@@ -50,6 +50,9 @@
     font-weight: bold;
     display: flex;
     justify-items: space-between;
+  }
+  .top {
+    z-index: 10;
   }
   .day-weekday {
     position: absolute;
@@ -66,11 +69,14 @@
   .day-date {
     position: absolute;
     top: 10px;
-    left: 70px;
-    width: 70px;
+    left: 50px;
+    width: 80px;
     height: 30px;
     display: flex;
-    justify-content: start;
+    padding-right: 10px;
+    justify-content: flex-end;
     align-items: center;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.7);
   }
 </style>

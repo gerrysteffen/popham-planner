@@ -8,7 +8,7 @@
 <div id="foreground">
   <div id="modal">
     <p>Are you sure you want to delete this record?</p>
-    <form method="POST" use:enhance>
+    <form method="POST" action="?/delete" use:enhance>
       <StandardButton
         type="reset"
         text="Cancel"

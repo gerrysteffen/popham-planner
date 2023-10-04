@@ -51,8 +51,20 @@ export type HouseholdType = {
 export type MealPlanType = {
   _id: string;
   timestamp: number;
-  meal: 'Breakfast' | 'Brunch' | 'Lunch' | 'Dinner';
-  plan: MealType | RestaurantType;
+  mealType: 'Breakfast' | 'Brunch' | 'Lunch' | 'Dinner';
+  planType: 'restaurant' | 'meal';
+  restaurant?: RestaurantType;
+  meal?: MealType;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type MealPlanFormType = Omit<
+  MealPlanType,
+  '_id' | 'createdAt' | 'updatedAt' | 'meal' | 'restaurant'
+> & {
+  restaurant?: string;
+  meal?: string;
 };
 
 export type CalendarType = {

@@ -1,5 +1,6 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
+  import { page } from '$app/stores';
   import type { CalendarType, MealPlanType } from '$lib/UIdata/types';
   import Calendar from '$lib/components/calendar/Calendar.svelte';
   import {
@@ -12,8 +13,8 @@
   export let data: { mealPlans: MealPlanType[] };
 
   const today = Date.now() - msSinceMidnight(Date.now());
-  let pastWeeks = -1;
-  let futureWeeks = 1;
+  let pastWeeks = Number($page.url.searchParams.get('pw')) || -1;
+  let futureWeeks = Number($page.url.searchParams.get('fw')) || 1;
 
   let calendar: CalendarType = createInitialCalendar(
     today,
@@ -24,10 +25,10 @@
   let assigned: string[] = [];
   function assignMealPlans(plans: MealPlanType[]) {
     plans.forEach((el) => {
-      if (el && !assigned.includes(el._id)) {
+      if (!assigned.includes(el._id)) {
         const { week, day } = calculateWeekAndDay(today, el.timestamp);
-        const meal = el.meal === 'Dinner' ? 'dinner' : 'lunch';
-        if (calendar[`week${week}`][day]) {
+        const meal = el.mealType === 'Dinner' ? 'dinner' : 'lunch';
+        if (calendar[`week${week}`]) {
           calendar[`week${week}`][day][meal] = [
             ...calendar[`week${week}`][day][meal],
             el,

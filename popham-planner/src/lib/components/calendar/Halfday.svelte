@@ -10,7 +10,7 @@
 <div class={time}>
   {#each meals as meal}
     <CubeContainer>
-      <CubeElement data={meal.plan} />
+      <CubeElement data={meal[meal.planType]} />
     </CubeContainer>
   {/each}
 </div>

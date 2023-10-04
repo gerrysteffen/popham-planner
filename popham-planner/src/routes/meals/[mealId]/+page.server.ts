@@ -1,4 +1,5 @@
-import type { MealType } from '$lib/UIdata/types.js';
+import type { MealPlanFormType, MealType } from '$lib/UIdata/types.js';
+import { createMealPlan } from '$lib/db/mealPlans.js';
 import { deleteMeal, getMealById } from '$lib/db/meals';
 import { redirect } from '@sveltejs/kit';
 
@@ -15,8 +16,33 @@ export async function load({ params }) {
 }
 
 export const actions = {
-  default: async ({ params }) => {
+  delete: async ({ params }) => {
     deleteMeal(params.mealId);
     throw redirect(301, '/meals');
+  },
+  addMealPlan: async ({ url, request }) => {
+    const data = await request.formData();
+    const meal = data.get('id') as string;
+    const date = data.get('date') as string;
+    const mealType = data.get('mealType') as
+      | 'Breakfast'
+      | 'Brunch'
+      | 'Lunch'
+      | 'Dinner';
+    const planType = data.get('planType') as 'meal' | 'restaurant';
+
+    const timestamp = new Date(date).getTime();
+
+    const mealPlan: MealPlanFormType = {
+      timestamp,
+      planType,
+      mealType,
+      meal,
+    };
+
+    console.log(url)
+
+    await createMealPlan(mealPlan);
+    throw redirect(301, url.pathname);
   },
 };
