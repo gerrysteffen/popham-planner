@@ -40,8 +40,6 @@ export const actions = {
       meal,
     };
 
-    console.log(url)
-
     await createMealPlan(mealPlan);
     throw redirect(301, url.pathname);
   },
