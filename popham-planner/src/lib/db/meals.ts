@@ -20,7 +20,7 @@ if (!mongoose.models.meal && !mealSchema) {
   );
 }
 
-const MealModel =
+export const MealModel =
   (mongoose.models.meal as mongoose.Model<MealType>) ||
   mongoose.model<MealType>('meal', mealSchema);
 

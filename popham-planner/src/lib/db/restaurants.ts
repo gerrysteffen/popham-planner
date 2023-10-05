@@ -19,7 +19,7 @@ if (!mongoose.models.restaurant && !restaurantSchema) {
   );
 }
 
-const RestaurantModel =
+export const RestaurantModel =
   (mongoose.models.restaurant as mongoose.Model<RestaurantType>) ||
   mongoose.model<RestaurantType>('restaurant', restaurantSchema);
 

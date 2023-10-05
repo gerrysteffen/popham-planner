@@ -17,6 +17,6 @@ export async function load({ params }) {
 export const actions = {
   delete: async ({ params }) => {
     deleteMealPlan(params.mealPlanId);
-    throw redirect(301, '/meals');
+    throw redirect(301, '/planner?pw=-1&fw=1#week0');
   },
 };

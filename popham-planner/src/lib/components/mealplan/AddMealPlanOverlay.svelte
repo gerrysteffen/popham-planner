@@ -6,9 +6,7 @@
   const now = new Date();
   const date = `${now.getFullYear()}-${('0' + (now.getMonth() + 1)).slice(
     -2
-  )}-${('0' + now.getDate()).slice(-2)}T${('0' + now.getHours()).slice(-2)}:${(
-    '0' + now.getMinutes()
-  ).slice(-2)}`;
+  )}-${('0' + now.getDate()).slice(-2)}`;
   export let addMealPlanPending: boolean;
   export let id: string;
   export let planType: 'restaurant' | 'meal';
@@ -23,7 +21,7 @@
       <input type="hidden" name="planType" value={planType} />
       <label for="date">
         Date
-        <input name="date" value={date} type="datetime-local" />
+        <input name="date" value={date} type="date" />
       </label>
       <label for="Breakfast"
         >Breakfast
