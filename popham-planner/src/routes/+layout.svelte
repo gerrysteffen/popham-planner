@@ -103,9 +103,8 @@
     <FadeOut />
     <div
       id="lower-color-block"
-      style="box-shadow: 0 20px 0 0 {colors[selected.id].selected}"
-    >
-    </div>
+      style="box-shadow: 0 30px 0 0 {colors[selected.id].selected}"
+    />
     <div id="sub-cats" style="background-color: {colors[selected.id].selected}">
       {#each Object.values(selected.subMenus) as subMenu, i}
         <NavBarLink icon={subMenu.icon} {i} link={subMenu.href} />
@@ -148,14 +147,14 @@
     right: 0;
     bottom: 0;
     overflow: scroll;
-    padding: 10px 20px 100px 20px;
+    padding: 10px 20px 110px 20px;
   }
   nav {
     position: absolute;
     left: 0;
     right: 0;
     bottom: 0;
-    height: 70px;
+    height: 80px;
     z-index: 40;
     background-color: transparent;
   }
@@ -163,7 +162,7 @@
     content: '';
     position: absolute;
     left: 0;
-    bottom: 10px;
+    bottom: 20px;
     width: 40%;
     height: 60px;
     border-bottom-right-radius: 10px;
@@ -186,10 +185,27 @@
     flex-direction: row;
     justify-content: space-around;
     padding: 10px;
+    padding-bottom: 20px;
     border-top-left-radius: 10px;
+  }
+  @media only screen and (max-device-height: 667px) {
+    #content {
+      padding-bottom: 100px;
+    }
+    nav {
+      height: 70px;
+    }
+    #lower-color-block {
+      bottom: 10px;
+    }
+    #sub-cats {
+      padding-bottom: 10px;
+    }
   }
   a {
     position: absolute;
+    color: black;
+    text-decoration: none;
     top: 0;
     left: 10px;
     right: 10px;
