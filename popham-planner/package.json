@@ -21,6 +21,7 @@
 	"type": "module",
 	"dependencies": {
 		"mongodb": "^6.1.0",
-		"mongoose": "^7.5.2"
+		"mongoose": "^7.5.2",
+		"svelte-icons": "^2.1.0"
 	}
 }
