@@ -4,6 +4,7 @@
   export let icon: string;
   export let link: string;
   export let i: number;
+  export let category: string;
 
   // @ts-ignore
   import MdMenu from 'svelte-icons/md/MdMenu.svelte';
@@ -18,12 +19,10 @@
   // @ts-ignore
   import MdBorderColor from 'svelte-icons/md/MdBorderColor.svelte';
 
-  $: category = $page.url.pathname.split('/')[1] as string;
-
   // use of search params and sections made it necessary to cut any #-delimited parts
   $: linkCompare = link.includes('?') ? link.slice(0, link.indexOf('?')) : link;
 
-  $: selected = 
+  $: selected =
     $page.url.pathname.split('/').slice(0, 3).join('/') === linkCompare;
 </script>
 

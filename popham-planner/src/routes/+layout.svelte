@@ -107,7 +107,7 @@
     />
     <div id="sub-cats" style="background-color: {colors[selected.id].selected}">
       {#each Object.values(selected.subMenus) as subMenu, i}
-        <NavBarLink icon={subMenu.icon} {i} link={subMenu.href} />
+        <NavBarLink category={selected.id} icon={subMenu.icon} {i} link={subMenu.href} />
       {/each}
     </div>
     <div id="main-cats">
@@ -213,6 +213,7 @@
   }
   button {
     height: 100%;
+    color: black;
     width: 100%;
     border: none;
     border-radius: 10px;
