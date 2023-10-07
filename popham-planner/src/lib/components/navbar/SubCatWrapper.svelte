@@ -1,9 +1,19 @@
 <script lang="ts">
+  import { fly } from 'svelte/transition';
+
   export let color: string;
 </script>
 
-<div id="lower-color-block" style="box-shadow: 0 30px 0 0 {color}" />
-<div id="sub-cats" style="background-color: {color}">
+<div
+  id="lower-color-block"
+  style="box-shadow: 0 30px 0 0 {color}"
+  transition:fly={{ y: 70, duration: 500, opacity: 1 }}
+/>
+<div
+  id="sub-cat-options"
+  style="background-color: {color}"
+  transition:fly={{ y: 70, duration: 500, opacity: 1 }}
+>
   <slot />
 </div>
 
@@ -18,7 +28,7 @@
     border-bottom-right-radius: 10px;
     background-color: transparent;
   }
-  #sub-cats {
+  #sub-cat-options {
     position: absolute;
     right: 0;
     bottom: 0;
@@ -47,7 +57,7 @@
     #lower-color-block {
       bottom: 20px;
     }
-    #sub-cats {
+    #sub-cat-options {
       padding-right: 20px;
       padding-bottom: 20px;
     }

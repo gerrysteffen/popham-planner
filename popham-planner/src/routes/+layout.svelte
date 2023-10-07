@@ -95,18 +95,20 @@
     <slot />
   </div>
   <NavBar>
-    <SubCatWrapper color={colors[selected.id].selected}>
-      <!-- {#each menuOptions as menuOption} -->
-      {#each Object.values(selected.subMenus) as subMenu, i}
-        <SubCat
-          category={selected.id}
-          icon={subMenu.icon}
-          {i}
-          link={subMenu.href}
-        />
-      {/each}
-      <!-- {/each} -->
-    </SubCatWrapper>
+    {#each Object.values(menuOptions) as menuOption}
+      {#if menuOption.id === selected.id}
+        <SubCatWrapper color={colors[selected.id].selected}>
+          {#each Object.values(menuOption.subMenus) as subMenu, i}
+            <SubCat
+              category={selected.id}
+              icon={subMenu.icon}
+              {i}
+              link={subMenu.href}
+            />
+          {/each}
+        </SubCatWrapper>
+      {/if}
+    {/each}
 
     <MainCatWrapper>
       {#each menuOpen ? unselected : [] as option, i (option.id)}
@@ -173,7 +175,7 @@
     overflow: scroll;
     padding: 10px 20px 100px 20px;
   }
-/* 
+  /* 
   #sub-menus {
     height: 100%;
     width: 100%;
