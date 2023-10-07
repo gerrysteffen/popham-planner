@@ -18,7 +18,6 @@
   import MdShoppingCart from 'svelte-icons/md/MdShoppingCart.svelte';
   // @ts-ignore
   import MdBorderColor from 'svelte-icons/md/MdBorderColor.svelte';
-  import { fade, fly } from 'svelte/transition';
 
   // use of search params and sections made it necessary to cut any #-delimited parts
   $: linkCompare = link.includes('?') ? link.slice(0, link.indexOf('?')) : link;

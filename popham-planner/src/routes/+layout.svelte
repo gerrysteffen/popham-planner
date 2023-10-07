@@ -72,7 +72,7 @@
     },
   };
 
-  $: selected = menuOptions[path.split('/')[1]];
+  $: selected = menuOptions[path.split('/')[1]] || menuOptions.planner;
   $: unselected = Object.values(menuOptions).filter(
     (option) => option.id !== selected.id
   );
