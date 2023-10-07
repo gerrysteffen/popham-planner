@@ -1,28 +1,31 @@
 <script lang="ts">
   import { page } from '$app/stores';
   import { colors } from '$lib/UIdata/cssSelectors';
-  import MainMenuCat from '$lib/components/navbar/MainMenuCat.svelte';
   import NavBar from '$lib/components/navbar/NavBar.svelte';
-  import SubMenuCat from '$lib/components/navbar/SubMenuCat.svelte';
+  import MainCat from '$lib/components/navbar/MainCat.svelte';
+  import MainCatWrapper from '$lib/components/navbar/MainCatWrapper.svelte';
+  import SubCat from '$lib/components/navbar/SubCat.svelte';
+  import SubCatWrapper from '$lib/components/navbar/SubCatWrapper.svelte';
 
   $: path = $page.url.pathname;
-  $: selectedCategory = path.split('/')[1];
 
-  let menuOpen = false;
-  function toggleCatMenu() {
-    menuOpen = !menuOpen;
-  }
-  function selectCat(id: string) {
-    selectedCategory = id;
-    toggleCatMenu();
-  }
+  type SubMenu = {
+    href: string;
+    icon: string;
+  };
 
-  $: menuOptions = [
-    {
+  type MenuCat = {
+    id: string;
+    title: string;
+    href: string;
+    subMenus: SubMenu[];
+  };
+
+  let menuOptions: { [key: string]: MenuCat } = {
+    meals: {
       id: 'meals',
       title: 'Meals',
       href: '/meals',
-      selected: selectedCategory === 'meals',
       subMenus: [
         {
           href: '/meals',
@@ -35,11 +38,10 @@
         { href: '/meals/add-new', icon: 'add' },
       ],
     },
-    {
+    restaurants: {
       id: 'restaurants',
       title: 'Restaurants',
       href: '/restaurants',
-      selected: selectedCategory === 'restaurants',
       subMenus: [
         {
           href: '/restaurants',
@@ -52,11 +54,10 @@
         { href: '/restaurants/add-new', icon: 'add' },
       ],
     },
-    {
+    planner: {
       id: 'planner',
       title: 'Planner',
       href: '/planner?pw=-1&fw=1#week0',
-      selected: selectedCategory === 'planner',
       subMenus: [
         {
           href: '/planner?pw=-1&fw=1#week0',
@@ -69,18 +70,65 @@
         { href: '/planner/notes', icon: 'notes' },
       ],
     },
-  ];
+  };
 
-  $: selected = menuOptions.find((option) => option.selected)!;
-  $: unselected = menuOptions.filter((option) => !option.selected);
+  $: selected = menuOptions[path.split('/')[1]];
+  $: unselected = Object.values(menuOptions).filter(
+    (option) => option.id !== selected.id
+  );
+
+  let menuOpen = false;
+  function toggleCatMenu() {
+    menuOpen = !menuOpen;
+  }
+
+  function selectCat(id: string) {
+    // Could do without the below (url change will trigger change of selected),
+    // but to make sure UI is responsive/change is quick I keep manual assignment
+    selected = menuOptions[id];
+    toggleCatMenu();
+  }
 </script>
 
 {#if path !== '/'}
   <div id="content">
     <slot />
   </div>
-  <NavBar color={colors[selectedCategory].selected}>
-    <div id="sub-menus" slot="sub-menus">
+  <NavBar>
+    <SubCatWrapper color={colors[selected.id].selected}>
+      <!-- {#each menuOptions as menuOption} -->
+      {#each Object.values(selected.subMenus) as subMenu, i}
+        <SubCat
+          category={selected.id}
+          icon={subMenu.icon}
+          {i}
+          link={subMenu.href}
+        />
+      {/each}
+      <!-- {/each} -->
+    </SubCatWrapper>
+
+    <MainCatWrapper>
+      {#each menuOpen ? unselected : [] as option, i (option.id)}
+        <MainCat
+          href={option.href}
+          topPosition={-60 - i * 60}
+          transitionY={60 + i * 60}
+          clickHandler={() => selectCat(option.id)}
+          color={colors[option.id].selected}
+          title={option.title}
+        />
+      {/each}
+      <MainCat
+        href={path}
+        topPosition={0}
+        transitionY={0}
+        clickHandler={() => toggleCatMenu()}
+        color={colors[selected.id].selected}
+        title={selected.title}
+      />
+    </MainCatWrapper>
+    <!-- <div id="sub-menus" slot="sub-menus">
       {#each Object.values(selected.subMenus) as subMenu, i}
         <SubMenuCat
           category={selected.id}
@@ -92,7 +140,7 @@
     </div>
     <div slot="main-menus">
       {#each menuOpen ? unselected : [] as option, i (option.id)}
-        <MainMenuCat
+        <MainCat
           href={option.href}
           topPosition={-60 - i * 60}
           transitionY={60 + i * 60}
@@ -101,7 +149,7 @@
           title={option.title}
         />
       {/each}
-      <MainMenuCat
+      <MainCat
         href={path}
         topPosition={0}
         transitionY={0}
@@ -109,7 +157,7 @@
         color={colors[selected.id].selected}
         title={selected.title}
       />
-    </div>
+    </div> -->
   </NavBar>
 {:else}
   <slot />
@@ -125,7 +173,7 @@
     overflow: scroll;
     padding: 10px 20px 100px 20px;
   }
-
+/* 
   #sub-menus {
     height: 100%;
     width: 100%;
@@ -133,7 +181,7 @@
     flex-direction: row;
     justify-content: space-around;
     gap: 10px;
-  }
+  } */
 
   /* Covering all the iphone screen sizes to add padding at the bottom */
   @media only screen and (device-height: 812px),

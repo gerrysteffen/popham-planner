@@ -37,5 +37,8 @@
     border-radius: 10px;
     font-size: large;
     font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 </style>

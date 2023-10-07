@@ -18,6 +18,7 @@
   import MdShoppingCart from 'svelte-icons/md/MdShoppingCart.svelte';
   // @ts-ignore
   import MdBorderColor from 'svelte-icons/md/MdBorderColor.svelte';
+  import { fly } from 'svelte/transition';
 
   // use of search params and sections made it necessary to cut any #-delimited parts
   $: linkCompare = link.includes('?') ? link.slice(0, link.indexOf('?')) : link;
@@ -26,7 +27,7 @@
     $page.url.pathname.split('/').slice(0, 3).join('/') === linkCompare;
 </script>
 
-<a href={link} class:rounded={i === 0}>
+<a href={link} class:rounded={i === 0} out:fly={{ y: -70, duration: 500 }}>
   <div
     class="icon-wrapper"
     style="background-color: {selected
