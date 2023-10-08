@@ -3,8 +3,10 @@
 </script>
 
 <nav>
-  <FadeOut />
-  <slot />
+  <!-- <FadeOut /> -->
+  <div id="nav-contents">
+    <slot />
+  </div>
 </nav>
 
 <style>
@@ -15,7 +17,17 @@
     bottom: 0;
     height: 70px;
     z-index: 40;
-    background-color: transparent;
+    background-color: #dcdcdc;
+    padding-top: 5px;
+    border-top: #bebebe solid 1px;
+  }
+
+  #nav-contents {
+    position: absolute;
+    top: 5px;
+    left: 0;
+    right: 0;
+    bottom: 0;
   }
 
   /* Covering all the iphone screen sizes to add padding at the bottom */

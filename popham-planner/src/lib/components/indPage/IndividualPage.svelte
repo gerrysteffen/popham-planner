@@ -3,7 +3,6 @@
 
   import { goto } from '$app/navigation';
 
-  import TitleBar from '$lib/components/basicUI/TitleBar.svelte';
   import LargeImage from '$lib/components/indPage/LargeImage.svelte';
   import DeletePendingOverlay from '$lib/components/indPage/DeletePendingOverlay.svelte';
   import StandardButton from '$lib/components/forms/StandardButton.svelte';
@@ -19,7 +18,6 @@
 </script>
 
 {#if data}
-  <TitleBar title={data.name} />
   <LargeImage image={data.image_url} />
   <div id="content-wrapper">
     <div id="tag-container">

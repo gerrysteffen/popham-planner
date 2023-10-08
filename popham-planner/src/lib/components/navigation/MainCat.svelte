@@ -5,7 +5,7 @@
   export let topPosition: number;
   export let transitionY: number;
   export let clickHandler: () => void;
-  export let color: string;
+  export let color: { selected: string; unselected: string };
   export let title: string;
 </script>
 
@@ -14,7 +14,7 @@
   style="top: {topPosition}px;"
   transition:fly={{ y: transitionY, duration: 500, opacity: 1 }}
 >
-  <button on:click={() => clickHandler()} style="background-color: {color}">
+  <button on:click={() => clickHandler()} style="background-color: {color.selected}; border: 1px solid {color.unselected};">
     {title}
   </button>
 </a>
@@ -27,14 +27,14 @@
     top: 0;
     left: 10px;
     right: 10px;
-    height: 50px;
+    height: 45px;
   }
   button {
     height: 100%;
     color: black;
     width: 100%;
     border: none;
-    border-radius: 10px;
+    border-radius: 5px;
     font-size: large;
     font-weight: bold;
     display: flex;

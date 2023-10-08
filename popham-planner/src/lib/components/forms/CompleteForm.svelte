@@ -3,12 +3,13 @@
 
   import { goto } from '$app/navigation';
 
-  import TitleBar from '$lib/components/basicUI/TitleBar.svelte';
+  import TitleBar from '$lib/components/navigation/TitleBar.svelte';
   import StandardForm from '$lib/components/forms/StandardForm.svelte';
   import StandardButton from '$lib/components/forms/StandardButton.svelte';
   import StandardTextInput from '$lib/components/forms/StandardTextInput.svelte';
   import StandardMcInput from '$lib/components/forms/StandardMCInput.svelte';
   import ButtonOneLineWrapper from './ButtonOneLineWrapper.svelte';
+  import ContentWrapper from '../navigation/ContentWrapper.svelte';
 
   export let type: 'meals' | 'restaurants';
   export let data: MealType | RestaurantType;
@@ -28,11 +29,6 @@
         });
 </script>
 
-<TitleBar
-  title={mode === 'create'
-    ? `Add a new ${type === 'meals' ? 'Meal' : 'Restaurant'}`
-    : `Edit ${type === 'meals' ? 'Meal' : 'Restaurant'}`}
-/>
 <StandardForm>
   {#each dataArr as [key, value]}
     {#if typeof value === 'string' && key !== 'mainCategory' && titles[key]}

@@ -10,6 +10,5 @@
     align-items: center;
     gap: 20px;
     flex-wrap: wrap;
-    overflow: scroll;
   }
 </style>

@@ -1,8 +1,13 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
   import { page } from '$app/stores';
+
   import type { CalendarType, MealPlanType } from '$lib/UIdata/types';
+
+  import TitleBar from '$lib/components/navigation/TitleBar.svelte';
+  import ContentWrapper from '$lib/components/navigation/ContentWrapper.svelte';
   import Calendar from '$lib/components/calendar/Calendar.svelte';
+
   import {
     addCalendarWeeks,
     calculateWeekAndDay,
@@ -65,9 +70,12 @@
   }
 </script>
 
-<div id="calendar-wrapper" on:scroll={monitorPosition}>
-  <Calendar {calendar} />
-</div>
+<TitleBar title="Calendar" />
+<ContentWrapper padding={'0px'}>
+  <div id="calendar-wrapper" on:scroll={monitorPosition}>
+    <Calendar {calendar} />
+  </div>
+</ContentWrapper>
 
 <svelte:window />
 

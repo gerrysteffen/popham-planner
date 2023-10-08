@@ -9,14 +9,12 @@
 
   import Switch from '../basicUI/Switch.svelte';
   import SwitchWrapper from '../basicUI/SwitchWrapper.svelte';
-  import TitleBar from '../basicUI/TitleBar.svelte';
   import DisplayContainer from './displays/DisplayContainer.svelte';
   import DisplayElement from './displays/DisplayElement.svelte';
   import GroupWrapper from './displays/GroupWrapper.svelte';
 
   export let data: MealType[] | RestaurantType[];
 
-  export let title: string;
   export let criteria: OverviewCriteria = 'name';
   export let ascending: boolean = true;
   export let cubes: boolean = true;
@@ -55,7 +53,6 @@
   $: groupedSortedData = groupElements(sortedData, criteria, ascending);
 </script>
 
-<TitleBar {title} />
 <SwitchWrapper>
   <select name="criteria" bind:value={criteria}>
     {#each Object.entries(criteriaOptions) as [crit, text]}

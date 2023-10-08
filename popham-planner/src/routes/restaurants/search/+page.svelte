@@ -1,6 +1,9 @@
 <script lang="ts">
-  import TitleBar from '$lib/components/basicUI/TitleBar.svelte';
+  import TitleBar from '$lib/components/navigation/TitleBar.svelte';
+  import ContentWrapper from '$lib/components/navigation/ContentWrapper.svelte';
 </script>
 
 <TitleBar title="Search for Restaurants" />
-<div>Working on it.</div>
+<ContentWrapper>
+  <div>Working on it.</div>
+</ContentWrapper>

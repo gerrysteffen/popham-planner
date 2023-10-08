@@ -8,9 +8,9 @@
       "type": "image/png"
     }
   ],
-  "background_color": "#f7f7f7",
+  "background_color": "#dcdcdc",
   "display": "standalone",
   "scope": "/",
-  "theme_color": "#f7f7f7",
+  "theme_color": "#dcdcdc",
   "description": "PophamPlanner"
 }

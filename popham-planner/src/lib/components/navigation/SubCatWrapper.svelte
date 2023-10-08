@@ -1,21 +1,22 @@
 <script lang="ts">
   import { fly } from 'svelte/transition';
 
-  export let color: string;
+  export let color: { selected: string; unselected: string };
 </script>
 
 <div
-  id="lower-color-block"
-  style="box-shadow: 0 30px 0 0 {color}"
-  transition:fly={{ y: 70, duration: 500, opacity: 1 }}
-/>
-<div
   id="sub-cat-options"
-  style="background-color: {color}"
+  style="background-color: {color.selected}; border-top: {color.unselected} 1px solid;
+  border-left: {color.unselected} 1px solid;"
   transition:fly={{ y: 70, duration: 500, opacity: 1 }}
 >
   <slot />
 </div>
+<div
+  id="lower-color-block"
+  style="box-shadow: 0 30px 0 0 {color.selected}; border-right: {color.unselected} 1px solid; border-bottom: {color.unselected} 1px solid;"
+  transition:fly={{ y: 70, duration: 500, opacity: 1 }}
+/>
 
 <style>
   #lower-color-block {
@@ -24,9 +25,10 @@
     left: 0;
     bottom: 10px;
     width: 40%;
-    height: 60px;
+    height: 45px;
     border-bottom-right-radius: 10px;
     background-color: transparent;
+    box-sizing: content-box;
   }
   #sub-cat-options {
     position: absolute;

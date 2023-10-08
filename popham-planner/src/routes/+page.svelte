@@ -1,9 +1,7 @@
 <script lang="ts">
   import { colors } from '$lib/UIdata/cssSelectors';
-  import TitleBar from '$lib/components/basicUI/TitleBar.svelte';
 </script>
 
-<!-- <TitleBar title="Welcome" /> -->
 <div id="sub-menu-container">
   <a href="/meals">
     <div
