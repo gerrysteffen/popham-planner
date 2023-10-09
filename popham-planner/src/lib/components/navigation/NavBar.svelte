@@ -1,9 +1,9 @@
 <script lang="ts">
-  import FadeOut from './FadeOut.svelte';
+  // import FadeOutVertical from './FadeOutVertical.svelte';
 </script>
 
 <nav>
-  <!-- <FadeOut /> -->
+  <!-- <FadeOutVertical /> -->
   <div id="nav-contents">
     <slot />
   </div>

@@ -1,4 +1,6 @@
 <script lang="ts">
+  import CubeListFadeOut from "$lib/components/overview/displays/CubeListFadeOut.svelte";
+
   export let group: string;
   export let display: 'Cubes' | 'List';
 </script>
@@ -10,10 +12,14 @@
   <div class={display === 'Cubes' ? 'slider' : 'list'}>
     <slot />
   </div>
+  {#if display === 'Cubes'}
+    <CubeListFadeOut />
+  {/if}
 </div>
 
 <style>
   .group-wrapper {
+    position: relative;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -25,8 +31,15 @@
   .slider {
     display: flex;
     flex-direction: row;
-    overflow: scroll;
+    margin-right: -20px;
+    padding-right: 20px;
     gap: 10px;
+    overflow: scroll;
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none; /* Firefox */
+  }
+  .slider::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
   }
   .list {
     display: flex;

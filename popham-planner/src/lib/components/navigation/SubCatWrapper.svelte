@@ -1,13 +1,12 @@
 <script lang="ts">
   import { fly } from 'svelte/transition';
-
+  
   export let color: { selected: string; unselected: string };
 </script>
 
 <div
   id="sub-cat-options"
-  style="background-color: {color.selected}; border-top: {color.unselected} 1px solid;
-  border-left: {color.unselected} 1px solid;"
+  style="background-color: {color.selected}; border-top: {color.unselected} 1px solid; border-left: {color.unselected} 1px solid;"
   transition:fly={{ y: 70, duration: 500, opacity: 1 }}
 >
   <slot />

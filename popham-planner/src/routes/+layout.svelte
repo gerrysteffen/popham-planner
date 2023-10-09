@@ -78,8 +78,19 @@
   );
 
   let menuOpen = false;
+  let log: number = 0;
   function toggleCatMenu() {
     menuOpen = !menuOpen;
+    // below closes cat menu after 5s inactivity:
+    if (menuOpen) {
+      log++;
+      let current = log;
+      setTimeout(() => {
+        if (current === log) {
+          menuOpen = false;
+        }
+      }, 5000);
+    }
   }
 
   function selectCat(id: string) {

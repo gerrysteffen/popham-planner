@@ -33,7 +33,7 @@
   }
   #titles {
     position: fixed;
-    top: 0;
+    top: 50px;
     left: 0;
     right: 0;
     height: 80px;

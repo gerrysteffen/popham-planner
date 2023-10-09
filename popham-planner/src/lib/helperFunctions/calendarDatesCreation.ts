@@ -1,4 +1,4 @@
-import type { MealDateType } from '$lib/UIdata/types';
+import type { CalendarType, MealDateType } from '$lib/UIdata/types';
 
 const oneDayInMs = 1000 * 60 * 60 * 24;
 const oneWeekInMs = oneDayInMs * 7;
@@ -20,7 +20,7 @@ export function createInitialCalendar(
   pastWeeks: number,
   futureWeeks: number
 ) {
-  const initialCalendar = new Array(7 * (1 + futureWeeks - pastWeeks))
+  const calendarDays = new Array(7 * (1 + futureWeeks - pastWeeks))
     .fill('')
     .map((_, i) => {
       return {
@@ -29,11 +29,11 @@ export function createInitialCalendar(
         dinner: [],
       } as MealDateType;
     });
-  return {
-    'week-1': initialCalendar.slice(0, 7 * -pastWeeks),
-    week0: initialCalendar.slice(7 * -pastWeeks, 7 * -pastWeeks + 7),
-    week1: initialCalendar.slice(7 * -pastWeeks + 7, 7 * -pastWeeks + 7 * 2),
-  };
+  let calendar: CalendarType = {};
+  for (let i = pastWeeks; i <= futureWeeks; i++) {
+    calendar[`week${i}`] = calendarDays.splice(0, 7);
+  }
+  return calendar;
 }
 
 export function addCalendarWeeks(today: number, weekDiff: number) {
