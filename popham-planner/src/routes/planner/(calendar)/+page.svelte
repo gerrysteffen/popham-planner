@@ -14,6 +14,7 @@
     createInitialCalendar,
     msSinceMidnight,
   } from '$lib/helperFunctions/calendarDatesCreation';
+  import Spinner from '$lib/components/basicUI/Spinner.svelte';
 
   export let data: { mealPlans: MealPlanType[] };
 
@@ -98,6 +99,9 @@
       <Calendar {calendar} />
     </div>
   </ContentWrapper>
+{/if}
+{#if stopped}
+  <Spinner />
 {/if}
 
 <style>

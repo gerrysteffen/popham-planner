@@ -5,6 +5,8 @@
   import { mockMealDate } from '$lib/helperFunctions/calendarDatesCreation';
 
   export let calendar: CalendarType;
+
+  $: console.log(calendar)
 </script>
 
 <div id="mock-date">

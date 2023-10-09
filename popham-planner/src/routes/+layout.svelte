@@ -105,7 +105,11 @@
 {#if path !== '/'}
   <div id="content">
     <slot />
+    {#if $navigating && path !== '/planner'}
+      <Spinner />
+    {/if}
   </div>
+
   <NavBar>
     {#each Object.values(menuOptions) as menuOption}
       {#if menuOption.id === selected.id}
@@ -151,12 +155,6 @@
   <slot />
 {/if}
 
-{#if $navigating}
-  <div id="spinner-container">
-    <Spinner />
-  </div>
-{/if}
-
 <style>
   #content {
     position: absolute;
@@ -164,19 +162,6 @@
     left: 0;
     right: 0;
     bottom: 70px;
-  }
-
-  #spinner-container {
-    position: absolute;
-    top: 50px;
-    left: 0;
-    right: 0;
-    z-index: 50;
-    bottom: 70px;
-    background-color: #f7f7f7;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 
   /* Covering all the iphone screen sizes to add padding at the bottom */

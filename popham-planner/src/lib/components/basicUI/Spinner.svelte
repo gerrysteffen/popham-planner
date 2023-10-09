@@ -1,19 +1,49 @@
-<div class="spinner">
-  <div class="bar1" />
-  <div class="bar2" />
-  <div class="bar3" />
-  <div class="bar4" />
-  <div class="bar5" />
-  <div class="bar6" />
-  <div class="bar7" />
-  <div class="bar8" />
-  <div class="bar9" />
-  <div class="bar10" />
-  <div class="bar11" />
-  <div class="bar12" />
+
+<div id="spinner-container">
+  <div class="spinner">
+    <div class="bar1" />
+    <div class="bar2" />
+    <div class="bar3" />
+    <div class="bar4" />
+    <div class="bar5" />
+    <div class="bar6" />
+    <div class="bar7" />
+    <div class="bar8" />
+    <div class="bar9" />
+    <div class="bar10" />
+    <div class="bar11" />
+    <div class="bar12" />
+  </div>
 </div>
 
 <style>
+  #spinner-container {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    right: 0;
+    z-index: 30;
+    bottom: 0;
+    background-color: #f7f7f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Covering all the iphone screen sizes to add padding at the bottom */
+  @media only screen and (device-height: 812px),
+    (device-height: 844px),
+    (device-height: 852px),
+    (device-height: 896px),
+    (device-height: 926px),
+    (device-height: 932px) and (device-width: 375px),
+    (device-width: 390px),
+    (device-width: 393px),
+    (device-width: 414px),
+    (device-width: 428px),
+    (device-width: 430px) and (-webkit-device-pixel-ratio: 3) {
+  }
+
   div.spinner {
     position: relative;
     width: 70px;
