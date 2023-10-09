@@ -20,7 +20,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 10;
+    z-index: 21;
   }
   h1 {
     text-align: center;

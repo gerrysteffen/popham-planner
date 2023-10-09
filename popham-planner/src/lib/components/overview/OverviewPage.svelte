@@ -9,6 +9,7 @@
 
   import Switch from '../basicUI/Switch.svelte';
   import SwitchWrapper from '../basicUI/SwitchWrapper.svelte';
+  import ContentWrapper from '../navigation/ContentWrapper.svelte';
   import DisplayContainer from './displays/DisplayContainer.svelte';
   import DisplayElement from './displays/DisplayElement.svelte';
   import GroupWrapper from './displays/GroupWrapper.svelte';
@@ -68,24 +69,26 @@
   <Switch title="Cubes" bind:checked={cubes} />
 </SwitchWrapper>
 
-<DisplayContainer {display}>
-  {#if grouped}
-    <!-- {#each Object.entries(groupedSortedData) as [group, groupArr]} --->
-    {#each groupedSortedData as [group, groupArr]}
-      <GroupWrapper {group} {display}>
-        {#if groupArr !== null}
-          {#each groupArr as dataEl}
-            <DisplayElement {display} data={dataEl} />
-          {/each}
-        {/if}
-      </GroupWrapper>
-    {/each}
-  {:else}
-    {#each sortedData as dataEl}
-      <DisplayElement {display} data={dataEl} />
-    {/each}
-  {/if}
-</DisplayContainer>
+<ContentWrapper>
+  <DisplayContainer {display}>
+    {#if grouped}
+      <!-- {#each Object.entries(groupedSortedData) as [group, groupArr]} --->
+      {#each groupedSortedData as [group, groupArr]}
+        <GroupWrapper {group} {display}>
+          {#if groupArr !== null}
+            {#each groupArr as dataEl}
+              <DisplayElement {display} data={dataEl} />
+            {/each}
+          {/if}
+        </GroupWrapper>
+      {/each}
+    {:else}
+      {#each sortedData as dataEl}
+        <DisplayElement {display} data={dataEl} />
+      {/each}
+    {/if}
+  </DisplayContainer>
+</ContentWrapper>
 
 <style>
   select {
