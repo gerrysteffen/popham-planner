@@ -69,7 +69,7 @@
   <Switch title="Cubes" bind:checked={cubes} />
 </SwitchWrapper>
 
-<ContentWrapper>
+<ContentWrapper padding='40px 20px 20px 20px'>
   <DisplayContainer {display}>
     {#if grouped}
       <!-- {#each Object.entries(groupedSortedData) as [group, groupArr]} --->

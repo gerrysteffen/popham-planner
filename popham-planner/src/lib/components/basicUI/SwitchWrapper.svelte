@@ -63,10 +63,10 @@
     column-gap: 20px;
   }
   button {
-    height: 35px;
+    height: 30px;
     border: none;
     background: #bebebe;
-    width: 80px;
+    width: 70px;
     border-radius: 0 0 5px 5px;
     display:flex;
     justify-content: center;

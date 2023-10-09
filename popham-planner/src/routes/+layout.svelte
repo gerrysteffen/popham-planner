@@ -1,11 +1,12 @@
 <script lang="ts">
-  import { page } from '$app/stores';
+  import { navigating, page } from '$app/stores';
   import { colors } from '$lib/UIdata/cssSelectors';
   import NavBar from '$lib/components/navigation/NavBar.svelte';
   import MainCat from '$lib/components/navigation/MainCat.svelte';
   import MainCatWrapper from '$lib/components/navigation/MainCatWrapper.svelte';
   import SubCat from '$lib/components/navigation/SubCat.svelte';
   import SubCatWrapper from '$lib/components/navigation/SubCatWrapper.svelte';
+  import Spinner from '$lib/components/basicUI/Spinner.svelte';
 
   $: path = $page.url.pathname;
 
@@ -105,7 +106,6 @@
   <div id="content">
     <slot />
   </div>
-  <!-- <div id="title-bar" /> -->
   <NavBar>
     {#each Object.values(menuOptions) as menuOption}
       {#if menuOption.id === selected.id}
@@ -151,6 +151,12 @@
   <slot />
 {/if}
 
+{#if $navigating}
+  <div id="spinner-container">
+    <Spinner />
+  </div>
+{/if}
+
 <style>
   #content {
     position: absolute;
@@ -158,6 +164,19 @@
     left: 0;
     right: 0;
     bottom: 70px;
+  }
+
+  #spinner-container {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    bottom: 70px;
+    background-color: #f7f7f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   /* Covering all the iphone screen sizes to add padding at the bottom */

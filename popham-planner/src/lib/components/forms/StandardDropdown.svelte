@@ -11,7 +11,7 @@
   <div class="label">
     {title}
   </div>
-  <select name={key}>
+  <select name={key} id={key}>
     {#if !valueList.length}
       <option value={''} selected>No categories available</option>
     {/if}
