@@ -63,13 +63,14 @@
     column-gap: 20px;
   }
   button {
-    height: 24px;
+    height: 35px;
     border: none;
     background: #bebebe;
-    width: 70px;
+    width: 80px;
     border-radius: 0 0 5px 5px;
     display:flex;
     justify-content: center;
     padding-left: 10px;
+    color: black;
   }
 </style>
