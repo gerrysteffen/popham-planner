@@ -8,4 +8,4 @@
 </script>
 
 <TitleBar title="All Meals & Recipes" />
-<OverviewPage data={data.meals} />
+<OverviewPage data={data.meals} type='meal'/>

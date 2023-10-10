@@ -13,15 +13,11 @@
     calculateWeekAndDay,
     createInitialCalendar,
   } from '$lib/helperFunctions/calendarDatesCreation';
-  import { CalendarSetting } from '$lib/store/store';
+  import { CalendarSettings } from '$lib/store/store';
 
   export let data: { mealPlans: MealPlanType[] };
 
-  let setting: 'day' | 'week';
-
-  CalendarSetting.subscribe((settings) => {
-    setting = settings.view;
-  });
+  $: setting = $CalendarSettings.view;
 
   const now = new Date();
   $: dayOne =
@@ -112,7 +108,7 @@
     <div id="settings-button-wrapper">
       <button
         on:click={() => {
-          CalendarSetting.update((settings) => ({ ...settings, view: 'day' }));
+          $CalendarSettings.view = 'day';
           initialCreationDone = false;
           assigned = [];
           goto('#week0');
@@ -120,7 +116,7 @@
       >
       <button
         on:click={() => {
-          CalendarSetting.update((settings) => ({ ...settings, view: 'week' }));
+          $CalendarSettings.view = 'week';
           initialCreationDone = false;
           assigned = [];
           goto('#week0');

@@ -1,11 +1,8 @@
 <script lang="ts">
-  import type {
-    MealType,
-    OverviewCriteria,
-    RestaurantType,
-  } from '$lib/UIdata/types';
+  import type { MealType, RestaurantType } from '$lib/UIdata/types';
   import { groupElements } from '$lib/helperFunctions/grouping';
   import { sortElements } from '$lib/helperFunctions/sorting';
+  import { MealOverviewSettings, RestOverViewSettings } from '$lib/store/store';
 
   import Switch from '../basicUI/Switch.svelte';
   import SwitchWrapper from '../basicUI/SwitchWrapper.svelte';
@@ -16,21 +13,19 @@
 
   export let data: MealType[] | RestaurantType[];
 
-  export let criteria: OverviewCriteria = 'name';
-  export let ascending: boolean = true;
-  export let cubes: boolean = true;
+  export let type: 'restaurant' | 'meal';
+  $: settings = type === 'meal' ? $MealOverviewSettings : $RestOverViewSettings;
   let display: 'Cubes' | 'List';
-  $: display = cubes ? 'Cubes' : 'List';
-  export let grouped: boolean = true;
+  $: display = settings.cubes ? 'Cubes' : 'List';
 
-  $: groupSwitchDisabled = disableGrouping(criteria);
+  $: groupSwitchDisabled = disableGrouping(settings.criteria);
   function disableGrouping(criteria: string) {
     if (
       criteria === 'categories' ||
       criteria === 'mainCategory' ||
       criteria === 'tags'
     ) {
-      grouped = true;
+      settings.grouped = true;
       return true;
     } else {
       return false;
@@ -48,30 +43,34 @@
     // rating: number; // TODO
   };
 
-  $: sortedData = sortElements(data, criteria, ascending);
+  $: sortedData = sortElements(data, settings.criteria, settings.ascending);
   let groupedSortedData: [string, [MealType | RestaurantType]][];
 
-  $: groupedSortedData = groupElements(sortedData, criteria, ascending);
+  $: groupedSortedData = groupElements(
+    sortedData,
+    settings.criteria,
+    settings.ascending
+  );
 </script>
 
 <SwitchWrapper>
-  <select name="criteria" bind:value={criteria}>
+  <select name="criteria" bind:value={settings.criteria}>
     {#each Object.entries(criteriaOptions) as [crit, text]}
       <option value={crit}>{text}</option>
     {/each}
   </select>
   <Switch
     title="Grouped"
-    bind:checked={grouped}
+    bind:checked={settings.grouped}
     disabled={groupSwitchDisabled}
   />
-  <Switch title="Ascending" bind:checked={ascending} />
-  <Switch title="Cubes" bind:checked={cubes} />
+  <Switch title="Ascending" bind:checked={settings.ascending} />
+  <Switch title="Cubes" bind:checked={settings.cubes} />
 </SwitchWrapper>
 
-<ContentWrapper padding='40px 20px 20px 20px'>
+<ContentWrapper padding="40px 20px 20px 20px">
   <DisplayContainer {display}>
-    {#if grouped}
+    {#if settings.grouped}
       <!-- {#each Object.entries(groupedSortedData) as [group, groupArr]} --->
       {#each groupedSortedData as [group, groupArr]}
         <GroupWrapper {group} {display}>
