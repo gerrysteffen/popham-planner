@@ -13,19 +13,26 @@
     calculateWeekAndDay,
     createInitialCalendar,
   } from '$lib/helperFunctions/calendarDatesCreation';
-  import Spinner from '$lib/components/basicUI/Spinner.svelte';
+  import { CalendarSetting } from '$lib/store/store';
 
   export let data: { mealPlans: MealPlanType[] };
 
-  let stopped = false;
+  let setting: 'day' | 'week';
+
+  CalendarSetting.subscribe((settings) => {
+    setting = settings.view;
+  });
 
   const now = new Date();
-  const monday = new Date(
-    now.getFullYear(),
-    now.getMonth(),
-    now.getDate() - now.getDay() + 1,
-    1
-  ).getTime();
+  $: dayOne =
+    setting === 'week'
+      ? new Date(
+          now.getFullYear(),
+          now.getMonth(),
+          now.getDate() - now.getDay() + 1,
+          1
+        ).getTime()
+      : now.setHours(1, 0, 0, 0);
   // TODO: propper approach to time zones
   let pastWeeks: number;
   let futureWeeks: number;
@@ -38,80 +45,92 @@
   $: if (!initialCreationDone && (!!pw || pw === 0) && (!!fw || fw === 0)) {
     pastWeeks = pw;
     futureWeeks = fw;
-    calendar = createInitialCalendar(monday, pastWeeks, futureWeeks);
+    calendar = createInitialCalendar(dayOne, pastWeeks, futureWeeks);
     initialCreationDone = true;
   }
 
   let assigned: string[] = [];
-  function assignMealPlans(plans: MealPlanType[], stopped: boolean) {
-    if (!stopped) {
-      plans.forEach((el) => {
-        if (!assigned.includes(el._id)) {
-          const { week, day } = calculateWeekAndDay(monday, el.timestamp);
-          const meal = el.mealType === 'Dinner' ? 'dinner' : 'lunch';
-          if (calendar[`week${week}`]) {
-            calendar[`week${week}`][day][meal] = [
-              ...calendar[`week${week}`][day][meal],
-              el,
-            ];
-            assigned.push(el._id);
-          }
+  function assignMealPlans(
+    plans: MealPlanType[],
+    initialCreationDone: boolean
+  ) {
+    plans.forEach((el) => {
+      if (!assigned.includes(el._id)) {
+        const { week, day } = calculateWeekAndDay(dayOne, el.timestamp);
+        const meal = el.mealType === 'Dinner' ? 'dinner' : 'lunch';
+        if (calendar[`week${week}`]) {
+          calendar[`week${week}`][day][meal] = [
+            ...calendar[`week${week}`][day][meal],
+            el,
+          ];
+          assigned.push(el._id);
         }
-      });
-    }
+      }
+    });
   }
-  $: assignMealPlans(data.mealPlans, stopped);
+  $: assignMealPlans(data.mealPlans, initialCreationDone);
 
   async function getAddData(future: boolean) {
-    future ? futureWeeks+=2 : pastWeeks-=2;
-    goto(
-      `?pw=${pastWeeks}&fw=${futureWeeks}#week${
-        future ? futureWeeks-2 : pastWeeks+2}`
-    );
     if (future) {
-      calendar[`week${futureWeeks-1}`] = addCalendarWeeks(monday, futureWeeks-1);
-      calendar[`week${futureWeeks}`] = addCalendarWeeks(monday, futureWeeks);
+      futureWeeks += 2;
+      goto(
+        `?pw=${pastWeeks}&fw=${futureWeeks}${
+          setting === 'week' ? '#week' + (futureWeeks - 2) : ''
+        }`
+      );
+      calendar[`week${futureWeeks - 1}`] = addCalendarWeeks(
+        dayOne,
+        futureWeeks - 1
+      );
+      calendar[`week${futureWeeks}`] = addCalendarWeeks(dayOne, futureWeeks);
     } else {
-      // stopped = true;
-      // calendar[`week${pastWeeks}`] = calendar[`week${pastWeeks + 1}`];
-      // setTimeout(() => {
-      //   calendar[`week${pastWeeks}`] = addCalendarWeeks(monday, pastWeeks);
-      //   stopped = false;
-      // }, 500);
-      // stopped = true;
-      calendar[`week${pastWeeks+1}`] = addCalendarWeeks(monday, pastWeeks+1);
-      calendar[`week${pastWeeks}`] = addCalendarWeeks(monday, pastWeeks);
-      // setTimeout(() => {
-      //   calendar[`week${pastWeeks}`] = addCalendarWeeks(monday, pastWeeks);
-      //   stopped = false;
-      // }, 500);
+      pastWeeks -= 2;
+      goto(`?pw=${pastWeeks}&fw=${futureWeeks}${'#week' + (pastWeeks + 2)}`);
+      calendar[`week${pastWeeks + 1}`] = addCalendarWeeks(
+        dayOne,
+        pastWeeks + 1
+      );
+      calendar[`week${pastWeeks}`] = addCalendarWeeks(dayOne, pastWeeks);
     }
   }
 
   function monitorPosition(event: Event) {
-    let scrolledHeight = (event.target as HTMLElement).scrollTop;
-    let screenHeight = (event.target as HTMLElement).clientHeight;
+    let scrolledHeight = Math.ceil((event.target as HTMLElement).scrollTop);
+    let screenHeight = Math.ceil((event.target as HTMLElement).clientHeight);
     let totalHeight = (event.target as HTMLElement).scrollHeight;
     if (scrolledHeight === 0) {
       getAddData(false);
     } else if (scrolledHeight + screenHeight === totalHeight) {
       getAddData(true);
     }
-    // TODO: add tag for future weeks
   }
 </script>
 
 <TitleBar title="Calendar" />
 {#if calendar}
   <ContentWrapper padding={'0px'} overflow="none">
+    <div id="settings-button-wrapper">
+      <button
+        on:click={() => {
+          CalendarSetting.update((settings) => ({ ...settings, view: 'day' }));
+          initialCreationDone = false;
+          assigned = [];
+          goto('#week0');
+        }}>D</button
+      >
+      <button
+        on:click={() => {
+          CalendarSetting.update((settings) => ({ ...settings, view: 'week' }));
+          initialCreationDone = false;
+          assigned = [];
+          goto('#week0');
+        }}>W</button
+      >
+    </div>
     <div id="calendar-wrapper" on:scroll={monitorPosition}>
-      <!-- style="overflow: {stopped ? 'hidden' : 'scroll'};" -->
-      <Calendar {calendar} />
+      <Calendar {calendar} {setting} />
     </div>
   </ContentWrapper>
-{/if}
-{#if stopped}
-  <Spinner />
 {/if}
 
 <style>
@@ -128,5 +147,12 @@
   }
   #calendar-wrapper::-webkit-scrollbar {
     display: none; /* Safari and Chrome */
+  }
+
+  #settings-button-wrapper {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
   }
 </style>

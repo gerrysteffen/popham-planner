@@ -26,8 +26,8 @@
   }
   .cube {
     background-color: #ff7f50;
-    width: 100px;
-    height: 100px;
+    width: 100%;
+    height: 100%;
     background-size: cover;
     display: flex;
     flex-direction: column-reverse;

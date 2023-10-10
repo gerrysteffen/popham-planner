@@ -5,11 +5,13 @@
   import Halfday from './Halfday.svelte';
 
   export let data: MealDateType;
+  export let setting: 'day' | 'week';
 
   $: date = new Date(data.timestamp);
+  $: weekend = date.getDay() === 0 || date.getDay() === 6;
 
-  $: width = date.getDay() !== 0 && date.getDay() !== 6 ? '100%' : '50%';
-  $: height = date.getDay() !== 0 && date.getDay() !== 6 ? '16.7%' : '16.5%';
+  $: width = setting === 'day' || !weekend ? '100%' : '50%';
+  $: height = setting === 'day' ? '150px' : !weekend ? '16.7%' : '16.6%';
 
   const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
@@ -29,7 +31,11 @@
   ];
 </script>
 
-<div class="day" id={String(data.timestamp)} style="width: {width}; height: {height};">
+<div
+  class="day"
+  id={String(data.timestamp)}
+  style="width: {width}; height: {height};"
+>
   <div class="top day-date" style="color: {colors.planner.unselected}">
     {('0' + date.getDate()).slice(-2)}
     {monthNames[date.getMonth()]}
@@ -40,20 +46,21 @@
   >
     {dayNames[date.getDay()]}
   </div>
-  <Halfday time={'lunch'} mealPlans={data.lunch} />
-  <Halfday time={'dinner'} mealPlans={data.dinner} />
+  {#if setting === 'week' && weekend}
+    <Halfday time={'all'} mealPlans={[...data.lunch, ...data.dinner]} />
+  {:else}
+    <Halfday time={'lunch'} mealPlans={data.lunch} />
+    <Halfday time={'dinner'} mealPlans={data.dinner} />
+  {/if}
 </div>
 
 <style>
   .day {
-    width: 50%;
     border-bottom: 1px black solid;
-    /* height: 150px; */
-    height: 16%;
     position: relative;
     font-weight: bold;
     display: flex;
-    justify-items: space-between;
+    justify-content: center;
   }
   .top {
     z-index: 10;

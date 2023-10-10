@@ -17,9 +17,11 @@ export async function load({ url }) {
     now.getDate() - now.getDay() + 1,
     1
   ).getTime();
+  // TODO: propper approach to time zones
+  // TODO: weekly vs daily view
   const timeMin =
-    monday + pastWeeks * 7 * 24 * 60 * 60 * 1000 - 24 * 60 * 60 * 1000; // +1d in case effect of Summer time
-  const timeMax = monday + (1 + futureWeeks) * 7 * 24 * 60 * 60 * 1000;
+    monday + pastWeeks * 7 * 24 * 60 * 60 * 1000 - 24 * 60 * 60 * 1000; // +1h in case effect of Summer time
+  const timeMax = monday + (2 + futureWeeks) * 7 * 24 * 60 * 60 * 1000; // +1w for current week +1w in case daily setting
 
   let mealPlans = await getMealPlansByDate(timeMin, timeMax);
 

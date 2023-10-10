@@ -1,12 +1,9 @@
-
 import { writable } from 'svelte/store';
 
-const count = writable(0);
+type CalendarSettingsType = {
+  view: 'week' | 'day';
+};
 
-count.subscribe((value) => {
-	console.log(value);
-}); // logs '0'
-
-count.set(1); // logs '1'
-
-count.update((n) => n + 1); // logs '2'
+export const CalendarSetting = writable<CalendarSettingsType>({
+  view: 'week',
+});
