@@ -1,5 +1,8 @@
+<script lang="ts">
+  export let top: string = '50px';
+</script>
 
-<div id="spinner-container">
+<div id="spinner-container" style="top: {top};">
   <div class="spinner">
     <div class="bar1" />
     <div class="bar2" />
@@ -19,11 +22,10 @@
 <style>
   #spinner-container {
     position: absolute;
-    top: 50px;
     left: 0;
     right: 0;
-    z-index: 30;
     bottom: 0;
+    z-index: 30;
     background-color: #f7f7f7;
     display: flex;
     justify-content: center;

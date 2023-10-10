@@ -58,10 +58,10 @@
     planner: {
       id: 'planner',
       title: 'Planner',
-      href: '/planner?pw=-1&fw=1#week0',
+      href: '/planner?pw=-2&fw=2#week0',
       subMenus: [
         {
-          href: '/planner?pw=-1&fw=1#week0',
+          href: '/planner?pw=-2&fw=2#week0',
           icon: 'calendar',
         },
         {
@@ -105,7 +105,7 @@
 {#if path !== '/'}
   <div id="content">
     <slot />
-    {#if $navigating && path !== '/planner'}
+    {#if $navigating}
       <Spinner />
     {/if}
   </div>
@@ -153,6 +153,9 @@
   </NavBar>
 {:else}
   <slot />
+  {#if $navigating}
+    <Spinner top="0" />
+  {/if}
 {/if}
 
 <style>

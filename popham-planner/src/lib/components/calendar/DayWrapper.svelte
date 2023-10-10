@@ -8,6 +8,9 @@
 
   $: date = new Date(data.timestamp);
 
+  $: width = date.getDay() !== 0 && date.getDay() !== 6 ? '100%' : '50%';
+  $: height = date.getDay() !== 0 && date.getDay() !== 6 ? '16.7%' : '16.5%';
+
   const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
   const monthNames = [
@@ -26,7 +29,7 @@
   ];
 </script>
 
-<div class="day" id={String(data.timestamp)}>
+<div class="day" id={String(data.timestamp)} style="width: {width}; height: {height};">
   <div class="top day-date" style="color: {colors.planner.unselected}">
     {('0' + date.getDate()).slice(-2)}
     {monthNames[date.getMonth()]}
@@ -43,9 +46,10 @@
 
 <style>
   .day {
-    width: 100%;
+    width: 50%;
     border-bottom: 1px black solid;
-    height: 150px;
+    /* height: 150px; */
+    height: 16%;
     position: relative;
     font-weight: bold;
     display: flex;

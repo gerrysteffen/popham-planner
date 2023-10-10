@@ -5,35 +5,39 @@
   import { mockMealDate } from '$lib/helperFunctions/calendarDatesCreation';
 
   export let calendar: CalendarType;
-
-  $: console.log(calendar)
 </script>
 
-<div id="mock-date">
+<!-- <div id="mock-date">
   <DayWrapper data={mockMealDate} />
-</div>
-<div id="calendar">
-  {#each Object.keys(calendar).sort((a, b) => Number(a.slice(4)) - Number(b.slice(4))) as weekKey}
-    <section id={weekKey}>
-      {#each calendar[weekKey] as day}
-        <DayWrapper data={day} />
-      {/each}
-    </section>
-  {/each}
-</div>
-<div id="titles" class="title-background" />
+</div> -->
+<!-- <div id="calendar"> -->
+{#each Object.keys(calendar).sort((a, b) => Number(a.slice(4)) - Number(b.slice(4))) as weekKey}
+  <section id={weekKey}>
+    {#each calendar[weekKey] as day}
+      <DayWrapper data={day} />
+    {/each}
+  </section>
+{/each}
+
+<!-- </div> -->
+<!-- <div id="titles" class="title-background" />
 <div id="titles" style="color: {colors['planner']['selected']}">
   <div class="title">LUNCH</div>
   <div class="title">DINNER</div>
-</div>
+</div> -->
 
 <style>
-  #mock-date {
+  /* #calendar {
+    height: 100%;
+    width: 100%;
+    scroll-snap-type: y mandatory;
+  } */
+  /* #mock-date {
     position: absolute;
     top: -70px;
     width: 100%;
-  }
-  #titles {
+  } */
+  /* #titles {
     position: fixed;
     top: 50px;
     left: 0;
@@ -42,8 +46,8 @@
     z-index: 10;
     display: flex;
     justify-content: space-between;
-  }
-  .title {
+  } */
+  /* .title {
     width: 50%;
     height: 100%;
     display: flex;
@@ -54,9 +58,17 @@
   .title-background {
     background-color: white;
     opacity: 0.7;
-  }
+  } */
   section {
-    padding-top: 80px;
-    margin-bottom: -80px;
+    /* padding-top: 80px;
+    margin-bottom: -80px; */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    scroll-snap-align: start;
   }
 </style>

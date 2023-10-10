@@ -1,14 +1,25 @@
 import type { MealPlanType } from '$lib/UIdata/types';
 import { getMealPlansByDate } from '$lib/db/mealPlans.js';
+import { redirect } from '@sveltejs/kit';
 
 export async function load({ url }) {
   let pastWeeks: number = Number(url.searchParams.get('pw'));
   let futureWeeks: number = Number(url.searchParams.get('fw'));
 
-  const today = new Date().setHours(0, 0, 0, 0); // 1h correction to make sure Summer time doesn't affect
+  if (pastWeeks === 0 || futureWeeks === 0) {
+    throw redirect(301, '/planner?pw=-2&fw=3#week0');
+  }
+
+  const now = new Date();
+  const monday = new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate() - now.getDay() + 1,
+    1
+  ).getTime();
   const timeMin =
-    today + pastWeeks * 7 * 24 * 60 * 60 * 1000 - 24 * 60 * 60 * 1000;  // +1d in case effect of Summer time
-  const timeMax = today + (1 + futureWeeks) * 7 * 24 * 60 * 60 * 1000;
+    monday + pastWeeks * 7 * 24 * 60 * 60 * 1000 - 24 * 60 * 60 * 1000; // +1d in case effect of Summer time
+  const timeMax = monday + (1 + futureWeeks) * 7 * 24 * 60 * 60 * 1000;
 
   let mealPlans = await getMealPlansByDate(timeMin, timeMax);
 

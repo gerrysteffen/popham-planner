@@ -22,7 +22,7 @@
   .lunch {
     width: 50%;
     height: 100%;
-    border-right: 1px black solid;
+    /* border-right: 1px black solid; */
   }
   .dinner {
     width: 50%;

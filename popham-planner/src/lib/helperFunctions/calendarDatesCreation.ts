@@ -3,10 +3,10 @@ import type { CalendarType, MealDateType } from '$lib/UIdata/types';
 const oneDayInMs = 1000 * 60 * 60 * 24;
 const oneWeekInMs = oneDayInMs * 7;
 
-export function msSinceMidnight(d: number) {
-  const e = new Date(d);
-  return d - e.setHours(0, 0, 0, 0) - 1000 * 60 * 60; // addition of an hour as summer time work around
-}
+// export function msSinceMidnight(d: number) {
+//   const e = new Date(d);
+//   return d - e.setHours(0, 0, 0, 0) - 1000 * 60 * 60; // addition of an hour as summer time work around
+// }
 
 const timestamp = Date.now();
 export const mockMealDate: MealDateType = {
