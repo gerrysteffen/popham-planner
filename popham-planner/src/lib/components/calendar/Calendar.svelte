@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { CalendarType } from '$lib/UIdata/types';
   import DayWrapper from '$lib/components/calendar/DayWrapper.svelte';
+  import { mockMealDate } from '$lib/helperFunctions/calendarDatesCreation';
 
   export let setting: 'day' | 'week';
 
@@ -17,6 +18,9 @@
     {#each calendar[weekKey] as day}
       <DayWrapper data={day} {setting} />
     {/each}
+    {#if setting === 'week'}
+    <DayWrapper data={null} {setting}/>
+    {/if}
   </section>
 {/each}
 
