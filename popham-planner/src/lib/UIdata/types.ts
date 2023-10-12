@@ -23,10 +23,7 @@ export type RestaurantType = TypeSkeleton & {
   address?: string; // TODO
 };
 
-export type RestaurantFormType = Omit<
-  RestaurantType,
-  '_id' | 'createdAt' | 'updatedAt'
->;
+export type RestaurantFormType = Omit<RestaurantType, '_id' | 'createdAt' | 'updatedAt'>;
 
 export type Titles = {
   [key: string]: string;

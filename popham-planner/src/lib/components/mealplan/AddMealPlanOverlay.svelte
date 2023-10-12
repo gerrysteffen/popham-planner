@@ -1,12 +1,11 @@
 <script lang="ts">
-  import { enhance } from '$app/forms';
   import ButtonOneLineWrapper from '../forms/ButtonOneLineWrapper.svelte';
   import StandardButton from '../forms/StandardButton.svelte';
 
   const now = new Date();
-  const date = `${now.getFullYear()}-${('0' + (now.getMonth() + 1)).slice(
-    -2
-  )}-${('0' + now.getDate()).slice(-2)}`;
+  const date = `${now.getFullYear()}-${('0' + (now.getMonth() + 1)).slice(-2)}-${(
+    '0' + now.getDate()
+  ).slice(-2)}`;
   export let addMealPlanPending: boolean;
   export let id: string;
   export let planType: 'restaurant' | 'meal';
@@ -45,11 +44,7 @@
           text="Cancel"
           handleClick={() => (addMealPlanPending = !addMealPlanPending)}
         />
-        <StandardButton
-          type="submit"
-          text="Confirm"
-          handleClick={() => {}}
-        />
+        <StandardButton type="submit" text="Confirm" handleClick={() => {}} />
       </ButtonOneLineWrapper>
     </form>
   </div>

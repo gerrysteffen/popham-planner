@@ -20,11 +20,7 @@
 
   $: groupSwitchDisabled = disableGrouping(settings.criteria);
   function disableGrouping(criteria: string) {
-    if (
-      criteria === 'categories' ||
-      criteria === 'mainCategory' ||
-      criteria === 'tags'
-    ) {
+    if (criteria === 'categories' || criteria === 'mainCategory' || criteria === 'tags') {
       settings.grouped = true;
       return true;
     } else {
@@ -38,7 +34,7 @@
     categories: 'By Categories',
     mainCategory: 'By Main Category',
     createdAt: 'By Date Created',
-    updatedAt: 'By Date Updated',
+    updatedAt: 'By Date Updated'
     // priceLevel: number; // TODO
     // rating: number; // TODO
   };
@@ -46,11 +42,7 @@
   $: sortedData = sortElements(data, settings.criteria, settings.ascending);
   let groupedSortedData: [string, [MealType | RestaurantType]][];
 
-  $: groupedSortedData = groupElements(
-    sortedData,
-    settings.criteria,
-    settings.ascending
-  );
+  $: groupedSortedData = groupElements(sortedData, settings.criteria, settings.ascending);
 </script>
 
 <SwitchWrapper>
@@ -59,11 +51,7 @@
       <option value={crit}>{text}</option>
     {/each}
   </select>
-  <Switch
-    title="Grouped"
-    bind:checked={settings.grouped}
-    disabled={groupSwitchDisabled}
-  />
+  <Switch title="Grouped" bind:checked={settings.grouped} disabled={groupSwitchDisabled} />
   <Switch title="Ascending" bind:checked={settings.ascending} />
   <Switch title="Cubes" bind:checked={settings.cubes} />
 </SwitchWrapper>

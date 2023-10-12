@@ -11,10 +11,10 @@ if (!mongoose.models.restaurant && !restaurantSchema) {
       image_url: String,
       tags: [String],
       mainCategory: String,
-      categories: [String],
+      categories: [String]
     },
     {
-      timestamps: true,
+      timestamps: true
     }
   );
 }
@@ -52,10 +52,7 @@ export async function createRestaurant(restaurant: RestaurantFormType) {
   }
 }
 
-export async function updateRestaurant(
-  id: string,
-  restaurant: RestaurantFormType
-) {
+export async function updateRestaurant(id: string, restaurant: RestaurantFormType) {
   try {
     await RestaurantModel!.findByIdAndUpdate(id, restaurant);
   } catch (error) {

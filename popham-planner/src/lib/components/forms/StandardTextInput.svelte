@@ -4,7 +4,7 @@
   export let title: string; //TODO: propper typing
 </script>
 
-<label for={key}>{title} <input bind:value name={key} id={key}/></label>
+<label for={key}>{title} <input bind:value name={key} id={key} /></label>
 
 <style>
   label {

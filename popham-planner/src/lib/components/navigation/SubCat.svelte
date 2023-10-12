@@ -6,32 +6,35 @@
   export let i: number;
   export let category: string;
 
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   import MdMenu from 'svelte-icons/md/MdMenu.svelte';
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   import MdSearch from 'svelte-icons/md/MdSearch.svelte';
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   import MdAdd from 'svelte-icons/md/MdAdd.svelte';
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   import MdToday from 'svelte-icons/md/MdToday.svelte';
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   import MdShoppingCart from 'svelte-icons/md/MdShoppingCart.svelte';
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   import MdBorderColor from 'svelte-icons/md/MdBorderColor.svelte';
 
   // use of search params and sections made it necessary to cut any #-delimited parts
   $: linkCompare = link.includes('?') ? link.slice(0, link.indexOf('?')) : link;
 
-  $: selected =
-    $page.url.pathname.split('/').slice(0, 3).join('/') === linkCompare;
+  $: selected = $page.url.pathname.split('/').slice(0, 3).join('/') === linkCompare;
 </script>
 
 <a href={link} id={`${icon}-link`} class:rounded={i === 0}>
   <div
     class="icon-wrapper"
-    style="background-color: {selected
-      ? colors[category].unselected
-      : colors[category].selected}"
+    style="background-color: {selected ? colors[category].unselected : colors[category].selected}"
   >
     {#if icon === 'overview'}
       <MdMenu />

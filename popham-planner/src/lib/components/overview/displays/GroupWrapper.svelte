@@ -1,5 +1,5 @@
 <script lang="ts">
-  import CubeListFadeOut from "$lib/components/overview/displays/CubeListFadeOut.svelte";
+  import CubeListFadeOut from '$lib/components/overview/displays/CubeListFadeOut.svelte';
 
   export let group: string;
   export let display: 'Cubes' | 'List';

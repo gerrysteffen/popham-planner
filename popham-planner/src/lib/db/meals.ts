@@ -12,10 +12,10 @@ if (!mongoose.models.meal && !mealSchema) {
       image_url: String,
       tags: [String],
       mainCategory: String,
-      categories: [String],
+      categories: [String]
     },
     {
-      timestamps: true,
+      timestamps: true
     }
   );
 }

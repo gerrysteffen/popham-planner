@@ -1,6 +1,6 @@
 <script lang="ts">
   export let padding: string = '20px';
-  export let overflow: string = 'scroll'
+  export let overflow: string = 'scroll';
 </script>
 
 <div class="content-wrapper" style="padding: {padding}; overflow: {overflow};">

@@ -10,7 +10,7 @@ export async function load({ params }) {
   }
 
   return {
-    meal: JSON.parse(JSON.stringify(meal)) as MealType,
+    meal: JSON.parse(JSON.stringify(meal)) as MealType
   };
 }
 
@@ -32,9 +32,9 @@ export const actions = {
       image_url,
       mainCategory,
       categories: categories,
-      tags: tags,
+      tags: tags
     };
     await updateMeal(params.mealId, meal);
     throw redirect(301, `/meals/${params.mealId}`);
-  },
+  }
 };

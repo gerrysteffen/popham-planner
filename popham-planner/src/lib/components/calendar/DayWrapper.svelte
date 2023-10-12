@@ -26,24 +26,17 @@
     'Sep',
     'Oct',
     'Nov',
-    'Dec',
+    'Dec'
   ];
 </script>
 
 {#if data && date}
-  <div
-    class="day"
-    id={String(data.timestamp)}
-    style="width: {width}; height: {height};"
-  >
+  <div class="day" id={String(data.timestamp)} style="width: {width}; height: {height};">
     <div class="top day-date" style="color: {colors.planner.unselected}">
       {('0' + date.getDate()).slice(-2)}
       {monthNames[date.getMonth()]}
     </div>
-    <div
-      class="top day-weekday"
-      style="background-color: {colors.planner.unselected}"
-    >
+    <div class="top day-weekday" style="background-color: {colors.planner.unselected}">
       {dayNames[date.getDay()]}
     </div>
     <Halfday time={'lunch'} mealPlans={data.lunch} />

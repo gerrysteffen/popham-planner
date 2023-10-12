@@ -1,6 +1,6 @@
 <script lang="ts">
   import { fly } from 'svelte/transition';
-  
+
   export let color: { selected: string; unselected: string };
 </script>
 

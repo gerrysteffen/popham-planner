@@ -6,10 +6,10 @@ let householdSchema: undefined | mongoose.Schema<MealType>;
 if (!mongoose.models.household && !householdSchema) {
   householdSchema = new mongoose.Schema<MealType>(
     {
-      name: { type: String, required: true, default: '' },
+      name: { type: String, required: true, default: '' }
     },
     {
-      timestamps: true,
+      timestamps: true
     }
   );
 }

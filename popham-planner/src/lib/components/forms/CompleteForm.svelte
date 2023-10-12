@@ -3,13 +3,11 @@
 
   import { goto } from '$app/navigation';
 
-  import TitleBar from '$lib/components/navigation/TitleBar.svelte';
   import StandardForm from '$lib/components/forms/StandardForm.svelte';
   import StandardButton from '$lib/components/forms/StandardButton.svelte';
   import StandardTextInput from '$lib/components/forms/StandardTextInput.svelte';
   import StandardMcInput from '$lib/components/forms/StandardMCInput.svelte';
   import ButtonOneLineWrapper from './ButtonOneLineWrapper.svelte';
-  import ContentWrapper from '../navigation/ContentWrapper.svelte';
 
   export let type: 'meals' | 'restaurants';
   export let data: MealType | RestaurantType;
@@ -21,11 +19,11 @@
   const dataArr =
     mode === 'create'
       ? Object.entries({
-          ...data,
+          ...data
         })
       : Object.entries({
           ...emptyValues, // to make sure new fields are included aswell
-          ...data,
+          ...data
         });
 </script>
 
@@ -45,13 +43,7 @@
       />
     {/if}
     {#if key === 'tags' && Array.isArray(value)}
-      <StandardMcInput
-        {key}
-        bind:value
-        title={titles[key]}
-        categories={['hello']}
-        strict={false}
-      />
+      <StandardMcInput {key} bind:value title={titles[key]} categories={['hello']} strict={false} />
     {/if}
   {/each}
   <ButtonOneLineWrapper>

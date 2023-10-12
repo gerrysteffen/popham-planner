@@ -31,14 +31,14 @@
       subMenus: [
         {
           href: '/meals',
-          icon: 'overview',
+          icon: 'overview'
         },
         {
           href: '/meals/search',
-          icon: 'search',
+          icon: 'search'
         },
-        { href: '/meals/add-new', icon: 'add' },
-      ],
+        { href: '/meals/add-new', icon: 'add' }
+      ]
     },
     restaurants: {
       id: 'restaurants',
@@ -47,14 +47,14 @@
       subMenus: [
         {
           href: '/restaurants',
-          icon: 'overview',
+          icon: 'overview'
         },
         {
           href: '/restaurants/search',
-          icon: 'search',
+          icon: 'search'
         },
-        { href: '/restaurants/add-new', icon: 'add' },
-      ],
+        { href: '/restaurants/add-new', icon: 'add' }
+      ]
     },
     planner: {
       id: 'planner',
@@ -63,23 +63,19 @@
       subMenus: [
         {
           href: '/planner?pw=-2&fw=2#week0',
-          icon: 'calendar',
+          icon: 'calendar'
         },
         {
           href: '/planner/shopping',
-          icon: 'shopping',
+          icon: 'shopping'
         },
-        { href: '/planner/notes', icon: 'notes' },
-      ],
-    },
-  }
-
-      const test = 'test'
+        { href: '/planner/notes', icon: 'notes' }
+      ]
+    }
+  };
 
   $: selected = menuOptions[path.split('/')[1]] || menuOptions.planner;
-  $: unselected = Object.values(menuOptions).filter(
-    (option) => option.id !== selected.id
-  );
+  $: unselected = Object.values(menuOptions).filter((option) => option.id !== selected.id);
 
   let menuOpen = false;
   let log: number = 0;
@@ -121,12 +117,7 @@
         <SubCatWrapper color={colors[selected.id]}>
           {#each Object.values(menuOption.subMenus) as subMenu, i}
             <!-- {#if menuOption.id === selected.id} -->
-            <SubCat
-              category={selected.id}
-              icon={subMenu.icon}
-              {i}
-              link={subMenu.href}
-            />
+            <SubCat category={selected.id} icon={subMenu.icon} {i} link={subMenu.href} />
             <!-- {/if} -->
           {/each}
         </SubCatWrapper>

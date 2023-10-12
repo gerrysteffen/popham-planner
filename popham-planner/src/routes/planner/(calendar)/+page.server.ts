@@ -19,8 +19,7 @@ export async function load({ url }) {
   ).getTime();
   // TODO: propper approach to time zones
   // TODO: weekly vs daily view
-  const timeMin =
-    monday + pastWeeks * 7 * 24 * 60 * 60 * 1000 - 24 * 60 * 60 * 1000; // +1h in case effect of Summer time
+  const timeMin = monday + pastWeeks * 7 * 24 * 60 * 60 * 1000 - 24 * 60 * 60 * 1000; // +1h in case effect of Summer time
   const timeMax = monday + (2 + futureWeeks) * 7 * 24 * 60 * 60 * 1000; // +1w for current week +1w in case daily setting
 
   let mealPlans = await getMealPlansByDate(timeMin, timeMax);
@@ -29,6 +28,6 @@ export async function load({ url }) {
   // https://kit.svelte.dev/docs/load#rerunning-load-functions-manual-invalidation
 
   return {
-    mealPlans: JSON.parse(JSON.stringify(mealPlans)) as MealPlanType[],
+    mealPlans: JSON.parse(JSON.stringify(mealPlans)) as MealPlanType[]
   };
 }

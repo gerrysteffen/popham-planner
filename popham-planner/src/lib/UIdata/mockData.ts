@@ -13,7 +13,7 @@ export const restaurantMock: {
     categories: [],
     tags: [],
     createdAt: new Date(Date.now()),
-    updatedAt: new Date(Date.now()),
+    updatedAt: new Date(Date.now())
   },
   titles: {
     name: 'Name',
@@ -21,8 +21,8 @@ export const restaurantMock: {
     image_url: 'Image Link (optional)',
     tags: 'Tags',
     mainCategory: 'Main Category',
-    categories: 'Categories',
-  },
+    categories: 'Categories'
+  }
 };
 
 export const mealMock: {
@@ -39,7 +39,7 @@ export const mealMock: {
     categories: [],
     tags: [],
     createdAt: new Date(Date.now()),
-    updatedAt: new Date(Date.now()),
+    updatedAt: new Date(Date.now())
   },
   titles: {
     name: 'Name',
@@ -48,6 +48,6 @@ export const mealMock: {
     image_url: 'Image Link (optional)',
     tags: 'Tags',
     mainCategory: 'Main Category',
-    categories: 'Categories',
-  },
+    categories: 'Categories'
+  }
 };

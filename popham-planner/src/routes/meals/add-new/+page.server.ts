@@ -20,9 +20,9 @@ export const actions = {
       image_url,
       mainCategory,
       categories,
-      tags,
+      tags
     };
     const newMeal = await createMeal(meal);
     throw redirect(301, `/meals/${newMeal?._id || ''}`);
-  },
+  }
 };

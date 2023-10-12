@@ -12,4 +12,3 @@
 {:else if display === 'List'}
   <ListElement {data} />
 {/if}
-

@@ -1,16 +1,21 @@
 <script lang="ts">
-  import { page } from "$app/stores";
-  import { colors } from "$lib/UIdata/cssSelectors";
-  import type { MealPlanType } from "$lib/UIdata/types";
+  import { page } from '$app/stores';
+  import { colors } from '$lib/UIdata/cssSelectors';
+  import type { MealPlanType } from '$lib/UIdata/types';
 
-  export let data: MealPlanType
+  export let data: MealPlanType;
 
   $: category = $page.url.pathname.split('/')[1] as string;
 </script>
 
 <a href={`planner/${data._id}`}>
-  <div class="cube" style="background-color: {colors[category].selected}; background-image: url('{data[data.planType]?.image_url}')">
-    <div class="cube-text-background" style="background-color: {colors[category].unselected}"/>
+  <div
+    class="cube"
+    style="background-color: {colors[category].selected}; background-image: url('{data[
+      data.planType
+    ]?.image_url}')"
+  >
+    <div class="cube-text-background" style="background-color: {colors[category].unselected}" />
     <div class="cube-text">
       <div class="text">
         {data[data.planType]?.name}

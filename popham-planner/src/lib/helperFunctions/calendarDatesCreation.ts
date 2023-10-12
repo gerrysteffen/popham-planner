@@ -12,24 +12,18 @@ const timestamp = Date.now();
 export const mockMealDate: MealDateType = {
   timestamp: timestamp,
   lunch: [],
-  dinner: [],
+  dinner: []
 };
 
-export function createInitialCalendar(
-  today: number,
-  pastWeeks: number,
-  futureWeeks: number
-) {
-  const calendarDays = new Array(7 * (1 + futureWeeks - pastWeeks))
-    .fill('')
-    .map((_, i) => {
-      return {
-        timestamp: today + (i - 7 * -pastWeeks) * oneDayInMs,
-        lunch: [],
-        dinner: [],
-      } as MealDateType;
-    });
-  let calendar: CalendarType = {};
+export function createInitialCalendar(today: number, pastWeeks: number, futureWeeks: number) {
+  const calendarDays = new Array(7 * (1 + futureWeeks - pastWeeks)).fill('').map((_, i) => {
+    return {
+      timestamp: today + (i - 7 * -pastWeeks) * oneDayInMs,
+      lunch: [],
+      dinner: []
+    } as MealDateType;
+  });
+  const calendar: CalendarType = {};
   for (let i = pastWeeks; i <= futureWeeks; i++) {
     calendar[`week${i}`] = calendarDays.splice(0, 7);
   }
@@ -41,7 +35,7 @@ export function addCalendarWeeks(today: number, weekDiff: number) {
     return {
       timestamp: today + (i + weekDiff * 7) * oneDayInMs,
       lunch: [],
-      dinner: [],
+      dinner: []
     } as MealDateType;
   });
 }

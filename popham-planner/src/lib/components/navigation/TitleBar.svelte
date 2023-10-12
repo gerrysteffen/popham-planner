@@ -1,8 +1,8 @@
 <script lang="ts">
-  export let title: string = ''
+  export let title: string = '';
 </script>
 
-<div id='title-wrapper'>
+<div id="title-wrapper">
   <h1>
     {title}
   </h1>

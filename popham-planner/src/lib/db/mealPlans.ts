@@ -1,9 +1,4 @@
-import type {
-  MealPlanFormType,
-  MealPlanType,
-  MealType,
-  RestaurantType,
-} from '$lib/UIdata/types';
+import type { MealPlanFormType, MealPlanType } from '$lib/UIdata/types';
 import mongoose from './db';
 import { MealModel } from './meals';
 import { RestaurantModel } from './restaurants';
@@ -19,11 +14,11 @@ if (!mongoose.models.mealPlan && !mealPlanSchema) {
       meal: { type: mongoose.Schema.Types.ObjectId, ref: 'meal' },
       restaurant: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'restaurant',
-      },
+        ref: 'restaurant'
+      }
     },
     {
-      timestamps: true,
+      timestamps: true
     }
   );
 }
@@ -34,9 +29,7 @@ const MealPlanModel =
 
 export async function getAllMealPlans() {
   try {
-    const mealPlans = await MealPlanModel!
-      .find({})
-      .populate(['meal', 'restaurant']);
+    const mealPlans = await MealPlanModel!.find({}).populate(['meal', 'restaurant']);
     return mealPlans;
   } catch (error) {
     console.log('Error fetching:', error);
@@ -58,9 +51,7 @@ export async function getMealPlansByDate(start: number, end: number) {
 
 export async function getMealPlanById(id: string) {
   try {
-    const mealPlan = await MealPlanModel!
-      .findById(id)
-      .populate(['meal', 'restaurant']);
+    const mealPlan = await MealPlanModel!.findById(id).populate(['meal', 'restaurant']);
     return mealPlan;
   } catch (error) {
     console.log('Error fetching:', error);
@@ -70,7 +61,6 @@ export async function getMealPlanById(id: string) {
 
 export async function createMealPlan(mealPlan: MealPlanFormType) {
   try {
-    let plan: MealType | RestaurantType | undefined;
     if (mealPlan.planType === 'meal') {
       if (!(await MealModel.exists({ _id: mealPlan.meal }))) {
         return;

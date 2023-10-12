@@ -25,9 +25,7 @@
   function handleStrictChange() {
     let formattedValue = newValue
       .split(' ')
-      .map(
-        (word) => word.slice(0, 1).toUpperCase() + word.slice(1).toLowerCase()
-      )
+      .map((word) => word.slice(0, 1).toUpperCase() + word.slice(1).toLowerCase())
       .join(' ');
     if (categories.includes(formattedValue)) {
       if (!valueList.includes(formattedValue)) {

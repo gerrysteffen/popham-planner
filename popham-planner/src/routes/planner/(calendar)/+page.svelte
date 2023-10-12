@@ -11,7 +11,7 @@
   import {
     addCalendarWeeks,
     calculateWeekAndDay,
-    createInitialCalendar,
+    createInitialCalendar
   } from '$lib/helperFunctions/calendarDatesCreation';
   import { CalendarSettings } from '$lib/store/store';
 
@@ -22,12 +22,7 @@
   const now = new Date();
   $: dayOne =
     setting === 'week'
-      ? new Date(
-          now.getFullYear(),
-          now.getMonth(),
-          now.getDate() - now.getDay() + 1,
-          1
-        ).getTime()
+      ? new Date(now.getFullYear(), now.getMonth(), now.getDate() - now.getDay() + 1, 1).getTime()
       : now.setHours(1, 0, 0, 0);
   // TODO: propper approach to time zones
   let pastWeeks: number;
@@ -46,23 +41,18 @@
   }
 
   let assigned: string[] = [];
-  function assignMealPlans(
-    plans: MealPlanType[],
-    initialCreationDone: boolean
-  ) {
-    plans.forEach((el) => {
-      if (!assigned.includes(el._id)) {
-        const { week, day } = calculateWeekAndDay(dayOne, el.timestamp);
-        const meal = el.mealType === 'Dinner' ? 'dinner' : 'lunch';
-        if (calendar[`week${week}`]) {
-          calendar[`week${week}`][day][meal] = [
-            ...calendar[`week${week}`][day][meal],
-            el,
-          ];
-          assigned.push(el._id);
+  function assignMealPlans(plans: MealPlanType[], initialCreationDone: boolean) {
+    initialCreationDone &&
+      plans.forEach((el) => {
+        if (!assigned.includes(el._id)) {
+          const { week, day } = calculateWeekAndDay(dayOne, el.timestamp);
+          const meal = el.mealType === 'Dinner' ? 'dinner' : 'lunch';
+          if (calendar[`week${week}`]) {
+            calendar[`week${week}`][day][meal] = [...calendar[`week${week}`][day][meal], el];
+            assigned.push(el._id);
+          }
         }
-      }
-    });
+      });
   }
   $: assignMealPlans(data.mealPlans, initialCreationDone);
 
@@ -70,22 +60,14 @@
     if (future) {
       futureWeeks += 2;
       goto(
-        `?pw=${pastWeeks}&fw=${futureWeeks}${
-          setting === 'week' ? '#week' + (futureWeeks - 2) : ''
-        }`
+        `?pw=${pastWeeks}&fw=${futureWeeks}${setting === 'week' ? '#week' + (futureWeeks - 2) : ''}`
       );
-      calendar[`week${futureWeeks - 1}`] = addCalendarWeeks(
-        dayOne,
-        futureWeeks - 1
-      );
+      calendar[`week${futureWeeks - 1}`] = addCalendarWeeks(dayOne, futureWeeks - 1);
       calendar[`week${futureWeeks}`] = addCalendarWeeks(dayOne, futureWeeks);
     } else {
       pastWeeks -= 2;
       goto(`?pw=${pastWeeks}&fw=${futureWeeks}${'#week' + (pastWeeks + 2)}`);
-      calendar[`week${pastWeeks + 1}`] = addCalendarWeeks(
-        dayOne,
-        pastWeeks + 1
-      );
+      calendar[`week${pastWeeks + 1}`] = addCalendarWeeks(dayOne, pastWeeks + 1);
       calendar[`week${pastWeeks}`] = addCalendarWeeks(dayOne, pastWeeks);
     }
   }

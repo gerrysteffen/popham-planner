@@ -1,8 +1,4 @@
-import type {
-  MealType,
-  OverviewCriteria,
-  RestaurantType,
-} from '$lib/UIdata/types';
+import type { MealType, OverviewCriteria, RestaurantType } from '$lib/UIdata/types';
 import { sortGroupArr } from './sorting';
 import { adjustForUmlaute } from './umlaute';
 
@@ -11,15 +7,15 @@ export function groupElements(
   column: OverviewCriteria,
   ascending: boolean
 ) {
-  let newGroups: {
+  const newGroups: {
     [key: string]: [MealType | RestaurantType] | null;
   } = {
-    Uncategorised: null,
+    Uncategorised: null
   };
 
   if (column === 'name') {
     data.forEach((el: MealType | RestaurantType) => {
-      let firstLetter = adjustForUmlaute(el[column].slice(0, 1).toUpperCase());
+      const firstLetter = adjustForUmlaute(el[column].slice(0, 1).toUpperCase());
       if (newGroups[firstLetter]) {
         newGroups[firstLetter]!.push(el);
       } else {
@@ -61,29 +57,19 @@ export function groupElements(
     data.forEach((el: MealType | RestaurantType) => {
       const timeSince = Date.now() - new Date(el[column]).getTime();
       if (timeSince < hour) {
-        newGroups['Last Hour']
-          ? newGroups['Last Hour'].push(el)
-          : (newGroups['Last Hour'] = [el]);
+        newGroups['Last Hour'] ? newGroups['Last Hour'].push(el) : (newGroups['Last Hour'] = [el]);
       } else if (timeSince < day) {
-        newGroups['Today']
-          ? newGroups['Today'].push(el)
-          : (newGroups['Today'] = [el]);
+        newGroups['Today'] ? newGroups['Today'].push(el) : (newGroups['Today'] = [el]);
       } else if (timeSince < 2 * day) {
-        newGroups['Yesterday']
-          ? newGroups['Yesterday'].push(el)
-          : (newGroups['Yesterday'] = [el]);
+        newGroups['Yesterday'] ? newGroups['Yesterday'].push(el) : (newGroups['Yesterday'] = [el]);
       } else if (timeSince < week) {
-        newGroups['Last Week']
-          ? newGroups['Last Week'].push(el)
-          : (newGroups['Last Week'] = [el]);
+        newGroups['Last Week'] ? newGroups['Last Week'].push(el) : (newGroups['Last Week'] = [el]);
       } else if (timeSince < month) {
         newGroups['Last Month']
           ? newGroups['Last Month'].push(el)
           : (newGroups['Last Month'] = [el]);
       } else {
-        newGroups['Older']
-          ? newGroups['Older'].push(el)
-          : (newGroups['Older'] = [el]);
+        newGroups['Older'] ? newGroups['Older'].push(el) : (newGroups['Older'] = [el]);
       }
     });
   }
@@ -98,11 +84,7 @@ export function groupElements(
     }
   );
 
-  if (
-    column === 'categories' ||
-    column === 'mainCategory' ||
-    column === 'tags'
-  ) {
+  if (column === 'categories' || column === 'mainCategory' || column === 'tags') {
     newGroupArr = sortGroupArr(newGroupArr, ascending);
   }
 

@@ -6,12 +6,10 @@ type CalendarSettingsType = {
 };
 
 const initialCalendarSettings: CalendarSettingsType = {
-  view: 'week',
+  view: 'week'
 };
 
-export const CalendarSettings = writable<CalendarSettingsType>(
-  initialCalendarSettings
-);
+export const CalendarSettings = writable<CalendarSettingsType>(initialCalendarSettings);
 
 type OverviewSettingsType = {
   criteria: OverviewCriteria;
@@ -24,20 +22,16 @@ const initialMealOVSettings: OverviewSettingsType = {
   criteria: 'name',
   ascending: true,
   cubes: true,
-  grouped: true,
+  grouped: true
 };
 
-export const MealOverviewSettings = writable<OverviewSettingsType>(
-  initialMealOVSettings
-);
+export const MealOverviewSettings = writable<OverviewSettingsType>(initialMealOVSettings);
 
 const initialRestOVSettings: OverviewSettingsType = {
   criteria: 'name',
   ascending: true,
   cubes: true,
-  grouped: true,
+  grouped: true
 };
 
-export const RestOverViewSettings = writable<OverviewSettingsType>(
-  initialRestOVSettings
-);
+export const RestOverViewSettings = writable<OverviewSettingsType>(initialRestOVSettings);

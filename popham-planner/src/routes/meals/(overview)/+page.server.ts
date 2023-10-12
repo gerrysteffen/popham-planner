@@ -5,6 +5,6 @@ export async function load() {
   const meals = await getAllMeals();
 
   return {
-    meals: JSON.parse(JSON.stringify(meals)) as MealType[],
+    meals: JSON.parse(JSON.stringify(meals)) as MealType[]
   };
 }

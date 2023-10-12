@@ -1,5 +1,5 @@
 <div id="cube-container">
-  <slot/>
+  <slot />
 </div>
 
 <style>

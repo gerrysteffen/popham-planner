@@ -4,30 +4,21 @@
 
 <div id="sub-menu-container">
   <a id="meals-link" href="/meals">
-    <div
-      class="sub-menu-cube"
-      style="background-color: {colors.meals.unselected};"
-    >
+    <div class="sub-menu-cube" style="background-color: {colors.meals.unselected};">
       <p>Meals</p>
       <p>&</p>
       <p>Recipes</p>
     </div>
   </a>
   <a id="restaurants-link" href="/restaurants">
-    <div
-      class="sub-menu-cube"
-      style="background-color: {colors.restaurants.unselected};"
-    >
+    <div class="sub-menu-cube" style="background-color: {colors.restaurants.unselected};">
       <p>Restaurants</p>
       <p>&</p>
       <p>Take-Outs</p>
     </div>
   </a>
   <a id="planner-link" href="/planner?pw=-1&fw=1#week0">
-    <div
-      class="sub-menu-cube"
-      style="background-color: {colors.planner.unselected};"
-    >
+    <div class="sub-menu-cube" style="background-color: {colors.planner.unselected};">
       <p>Plan</p>
       <p>Your</p>
       <p>Week!</p>

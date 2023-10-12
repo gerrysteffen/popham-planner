@@ -1,7 +1,7 @@
 const umlautMap = {
   Ä: 'A',
   Ö: 'O',
-  Ü: 'U',
+  Ü: 'U'
 };
 
 export function adjustForUmlaute(word: string) {

@@ -10,7 +10,7 @@ export async function load({ params }) {
   }
 
   return {
-    restaurant: JSON.parse(JSON.stringify(restaurant)) as RestaurantType,
+    restaurant: JSON.parse(JSON.stringify(restaurant)) as RestaurantType
   };
 }
 
@@ -30,9 +30,9 @@ export const actions = {
       image_url,
       mainCategory,
       categories,
-      tags,
+      tags
     };
     await updateRestaurant(params.restaurantId, restaurant);
     throw redirect(301, `/restaurants/${params.restaurantId}`);
-  },
+  }
 };

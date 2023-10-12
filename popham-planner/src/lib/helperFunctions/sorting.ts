@@ -1,9 +1,4 @@
-import { preloadData } from '$app/navigation';
-import type {
-  MealType,
-  OverviewCriteria,
-  RestaurantType,
-} from '$lib/UIdata/types';
+import type { MealType, OverviewCriteria, RestaurantType } from '$lib/UIdata/types';
 import { adjustForUmlaute } from './umlaute';
 
 export function sortElements(
@@ -11,19 +6,12 @@ export function sortElements(
   column: OverviewCriteria,
   ascending: boolean
 ) {
-  if (
-    column === 'categories' ||
-    column === 'mainCategory' ||
-    column === 'tags'
-  ) {
+  if (column === 'categories' || column === 'mainCategory' || column === 'tags') {
     column = 'name';
   } else if (column === 'createdAt' || column === 'updatedAt') {
     ascending = !ascending;
   }
-  let sortLogic = (
-    a: MealType | RestaurantType,
-    b: MealType | RestaurantType
-  ) => {
+  const sortLogic = (a: MealType | RestaurantType, b: MealType | RestaurantType) => {
     const A = adjustForUmlaute(a[column] as string);
     const B = adjustForUmlaute(b[column] as string);
     return A < B ? (ascending ? -1 : 1) : A > B ? (ascending ? 1 : -1) : 0;
@@ -31,11 +19,8 @@ export function sortElements(
   return data.sort(sortLogic);
 }
 
-export function sortGroupArr(
-  data: [string, [MealType | RestaurantType]][],
-  ascending: boolean
-) {
-  let sortLogic = (
+export function sortGroupArr(data: [string, [MealType | RestaurantType]][], ascending: boolean) {
+  const sortLogic = (
     a: [string, [MealType | RestaurantType]],
     b: [string, [MealType | RestaurantType]]
   ) => {

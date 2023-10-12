@@ -31,7 +31,7 @@ const sharedCategories = [
   'Vegetarian',
   'Vegan',
   'Vietnamese',
-  'Swiss',
+  'Swiss'
 ];
 
 export const foodCategories = [
@@ -42,7 +42,7 @@ export const foodCategories = [
   'Meat',
   'Pizza',
   'Rice Dish',
-  'Soup',
+  'Soup'
 ];
 
 export const restaurantCategories = [
@@ -51,5 +51,5 @@ export const restaurantCategories = [
   'Chicken Shop',
   'Pizzeria',
   'Pub',
-  'Steakhouse',
+  'Steakhouse'
 ];

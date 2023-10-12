@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { page } from "$app/stores";
-  import { colors } from "$lib/UIdata/cssSelectors";
+  import { page } from '$app/stores';
+  import { colors } from '$lib/UIdata/cssSelectors';
 
-  export let data= {
+  export let data = {
     _id: '',
     name: 'Loading...',
-    image_url: '',
+    image_url: ''
   };
 
   $: category = $page.url.pathname.split('/')[1] as string;
@@ -13,9 +13,9 @@
 
 <a href={`${category}/${data._id}`}>
   <div class="item" style="background-color: {colors[category].unselected}">
-      <div class="text">
-        {data.name}
-      </div>
+    <div class="text">
+      {data.name}
+    </div>
   </div>
 </a>
 
@@ -31,7 +31,7 @@
     justify-content: start;
     align-items: center;
     color: black;
-    padding: 10px
+    padding: 10px;
   }
   .text {
     width: 100%;

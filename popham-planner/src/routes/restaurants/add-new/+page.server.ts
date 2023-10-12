@@ -18,9 +18,9 @@ export const actions = {
       image_url,
       mainCategory,
       categories,
-      tags,
+      tags
     };
     const newRestaurant = await createRestaurant(restaurant);
     throw redirect(301, `/restaurants/${newRestaurant?._id || ''}`);
-  },
+  }
 };

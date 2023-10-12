@@ -1,24 +1,27 @@
 <script lang="ts">
-  import { page } from "$app/stores";
-  import { colors } from "$lib/UIdata/cssSelectors";
+  import { page } from '$app/stores';
+  import { colors } from '$lib/UIdata/cssSelectors';
 
-  export let data= {
+  export let data = {
     _id: '',
     name: 'Loading...',
-    image_url: '',
+    image_url: ''
   };
 
   $: category = $page.url.pathname.split('/')[1] as string;
 </script>
 
 <a href={`${category}/${data._id}`}>
-  <div class="cube" style="background-color: {colors[category].selected}; background-image: url('{data.image_url}')">
+  <div
+    class="cube"
+    style="background-color: {colors[category].selected}; background-image: url('{data.image_url}')"
+  >
     <div class="cube-text">
       <div class="text">
         {data.name}
       </div>
     </div>
-    <div class="cube-text-background" style="background-color: {colors[category].unselected}"/>
+    <div class="cube-text-background" style="background-color: {colors[category].unselected}" />
   </div>
 </a>
 

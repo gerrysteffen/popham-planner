@@ -11,7 +11,7 @@ export async function load({ params }) {
   }
 
   return {
-    restaurant: JSON.parse(JSON.stringify(restaurant)) as RestaurantType,
+    restaurant: JSON.parse(JSON.stringify(restaurant)) as RestaurantType
   };
 }
 
@@ -24,11 +24,7 @@ export const actions = {
     const data = await request.formData();
     const restaurant = data.get('id') as string;
     const date = data.get('date') as string;
-    const mealType = data.get('mealType') as
-      | 'Breakfast'
-      | 'Brunch'
-      | 'Lunch'
-      | 'Dinner';
+    const mealType = data.get('mealType') as 'Breakfast' | 'Brunch' | 'Lunch' | 'Dinner';
     const planType = data.get('planType') as 'meal' | 'restaurant';
 
     const timestamp = new Date(date).getTime();
@@ -37,10 +33,10 @@ export const actions = {
       timestamp,
       planType,
       mealType,
-      restaurant,
+      restaurant
     };
 
     await createMealPlan(mealPlan);
     throw redirect(301, url.pathname);
-  },
+  }
 };

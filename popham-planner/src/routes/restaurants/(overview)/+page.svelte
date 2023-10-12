@@ -8,4 +8,4 @@
 </script>
 
 <TitleBar title="All Restaurants" />
-<OverviewPage data={data.restaurants} type='restaurant'/>
+<OverviewPage data={data.restaurants} type="restaurant" />

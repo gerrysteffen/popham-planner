@@ -10,7 +10,7 @@ export async function load({ params }) {
   }
 
   return {
-    mealPlan: JSON.parse(JSON.stringify(mealPlan)) as MealPlanType,
+    mealPlan: JSON.parse(JSON.stringify(mealPlan)) as MealPlanType
   };
 }
 
@@ -18,5 +18,5 @@ export const actions = {
   delete: async ({ params }) => {
     deleteMealPlan(params.mealPlanId);
     throw redirect(301, '/planner?pw=-1&fw=1#week0');
-  },
+  }
 };
