@@ -136,7 +136,7 @@
     left: 0px;
     right: 0px;
     bottom: 0px;
-    overflow: scroll;
+    overflow-y: scroll;
     scroll-snap-type: y mandatory;
     -ms-overflow-style: none; /* Internet Explorer 10+ */
     scrollbar-width: none; /* Firefox */

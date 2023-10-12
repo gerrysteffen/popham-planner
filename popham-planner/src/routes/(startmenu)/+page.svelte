@@ -3,7 +3,7 @@
 </script>
 
 <div id="sub-menu-container">
-  <a href="/meals">
+  <a id="meals-link" href="/meals">
     <div
       class="sub-menu-cube"
       style="background-color: {colors.meals.unselected};"
@@ -13,7 +13,7 @@
       <p>Recipes</p>
     </div>
   </a>
-  <a href="/restaurants">
+  <a id="restaurants-link" href="/restaurants">
     <div
       class="sub-menu-cube"
       style="background-color: {colors.restaurants.unselected};"
@@ -23,7 +23,7 @@
       <p>Take-Outs</p>
     </div>
   </a>
-  <a href="/planner?pw=-1&fw=1#week0">
+  <a id="planner-link" href="/planner?pw=-1&fw=1#week0">
     <div
       class="sub-menu-cube"
       style="background-color: {colors.planner.unselected};"

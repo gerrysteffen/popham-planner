@@ -26,7 +26,7 @@
     $page.url.pathname.split('/').slice(0, 3).join('/') === linkCompare;
 </script>
 
-<a href={link} class:rounded={i === 0}>
+<a href={link} id={`${icon}-link`} class:rounded={i === 0}>
   <div
     class="icon-wrapper"
     style="background-color: {selected

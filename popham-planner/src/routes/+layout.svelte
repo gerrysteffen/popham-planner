@@ -7,6 +7,7 @@
   import SubCat from '$lib/components/navigation/SubCat.svelte';
   import SubCatWrapper from '$lib/components/navigation/SubCatWrapper.svelte';
   import Spinner from '$lib/components/basicUI/Spinner.svelte';
+  import { goto } from '$app/navigation';
 
   $: path = $page.url.pathname;
 
@@ -71,7 +72,9 @@
         { href: '/planner/notes', icon: 'notes' },
       ],
     },
-  };
+  }
+
+      const test = 'test'
 
   $: selected = menuOptions[path.split('/')[1]] || menuOptions.planner;
   $: unselected = Object.values(menuOptions).filter(
@@ -94,10 +97,11 @@
     }
   }
 
-  function selectCat(id: string) {
+  function selectCat(id: string, href: string) {
     // Could do without the below (url change will trigger change of selected),
     // but to make sure UI is responsive/change is quick I keep manual assignment
     selected = menuOptions[id];
+    goto(href);
     toggleCatMenu();
   }
 </script>
@@ -133,16 +137,14 @@
       {#each menuOpen ? unselected : [] as option, i (option.id)}
         <!-- Change code here to have Z-index by selected -->
         <MainCat
-          href={option.href}
           topPosition={-55 - i * 55}
           transitionY={55 + i * 55}
-          clickHandler={() => selectCat(option.id)}
+          clickHandler={() => selectCat(option.id, option.href)}
           color={colors[option.id]}
           title={option.title}
         />
       {/each}
       <MainCat
-        href={path}
         topPosition={0}
         transitionY={0}
         clickHandler={() => toggleCatMenu()}
@@ -151,6 +153,7 @@
       />
     </MainCatWrapper>
   </NavBar>
+  <a href="/" id="home-button"><button>Home</button></a>
 {:else}
   <slot />
   {#if $navigating}
@@ -182,5 +185,12 @@
     #content {
       bottom: 80px;
     }
+  }
+
+  #home-button {
+    z-index: 1000;
+    position: absolute;
+    top: 0;
+    right: 0;
   }
 </style>
