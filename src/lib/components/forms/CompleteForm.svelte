@@ -48,11 +48,12 @@
   {/each}
   <ButtonOneLineWrapper>
     {#if mode === 'create'}
-      <StandardButton type="submit" text="Create" handleClick={() => {}} />
+      <StandardButton type="submit" id="create" text="Create" handleClick={() => {}} />
     {:else if mode === 'edit'}
-      <StandardButton type="submit" text="Confirm" handleClick={() => {}} />
+      <StandardButton type="submit" id="edit-confirm" text="Confirm" handleClick={() => {}} />
       <StandardButton
         text="Cancel"
+        id="edit-cancel"
         type="button"
         handleClick={() => goto(`/${type}/${data._id}`)}
       />

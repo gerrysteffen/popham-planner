@@ -40,6 +40,7 @@
     </div>
     <ButtonOneLineWrapper>
       <StandardButton
+        id="add-to-planner"
         text="Add to Your Planner"
         type="button"
         handleClick={() => {
@@ -49,11 +50,13 @@
     </ButtonOneLineWrapper>
     <ButtonOneLineWrapper>
       <StandardButton
+        id="edit"
         text="Edit"
         type="button"
         handleClick={() => goto(`/${type}s/${data._id}/edit`)}
       />
       <StandardButton
+        id="delete"
         text="Delete"
         type="button"
         handleClick={() => (deletePending = !deletePending)}

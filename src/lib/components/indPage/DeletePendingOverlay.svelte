@@ -10,11 +10,12 @@
     <p>Are you sure you want to delete this record?</p>
     <form method="POST" action="?/delete" use:enhance>
       <StandardButton
+        id="delete-cancel"
         type="reset"
         text="Cancel"
         handleClick={() => (deletePending = !deletePending)}
       />
-      <StandardButton type="submit" text="Confirm" handleClick={() => {}} />
+      <StandardButton type="submit" id="delete-confirm" text="Confirm" handleClick={() => {}} />
     </form>
   </div>
 </div>
