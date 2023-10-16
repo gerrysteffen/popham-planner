@@ -6,7 +6,7 @@ beforeEach(() => {
   cy.visit('');
 });
 
-console.log(local)
+console.log(local);
 
 const bUrl = Cypress.config().baseUrl;
 const testName = 'Test' + String(Date.now());
@@ -130,11 +130,11 @@ describe('MEALS:', () => {
       cy.url().should('eq', bUrl + newMealPath);
       cy.get('#edit').click();
       local && cy.wait(300);
-      cy.get('#description').type('A wonderful description.')
-      cy.get('#edit-confirm').click()
+      cy.get('#description').type('A wonderful description.');
+      cy.get('#edit-confirm').click();
       local && cy.wait(300);
       cy.url().should('eq', bUrl + newMealPath);
-      cy.contains('A wonderful description.').should('exist')
+      cy.contains('A wonderful description.').should('exist');
     });
     it('can delete meals (or cancel deletion)', () => {
       local && cy.wait(300);
@@ -190,11 +190,11 @@ describe('RESTAURANTS:', () => {
       cy.url().should('eq', bUrl + newRestPath);
       cy.get('#edit').click();
       local && cy.wait(300);
-      cy.get('#description').type('A wonderful description.')
-      cy.get('#edit-confirm').click()
+      cy.get('#description').type('A wonderful description.');
+      cy.get('#edit-confirm').click();
       local && cy.wait(300);
       cy.url().should('eq', bUrl + newRestPath);
-      cy.contains('A wonderful description.').should('exist')
+      cy.contains('A wonderful description.').should('exist');
     });
     it('can delete restaurants (or cancel deletion)', () => {
       local && cy.wait(300);

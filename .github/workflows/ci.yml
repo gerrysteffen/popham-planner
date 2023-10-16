@@ -1,6 +1,6 @@
 # name: Node CI
 
-# on: 
+# on:
 #   pull_request:
 #     branches:
 #       - main
@@ -12,17 +12,15 @@
 #   test:
 #     runs-on: ubuntu-latest
 
-#     steps: 
+#     steps:
 #       - name: Checkout code
 #         uses: actions/checkout@v2
 
 #       - name: Setup Node.js
 #         uses: actions/setup-node@v2
-#         with: 
+#         with:
 #           node-version: 20
-      
+
 #       - name: Install dependencies
 #         run: npm i
-
-      
 
