@@ -1,26 +1,25 @@
-# name: Node CI
+name: Node CI
 
-# on:
-#   pull_request:
-#     branches:
-#       - main
+on:
+  pull_request:
+    branches:
+      - main
 
-# env:
-#   DB_URL: ${{ secrets.DB_URL }}
+jobs:
+  test:
+    runs-on: ubuntu-latest
 
-# jobs:
-#   test:
-#     runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-#     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 20
 
-#       - name: Setup Node.js
-#         uses: actions/setup-node@v2
-#         with:
-#           node-version: 20
+      - name: 'Install dependencies'
+        run: npm install
 
-#       - name: Install dependencies
-#         run: npm i
-
+      - name: 'Run tests on dev branch'
+        run: npm run test:dev
