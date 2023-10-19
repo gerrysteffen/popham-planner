@@ -51,8 +51,8 @@
     value = valueList;
   }
 
-  function handleOptionSelect(option: string){
-    newValue=option; 
+  function handleOptionSelect(option: string) {
+    newValue = option;
     handleStrictChange();
   }
 </script>
@@ -79,11 +79,16 @@
             on:input|preventDefault={strict ? handleStrictChange : () => {}}
           />
           {#if newValue.length > 0}
-          <div id="options-list">
-            {#each optionlist as option}
-              <button name={option} type='button' class="option" on:click={()=>handleOptionSelect(option)}>{option}</button>
-            {/each}
-          </div>
+            <div id="options-list">
+              {#each optionlist as option}
+                <button
+                  name={option}
+                  type="button"
+                  class="option"
+                  on:click={() => handleOptionSelect(option)}>{option}</button
+                >
+              {/each}
+            </div>
           {/if}
         </form>
       {/if}
