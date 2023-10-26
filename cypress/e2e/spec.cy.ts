@@ -6,8 +6,6 @@ beforeEach(() => {
   cy.visit('');
 });
 
-console.log(local);
-
 const bUrl = Cypress.config().baseUrl;
 const testName = 'Test' + String(Date.now());
 

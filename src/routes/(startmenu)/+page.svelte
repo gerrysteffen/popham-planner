@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { colors } from '$lib/UIdata/cssSelectors';
+  import { colors } from '$lib/utils/cssColorSelectors';
 </script>
 
 <div id="sub-menu-container">

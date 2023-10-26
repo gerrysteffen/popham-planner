@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { MealType, RestaurantType, Titles } from '$lib/UIdata/types';
+  import type { MealType, RestaurantType, Titles } from '$lib/utils/types';
 
   import { goto } from '$app/navigation';
 

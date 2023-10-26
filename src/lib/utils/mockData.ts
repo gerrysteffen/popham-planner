@@ -9,11 +9,10 @@ export const restaurantMock: {
     name: '',
     description: '',
     image_url: '',
-    mainCategory: '',
     categories: [],
     tags: [],
-    createdAt: new Date(Date.now()),
-    updatedAt: new Date(Date.now())
+    createdAt: String(new Date(Date.now())),
+    updatedAt: String(new Date(Date.now()))
   },
   titles: {
     name: 'Name',
@@ -35,11 +34,10 @@ export const mealMock: {
     description: '',
     source: '',
     image_url: '',
-    mainCategory: '',
     categories: [],
     tags: [],
-    createdAt: new Date(Date.now()),
-    updatedAt: new Date(Date.now())
+    createdAt: String(new Date(Date.now())),
+    updatedAt: String(new Date(Date.now()))
   },
   titles: {
     name: 'Name',

@@ -2,7 +2,7 @@
   import { goto } from '$app/navigation';
   import { page } from '$app/stores';
 
-  import type { CalendarType, MealPlanType } from '$lib/UIdata/types';
+  import type { CalendarType, MealPlanType } from '$lib/utils/types';
 
   import TitleBar from '$lib/components/navigation/TitleBar.svelte';
   import ContentWrapper from '$lib/components/navigation/ContentWrapper.svelte';
@@ -12,7 +12,7 @@
     addCalendarWeeks,
     calculateWeekAndDay,
     createInitialCalendar
-  } from '$lib/helperFunctions/calendarDatesCreation';
+  } from '$lib/utils/helperFunctions/calendarDatesCreation';
   import { CalendarSettings } from '$lib/store/store';
 
   export let data: { mealPlans: MealPlanType[] };

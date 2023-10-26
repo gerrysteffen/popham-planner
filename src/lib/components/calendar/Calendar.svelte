@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { CalendarType } from '$lib/UIdata/types';
+  import type { CalendarType } from '$lib/utils/types';
   import DayWrapper from '$lib/components/calendar/DayWrapper.svelte';
 
   export let setting: 'day' | 'week';

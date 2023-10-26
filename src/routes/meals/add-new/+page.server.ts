@@ -1,4 +1,4 @@
-import type { MealFormType } from '$lib/UIdata/types.js';
+import type { MealFormType } from '$lib/utils/types.js';
 import { createMeal } from '$lib/db/meals';
 import { redirect } from '@sveltejs/kit';
 

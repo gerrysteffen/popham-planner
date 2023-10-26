@@ -1,4 +1,4 @@
-import type { MealType, OverviewCriteria, RestaurantType } from '$lib/UIdata/types';
+import type { MealType, OverviewCriteria, RestaurantType } from '$lib/utils/types';
 import { adjustForUmlaute } from './umlaute';
 
 export function sortElements(

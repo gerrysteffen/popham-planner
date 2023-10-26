@@ -1,4 +1,4 @@
-import type { RestaurantFormType, RestaurantType } from '$lib/UIdata/types.js';
+import type { RestaurantFormType, RestaurantType } from '$lib/utils/types.js';
 import { getRestaurantById, updateRestaurant } from '$lib/db/restaurants.js';
 import { redirect } from '@sveltejs/kit';
 

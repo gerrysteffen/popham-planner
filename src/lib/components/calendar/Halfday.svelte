@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { MealPlanType } from '$lib/UIdata/types';
+  import type { MealPlanType } from '$lib/utils/types';
   import MealPlanCube from '../mealplan/MealPlanCube.svelte';
 
   export let time: 'lunch' | 'dinner' | 'all';

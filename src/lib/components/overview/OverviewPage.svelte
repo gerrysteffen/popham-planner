@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type { MealType, RestaurantType } from '$lib/UIdata/types';
-  import { groupElements } from '$lib/helperFunctions/grouping';
-  import { sortElements } from '$lib/helperFunctions/sorting';
+  import type { MealType, RestaurantType } from '$lib/utils/types';
+  import { groupElements } from '$lib/utils/helperFunctions/grouping';
+  import { sortElements } from '$lib/utils/helperFunctions/sorting';
   import { MealOverviewSettings, RestOverViewSettings } from '$lib/store/store';
 
   import Switch from '../basicUI/Switch.svelte';
