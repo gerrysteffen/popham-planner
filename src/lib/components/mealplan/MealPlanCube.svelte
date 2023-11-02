@@ -1,7 +1,7 @@
 <script lang="ts">
   import { page } from '$app/stores';
-  import { colors } from '$lib/UIdata/cssSelectors';
-  import type { MealPlanType } from '$lib/UIdata/types';
+  import { colors } from '$lib/utils/cssColorSelectors';
+  import type { MealPlanType } from '$lib/utils/types';
 
   export let data: MealPlanType;
 

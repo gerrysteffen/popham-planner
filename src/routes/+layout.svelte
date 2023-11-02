@@ -1,6 +1,6 @@
 <script lang="ts">
   import { navigating, page } from '$app/stores';
-  import { colors } from '$lib/UIdata/cssSelectors';
+  import { colors } from '$lib/utils/cssColorSelectors';
   import NavBar from '$lib/components/navigation/NavBar.svelte';
   import MainCat from '$lib/components/navigation/MainCat.svelte';
   import MainCatWrapper from '$lib/components/navigation/MainCatWrapper.svelte';

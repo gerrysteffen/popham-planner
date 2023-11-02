@@ -1,4 +1,4 @@
-import type { OverviewCriteria } from '$lib/UIdata/types';
+import type { OverviewCriteria } from '$lib/utils/types';
 import { writable } from 'svelte/store';
 
 type CalendarSettingsType = {

@@ -1,4 +1,4 @@
-import type { MealPlanFormType, RestaurantType } from '$lib/UIdata/types.js';
+import type { MealPlanFormType, RestaurantType } from '$lib/utils/types.js';
 import { createMealPlan } from '$lib/db/mealPlans.js';
 import { deleteRestaurant, getRestaurantById } from '$lib/db/restaurants';
 import { redirect } from '@sveltejs/kit';

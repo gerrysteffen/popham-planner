@@ -1,4 +1,4 @@
-import type { MealPlanType } from '$lib/UIdata/types';
+import type { MealPlanType } from '$lib/utils/types';
 import { getMealPlansByDate } from '$lib/db/mealPlans.js';
 import { redirect } from '@sveltejs/kit';
 

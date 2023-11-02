@@ -11,6 +11,8 @@
   $: valueList = [...value];
   $: newValue = '';
 
+  $: optionlist = categories.filter((cat) => cat.toLowerCase().includes(newValue.toLowerCase()));
+
   let addPending = false;
 
   function handleAddPending() {
@@ -48,6 +50,11 @@
     valueList = valueList.filter((el) => el !== input);
     value = valueList;
   }
+
+  function handleOptionSelect(option: string) {
+    newValue = option;
+    handleStrictChange();
+  }
 </script>
 
 {#if typeof mainCategory === 'string'}
@@ -64,13 +71,25 @@
   <div id="cat-list">
     <div class="mc-element mc-input">
       {#if addPending}
-        <form on:submit|preventDefault={handleLaxChange}>
+        <form id="cat-form" on:submit|preventDefault={handleLaxChange}>
           {key === 'tags' ? '#' : ''}<input
             id="add-cat-input"
             bind:value={newValue}
             name="addCat"
             on:input|preventDefault={strict ? handleStrictChange : () => {}}
           />
+          {#if newValue.length > 0}
+            <div id="options-list">
+              {#each optionlist as option}
+                <button
+                  name={option}
+                  type="button"
+                  class="option"
+                  on:click={() => handleOptionSelect(option)}>{option}</button
+                >
+              {/each}
+            </div>
+          {/if}
         </form>
       {/if}
       <button type="button" class="mc-element" on:click={handleAddPending}>
@@ -152,5 +171,29 @@
     display: flex;
     justify-items: center;
     align-items: center;
+  }
+  #cat-form {
+    position: relative;
+  }
+  #options-list {
+    position: absolute;
+    bottom: -120px;
+    height: 120px;
+    width: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow: scroll;
+  }
+  .option {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    font-size: small;
+    background-color: white;
+    border-bottom: gray 1px solid;
+    text-align: left;
   }
 </style>

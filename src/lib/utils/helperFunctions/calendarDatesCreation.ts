@@ -1,4 +1,4 @@
-import type { CalendarType, MealDateType } from '$lib/UIdata/types';
+import type { CalendarType, MealDateType } from '$lib/utils/types';
 
 const oneDayInMs = 1000 * 60 * 60 * 24;
 const oneWeekInMs = oneDayInMs * 7;

@@ -1,7 +1,13 @@
 <script lang="ts">
   import { enhance } from '$app/forms';
+  import Spinner from '../basicUI/Spinner.svelte';
   import StandardButton from '../forms/StandardButton.svelte';
   export let deletePending: boolean;
+
+  let loading = false;
+  function loadingScreenOn() {
+    loading = true;
+  }
 </script>
 
 <div id="black-background" />
@@ -15,14 +21,17 @@
         text="Cancel"
         handleClick={() => (deletePending = !deletePending)}
       />
-      <StandardButton type="submit" id="delete-confirm" text="Confirm" handleClick={() => {}} />
+      <StandardButton type="submit" id="delete-confirm" text="Confirm" handleClick={loadingScreenOn} />
     </form>
   </div>
 </div>
+{#if loading}
+  <Spinner top="0" />
+{/if}
 
 <style>
   #black-background {
-    z-index: 100;
+    z-index: 40;
     position: absolute;
     top: 0;
     left: 0;
@@ -32,7 +41,7 @@
     opacity: 0.7;
   }
   #foreground {
-    z-index: 101;
+    z-index: 41;
     position: absolute;
     top: 0;
     left: 0;

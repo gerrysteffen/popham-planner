@@ -1,4 +1,4 @@
-import type { MealPlanFormType, MealPlanType } from '$lib/UIdata/types';
+import type { MealPlanFormType, MealPlanType } from '$lib/utils/types';
 import mongoose from './db';
 import { MealModel } from './meals';
 import { RestaurantModel } from './restaurants';

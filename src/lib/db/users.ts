@@ -1,4 +1,4 @@
-import type { MealType } from '$lib/UIdata/types';
+import type { MealType } from '$lib/utils/types';
 import mongoose from './db';
 
 let mealSchema: undefined | mongoose.Schema<MealType>;

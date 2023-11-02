@@ -6,6 +6,17 @@ on:
       - main
 
 jobs:
+  check-branch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check branches
+        run: |
+          if [ ${{ github.head_ref }} != "dev" ]; then
+            echo "Merge requests to main branch are only allowed from dev branch."
+            exit 1
+          fi
+
   test:
     runs-on: ubuntu-latest
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { MealType, RestaurantType, Titles } from '$lib/UIdata/types';
+  import type { MealType, RestaurantType, Titles } from '$lib/utils/types';
 
   import { goto } from '$app/navigation';
 
@@ -8,6 +8,7 @@
   import StandardTextInput from '$lib/components/forms/StandardTextInput.svelte';
   import StandardMcInput from '$lib/components/forms/StandardMCInput.svelte';
   import ButtonOneLineWrapper from './ButtonOneLineWrapper.svelte';
+  import Spinner from '../basicUI/Spinner.svelte';
 
   export let type: 'meals' | 'restaurants';
   export let data: MealType | RestaurantType;
@@ -25,6 +26,11 @@
           ...emptyValues, // to make sure new fields are included aswell
           ...data
         });
+
+  let loading = false;
+  function loadingScreenOn() {
+    loading = true;
+  }
 </script>
 
 <StandardForm>
@@ -48,9 +54,14 @@
   {/each}
   <ButtonOneLineWrapper>
     {#if mode === 'create'}
-      <StandardButton type="submit" id="create" text="Create" handleClick={() => {}} />
+      <StandardButton type="submit" id="create" text="Create" handleClick={loadingScreenOn} />
     {:else if mode === 'edit'}
-      <StandardButton type="submit" id="edit-confirm" text="Confirm" handleClick={() => {}} />
+      <StandardButton
+        type="submit"
+        id="edit-confirm"
+        text="Confirm"
+        handleClick={loadingScreenOn}
+      />
       <StandardButton
         text="Cancel"
         id="edit-cancel"
@@ -60,3 +71,6 @@
     {/if}
   </ButtonOneLineWrapper>
 </StandardForm>
+{#if loading}
+  <Spinner top="0" />
+{/if}

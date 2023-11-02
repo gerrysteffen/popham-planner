@@ -4,7 +4,9 @@ export type TypeSkeleton = {
   description: string;
   image_url: string;
   tags: string[];
-  mainCategory: string;
+  // mainCategory?: CategoryType;
+  // categories: CategoryType[];
+  mainCategory?: string;
   categories: string[];
   // priceLevel: number; // TODO
   // rating: number; // TODO
@@ -78,3 +80,12 @@ export type UserType = {
   name: string;
   households: HouseholdType[];
 };
+
+export type CategoryType = {
+  _id: string;
+  name: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CategoryFormType = Omit<CategoryType, '_id' | 'createdAt' | 'updatedAt'>;

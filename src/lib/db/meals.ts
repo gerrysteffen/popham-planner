@@ -1,4 +1,4 @@
-import type { MealFormType, MealType } from '$lib/UIdata/types';
+import type { MealFormType, MealType } from '$lib/utils/types';
 import mongoose from './db';
 
 let mealSchema: undefined | mongoose.Schema<MealType>;
@@ -13,6 +13,11 @@ if (!mongoose.models.meal && !mealSchema) {
       tags: [String],
       mainCategory: String,
       categories: [String]
+      // mainCategory: {
+      //   type: mongoose.Schema.Types.ObjectId,
+      //   ref: 'category'
+      // },
+      // categories: [{ type: mongoose.Schema.Types.ObjectId, ref: 'category' }]
     },
     {
       timestamps: true

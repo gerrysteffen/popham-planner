@@ -25,7 +25,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 30;
+    z-index: 50;
     background-color: #f7f7f7;
     display: flex;
     justify-content: center;

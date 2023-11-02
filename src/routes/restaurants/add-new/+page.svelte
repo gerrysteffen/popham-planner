@@ -3,8 +3,8 @@
   import ContentWrapper from '$lib/components/navigation/ContentWrapper.svelte';
   import CompleteForm from '../../../lib/components/forms/CompleteForm.svelte';
 
-  import { restaurantCategories } from '$lib/UIdata/dropDowns';
-  import { restaurantMock } from '$lib/UIdata/mockData';
+  import { restaurantCategories } from '$lib/utils/dropDowns';
+  import { restaurantMock } from '$lib/utils/mockData';
 </script>
 
 <TitleBar title="Add a new Restaurant" />

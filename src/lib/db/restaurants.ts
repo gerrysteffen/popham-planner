@@ -1,4 +1,4 @@
-import type { RestaurantFormType, RestaurantType } from '$lib/UIdata/types';
+import type { RestaurantFormType, RestaurantType } from '$lib/utils/types';
 import mongoose from './db';
 
 let restaurantSchema: undefined | mongoose.Schema<RestaurantType>;
@@ -12,6 +12,11 @@ if (!mongoose.models.restaurant && !restaurantSchema) {
       tags: [String],
       mainCategory: String,
       categories: [String]
+      // mainCategory: {
+      //   type: mongoose.Schema.Types.ObjectId,
+      //   ref: 'category'
+      // },
+      // categories: [{ type: mongoose.Schema.Types.ObjectId, ref: 'category' }]
     },
     {
       timestamps: true

@@ -1,4 +1,4 @@
-import type { MealType } from '$lib/UIdata/types';
+import type { MealType } from '$lib/utils/types';
 import { getAllMeals } from '$lib/db/meals.js';
 
 export async function load() {

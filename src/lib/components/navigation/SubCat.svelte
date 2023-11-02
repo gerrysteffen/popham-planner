@@ -1,6 +1,6 @@
 <script lang="ts">
   import { page } from '$app/stores';
-  import { colors } from '$lib/UIdata/cssSelectors';
+  import { colors } from '$lib/utils/cssColorSelectors';
   export let icon: string;
   export let link: string;
   export let i: number;

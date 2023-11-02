@@ -1,12 +1,12 @@
 <script lang="ts">
-  import type { MealType } from '$lib/UIdata/types';
+  import type { MealType } from '$lib/utils/types';
 
   import TitleBar from '$lib/components/navigation/TitleBar.svelte';
   import ContentWrapper from '$lib/components/navigation/ContentWrapper.svelte';
   import CompleteForm from '../../../../lib/components/forms/CompleteForm.svelte';
 
-  import { foodCategories } from '$lib/UIdata/dropDowns';
-  import { mealMock } from '$lib/UIdata/mockData';
+  import { foodCategories } from '$lib/utils/dropDowns';
+  import { mealMock } from '$lib/utils/mockData';
 
   export let data: { meal: MealType };
 </script>

@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { colors } from '$lib/UIdata/cssSelectors';
-  import type { MealDateType } from '$lib/UIdata/types';
+  import { colors } from '$lib/utils/cssColorSelectors';
+  import type { MealDateType } from '$lib/utils/types';
 
   import Halfday from './Halfday.svelte';
 
