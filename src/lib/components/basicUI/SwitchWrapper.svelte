@@ -1,6 +1,10 @@
 <script lang="ts">
   let open = false;
 
+  function toggleOpen() {
+    open = !open;
+  }
+
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   import MdSort from 'svelte-icons/md/MdSort.svelte';
@@ -14,18 +18,19 @@
 </script>
 
 {#if open}
+  <button id="close-modal" on:click={toggleOpen} />
   <div id="switch-wrapper" transition:fly={{ y: -120, duration: 500, opacity: 1 }}>
     <div id="settings-container">
       <slot />
     </div>
-    <button on:click={() => (open = !open)}>
+    <button on:click={toggleOpen}>
       <MdSort />
       <MdArrowDropUp />
     </button>
   </div>
 {:else}
   <div id="switch-wrapper" transition:fly={{ y: 120, duration: 500, opacity: 1 }}>
-    <button on:click={() => (open = !open)}>
+    <button on:click={toggleOpen}>
       <MdSort />
       <MdArrowDropDown />
     </button>
@@ -59,7 +64,7 @@
     flex-wrap: wrap;
     column-gap: 20px;
   }
-  button {
+  #switch-wrapper button {
     height: 30px;
     border: none;
     background: #bebebe;
@@ -69,5 +74,16 @@
     justify-content: center;
     padding-left: 10px;
     color: black;
+  }
+
+  #close-modal {
+    top: 50px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 19;
+    background-color: transparent;
+    border: none;
   }
 </style>
