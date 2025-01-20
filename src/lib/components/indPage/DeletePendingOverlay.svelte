@@ -21,7 +21,12 @@
         text="Cancel"
         handleClick={() => (deletePending = !deletePending)}
       />
-      <StandardButton type="submit" id="delete-confirm" text="Confirm" handleClick={loadingScreenOn} />
+      <StandardButton
+        type="submit"
+        id="delete-confirm"
+        text="Confirm"
+        handleClick={loadingScreenOn}
+      />
     </form>
   </div>
 </div>
