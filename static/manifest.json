@@ -1,6 +1,6 @@
 {
   "short_name": "PophamPlanner",
-  "name": "PophamPlanner",
+  "name": "Popham Planner",
   "start_url": "/",
   "icons": [
     {
@@ -12,5 +12,5 @@
   "display": "standalone",
   "scope": "/",
   "theme_color": "#1e1e1e",
-  "description": "PophamPlanner"
+  "description": "Popham Planner"
 }
