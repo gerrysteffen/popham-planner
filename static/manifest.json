@@ -1,5 +1,5 @@
 {
-  "short_name": "PophamPlanner",
+  "short_name": "Popham Planner",
   "name": "Popham Planner",
   "start_url": "/",
   "icons": [
@@ -8,9 +8,9 @@
       "type": "image/png"
     }
   ],
-  "background_color": "#dcdcdc",
+  "background_color": "#1e1e1e",
   "display": "standalone",
   "scope": "/",
-  "theme_color": "#1e1e1e",
+  "theme_color": "#dcdcdc",
   "description": "Popham Planner"
 }
