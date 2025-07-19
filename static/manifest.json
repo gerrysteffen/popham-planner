@@ -11,6 +11,6 @@
   "background_color": "#dcdcdc",
   "display": "standalone",
   "scope": "/",
-  "theme_color": "#dcdcdc",
+  "theme_color": "#1e1e1e",
   "description": "PophamPlanner"
 }
