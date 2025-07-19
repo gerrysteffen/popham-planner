@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
-import { DB_DEV_URI, DB_PROD_URI, DB_TEST_URI, NODE_ENV } from '$env/dynamic/private';
+import { NODE_ENV } from '$env/static/private';
+import { DB_DEV_URI, DB_PROD_URI, DB_TEST_URI } from '$env/dynamic/private';
 
 const URI =
   NODE_ENV === 'production' ? DB_PROD_URI : NODE_ENV === 'development' ? DB_DEV_URI : DB_TEST_URI;
